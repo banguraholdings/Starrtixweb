@@ -1,6 +1,3 @@
-type event={
-    eventTypeName:string;
-}
 
 export const eventTypes=[
     {

@@ -1,7 +1,7 @@
 import Dashboardwrapper from '@/components/Dashboardwrapper'
 import React from 'react'
 
-function page() {
+function Dashboard() {
   return (
     <Dashboardwrapper>
         
@@ -9,4 +9,4 @@ function page() {
   )
 }
 
-export default page
+export default Dashboard
