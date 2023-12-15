@@ -133,8 +133,8 @@ function Header() {
           <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start">
             Tired of losing a chunk of your profits to exorbitant ticketing
             fees? Say goodbye to hefty charges and hello to more earnings! Our
-            platform revolutionizes the way you sell tickets - it's not just
-            affordable, it's effective.
+            platform revolutionizes the way you sell tickets - it&apos;s not just
+            affordable, it&apos;s effective.
           </h1>
 
           {/* button */}
