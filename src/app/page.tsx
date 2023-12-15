@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import { eventTypes, events } from "@/api/dummyData";
 import Homwrapper from "@/components/Homwrapper";
 import Image from "next/image";
