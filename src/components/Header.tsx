@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import Animation from "../../public/Lottie/AnimationHome.json";
 import { usePathname } from "next/navigation";
 function Header() {
@@ -144,14 +144,8 @@ function Header() {
         </div>
         <div className="w-8/12 p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
           <Lottie
-            options={{
-              loop: true,
-              autoplay: true,
-              animationData: Animation,
-              rendererSettings: {
-                preserveAspectRatio: "xMidYMid slice",
-              },
-            }}
+          animationData={Animation}
+         loop={true}
             height={200}
             width={200}
           />
