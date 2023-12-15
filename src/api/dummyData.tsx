@@ -40,41 +40,41 @@ export const events = [
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event.jpg"
+    image:"images/event.jpg"
   },
   {
     month:"AUG",
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event1.jpg"
+    image:"images/event1.jpg"
   },
   {
     month:"AUG",
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event2.jpg"
+    image:"images/event2.jpg"
   },
   {
     month:"AUG",
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event3.jpg"
+    image:"images/event3.jpg"
   },
   {
     month:"AUG",
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event4.jpg"
+    image:"images/event4.jpg"
   },
   {
     month:"AUG",
     day:"14",
     header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
     description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"/images/event.jpg"
+    image:"images/event.jpg"
   },
 ]

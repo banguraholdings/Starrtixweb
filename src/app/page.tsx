@@ -143,7 +143,11 @@ export default function Home() {
             >
               {/* img */}
               <div className="w-full">
-                <img src={value.image} className="w-full rounded-t-[18.95px]" />
+                <Image
+                width={100}
+                height={100}
+                style={{width: "100%", borderTopLeftRadius:18.95, borderTopRightRadius:18.95}}
+                src={value.image}   alt="pic"/>
               </div>
               {/* decription */}
               <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">

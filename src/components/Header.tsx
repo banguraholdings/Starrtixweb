@@ -25,7 +25,7 @@ function Header() {
       className="text-white lg:h-[75vh] h-[100vh]"
     >
       {/* navbar */}
-      <div className="z-50 w-full p-6 bg-white items-center justify-center fixed">
+      <div className="z-50 w-full p-6 bg-white items-center justify-center fixed border-b-2">
         {/* container */}
         <div className="flex  justify-between">
           {/* logo */}
@@ -142,12 +142,11 @@ function Header() {
             <h1  className="">Find Events Nearby</h1>
           </button>
         </div>
-        <div className="w-8/12 p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
+        <div className=" p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
           <Lottie
           animationData={Animation}
          loop={true}
-            height={200}
-            width={200}
+           style={{width:200, height:200}}
           />
         </div>
       </div>
