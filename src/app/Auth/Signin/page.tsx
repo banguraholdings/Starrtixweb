@@ -9,10 +9,10 @@ function Signin() {
             <img src="/background/main2.jpg" alt="" className="border-4" />
           </div>
           <div className="w-full h-full p-6 bg-blue-300 flex items-center justify-center font-serif text-lg">
-          Seats So Good, You'll Feel Like Part of the Show!
+          Seats So Good, You&apos;ll Feel Like Part of the Show!
           </div>
           <div className="w-full h-full p-6 bg-blue-300 flex items-center justify-center font-serif text-lg">
-          Early Bird or Last Minute – Tickets on Your Terms!"
+          Early Bird or Last Minute – Tickets on Your Terms!&quot;
           </div>
           <div className="w-full h-full p-6 bg-blue-300">
             {" "}
