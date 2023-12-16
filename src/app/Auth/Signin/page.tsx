@@ -8,7 +8,7 @@ function Signin() {
   return (
     <div className="flex w-full justify-center">
       <div className=" h-[100vh]  hidden w-full lg:block">
-       <img src="background/main2.jpg" alt="" className="w-full h-full"/>
+       <img src="images/event.jpg" alt="" className="w-full h-full"/>
       </div>
 
       {/* sign in form */}
