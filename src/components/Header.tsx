@@ -67,7 +67,7 @@ function Header() {
           </div>
           {/* sign in button */}
           <div className="p-2 hidden lg:block">
-            <Link className="bg-blue-500 p-4 rounded" href={"#"}>
+            <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
               Login
             </Link>
           </div>
