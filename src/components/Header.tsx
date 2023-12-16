@@ -112,6 +112,12 @@ function Header() {
                     className="w-60 p-2 rounded"
                   />
                 </li>
+
+                <li>
+                <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
+              Login
+            </Link>
+                </li>
               </ul>
             </div>
           ) : null}
