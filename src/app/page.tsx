@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { eventTypes, events } from "@/api/dummyData";
 import Homwrapper from "@/components/Homwrapper";
 import Image from "next/image";
@@ -10,7 +10,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { Button } from "@mui/material";
+import {
+  FaTicketAlt,
+  FaCompass,
+  FaMobileAlt,
+  FaCoins,
+  FaPrint,
+} from "react-icons/fa";
+import { MdSupportAgent } from "react-icons/md";
+import { IoShareSocialSharp } from "react-icons/io5";
+import { RiVipCrown2Fill } from "react-icons/ri";
 
 export default function Home() {
   const [day, setDay] = useState("");
@@ -144,10 +153,16 @@ export default function Home() {
               {/* img */}
               <div className="w-full">
                 <Image
-                width={100}
-                height={100}
-                style={{width: "100%", borderTopLeftRadius:18.95, borderTopRightRadius:18.95}}
-                src={value.image}   alt="pic"/>
+                  width={100}
+                  height={100}
+                  style={{
+                    width: "100%",
+                    borderTopLeftRadius: 18.95,
+                    borderTopRightRadius: 18.95,
+                  }}
+                  src={value.image}
+                  alt="pic"
+                />
               </div>
               {/* decription */}
               <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
@@ -166,14 +181,138 @@ export default function Home() {
             </Link>
           ))}
         </div>
-
       </div>
-        {/* more events view */}
-        <div className="w-full justify-center flex p-4">
-           <button className="w-40 h-14 rounded-xl border-blue-500 border text-blue-500">
-            See More
-           </button>
+      {/* more events view */}
+      <div className="w-full justify-center flex p-4">
+        <button className="w-40 h-14 rounded-xl border-blue-500 border text-blue-500">
+          See More
+        </button>
+      </div>
+
+      <div className="w-full  flex justify-center text-center p-4">
+        <div className=" w-11/12 text-xl">
+          More than Just a Ticket An Experience!
         </div>
+      </div>
+      {/* adverts */}
+      <div className="w-full  grid grid-cols-1 lg:grid-cols-2">
+        <div className="w-full  bg-red-500">
+          {/* image */}
+          <img
+            src={"images/weddings.jpg"}
+            alt="wedding pics"
+            className="w-full"
+          />
+        </div>
+        {/* services */}
+        <div className="w-full space-y-4 xl:space-y-6 border p-4 justify-center items-center flex flex-col ">
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <FaTicketAlt size={32} color="red" />
+            {/* service details 1*/}
+            <div>
+              <h1 className="font-bold">Online Ticket Sales</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Enabling customers to purchase tickets directly through the
+                website.
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <FaCompass size={32} color="green" />
+            {/* service details 2*/}
+            <div>
+              <h1 className="font-bold xl:text-xl">Event Discovery</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Helping users discover events based on their interests or
+                location.
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <FaMobileAlt size={32} color="blue" />
+            {/* service details 3*/}
+            <div>
+              <h1 className="font-bold">Mobile Ticketing</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Offering mobile-friendly ticketing options, such as e-tickets or
+                mobile app access.{" "}
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <FaCoins size={32} color="orange" />
+            {/* service details 4*/}
+            <div>
+              <h1 className="font-bold">Event Promotion</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Marketing tools and services to promote the event through the
+                platform and partner networks.
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full  flex justify-center text-center p-4">
+        <div className=" w-11/12 text-xl">he Stage is Set. Are You </div>
+      </div>
+      {/* adverts */}
+      <div className="w-full  grid grid-cols-1 lg:grid-cols-2  pb-12">
+        {/* services */}
+        <div className="w-full space-y-4 xl:space-y-6 border p-4 justify-center items-center flex flex-col ">
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <FaPrint size={32} color="red" />
+            {/* service details 1*/}
+            <div>
+              <h1 className="font-bold">Print-at-Home Tickets</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Enabling customers to print tickets from home.{" "}
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <RiVipCrown2Fill size={32} color="green" />
+            {/* service details 2*/}
+            <div>
+              <h1 className="font-bold xl:text-xl">VIP & Package Sales</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Selling premium packages that may include VIP seating,
+                meet-and-greets, or merchandise.
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <IoShareSocialSharp size={32} color="blue" />
+            {/* service details 3*/}
+            <div>
+              <h1 className="font-bold">Social Media Integration</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Enabling sharing and promotion of events on social media
+                platforms.
+              </h1>
+            </div>
+          </div>
+          <div className="flex w-11/12 space-x-2 lg:space-x-4">
+            <MdSupportAgent size={32} color="orange" />
+            {/* service details 4*/}
+            <div>
+              <h1 className="font-bold">Customer Support</h1>
+              <h1 className="font-light text-sm xl:text-lg">
+                Offering support services for both event organizers and
+                attendees.
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div className="w-full  bg-red-500">
+          {/* image */}
+          <img
+            src={"images/culture.jpg"}
+            alt="wedding pics"
+            className="w-full"
+          />
+        </div>
+      </div>
     </Homwrapper>
   );
 }
