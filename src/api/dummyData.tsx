@@ -78,3 +78,26 @@ export const events = [
     image:"images/event.jpg"
   },
 ]
+export const paths =[
+{
+  name: "Dashboard",
+  value:"Dashboard"
+},
+{
+  name:"All Events",
+  value:"Events"
+}, 
+{
+  name:"Users",
+  value:"Users"
+},
+{
+name:"Settings",
+value:"Settings"
+},
+{
+  name:"Reports and Analytics",
+  value:"Reports"
+},
+
+]

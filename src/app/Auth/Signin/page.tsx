@@ -7,7 +7,7 @@ import { FaFacebook } from "react-icons/fa";
 function Signin() {
   return (
     <div className="flex w-full justify-center">
-      <div className=" h-[100vh]  hidden w-full lg:block">
+      <div className=" h-[100vh]  hidden w-full lg:block lg:">
        <img src={"../../background/main2.jpg"} alt="" className="w-full h-full"/>
       </div>
 
@@ -25,16 +25,16 @@ function Signin() {
           </Link>
         </div>
 
-        <div className="w-full   h-full flex flex-col items-center justify-center md:space-y-4">
+        <div className="w-full    flex flex-col items-center  md:space-y-2">
           {/* Welcome */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center ">
             <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
             <h1 className="text-4xl font-bold  text-blue-500">
               Sky<span className="text-xl text-white text-border">tix</span>
             </h1>
           </div>
           {/* form fields */}
-          <div className="flex flex-col space-y-4 md:space-y-6">
+          <div className="flex flex-col space-y-4 md:space-y-4">
             <h1 className="text-sm font-light md:text-base">sign into your account </h1>
             <SignInForm />
             <div className="flex justify-center items-center">
@@ -44,7 +44,7 @@ function Signin() {
             </div>
 
             {/* oauth */}
-            <div className="w-full grid grid-cols-1 gap-4">
+            <div className="w-full grid grid-cols-1 gap-2">
               <button className="w-full space-x-2 h-14 border flex items-center justify-center rounded">
                 <FcGoogle size={24} />
                 <h1>Log in with Google</h1>
