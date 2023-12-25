@@ -5,9 +5,8 @@ import Homerapper from "@/components/Homewrapper";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { events } from "@/api/dummyData";
 
-function page() {
+function Page() {
   //events array
   const events = [
     {
@@ -277,4 +276,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

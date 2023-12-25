@@ -25,7 +25,7 @@ import {
 import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { RiVipCrown2Fill } from "react-icons/ri";
-function page() {
+function Page() {
     const path = usePathname();
     // lg:h-[75vh] h-[100vh]
     const [day, setDay] = useState("");
@@ -370,4 +370,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
