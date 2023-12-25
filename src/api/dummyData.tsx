@@ -2,12 +2,12 @@
 export const eventTypes=[
     {
         "id": 1,
-        "name": "Conference",
+        "name": "Seminar",
         "description": "A large formal gathering where people discuss specific topics."
       },
       {
         "id": 2,
-        "name": "Seminar",
+        "name": "University Gradutaion",
         "description": "A meeting for discussion or training."
       },
       {
@@ -17,7 +17,7 @@ export const eventTypes=[
       },
       {
         "id": 4,
-        "name": "Webinar",
+        "name": "Wedding",
         "description": "A seminar or other presentation that takes place on the internet, allowing participants in different locations to see and hear the presenter, ask questions, and sometimes answer polls."
       },
       {

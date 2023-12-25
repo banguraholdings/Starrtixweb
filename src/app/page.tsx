@@ -67,10 +67,14 @@ export default function Home() {
               just affordable, it&apos;s effective.
             </h1>
 
+            <div className="flex flex-row space-x-2">
             {/* button */}
-            <button className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded">
-              <h1 className="">Find Events Nearby</h1>
-            </button>
+
+          
+            <Link href={"/User/Dashboard"} className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded ">
+              <h1 className="">Create an Event</h1>
+            </Link>
+            </div>
           </div>
           <div className=" p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
             <Lottie
@@ -81,11 +85,12 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       {/* event genre */}
       <div className="w-full p-4 items-center justify-center flex ">
         <div className="flex gap-6 lg:gap-10 overflow-scroll  hide-scrollbar">
           {eventTypes.map((event) => (
-            <Link key={event.id} href={""}>
+            <Link key={event.id} href={""} className="flex flex-col items-center">
               {/* event icon */}
               <div className="w-20 h-20 lg:w-32 lg:h-32 border flex rounded-full items-center justify-center hover:border-blue-400">
                 <BsFillCalendarEventFill color={"blue"} size={32} />

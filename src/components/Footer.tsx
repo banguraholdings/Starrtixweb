@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className="w-full bg-blue-900 p-12">
       {/* container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-red-500 md:place lg:grid-cols-3 space-y-8">
         {/* section1 */}
         <div className=" space-y-2 flex md:flex-col">
           <div>

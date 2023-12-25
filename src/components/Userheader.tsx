@@ -31,7 +31,7 @@ function Userheader() {
             </h1>
             {/* search bar */}
             <Link
-              href={"#"}
+              href={"/Pages/Search"}
               className="w-96 h-12 hidden bg-gray-200 lg:flex items-center p-2 gap-4"
             >
               <FaSearch color={"grey"} />
