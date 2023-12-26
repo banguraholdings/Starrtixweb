@@ -10,22 +10,7 @@ import ResponsiveLineChart from "@/components/ResponsiveLineChart";
 import ResponsivePieChart from "@/components/ResponsivePieChart";
 
 function Dashboard() {
-  const [chartWidth, setChartWidth] = useState(window.innerWidth === 768 ? 900 : 300);
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Update the chart width based on the current screen width
-      setChartWidth(window.innerWidth === 768 ? 900 : 300);
-    };
-
-    // Listen for window resize events and update the chart width
-    window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+ 
   return (
     <Dashboardwrapper>
       <div className="w-full h-full  p-4 flex flex-col items-center">
