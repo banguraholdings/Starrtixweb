@@ -9,7 +9,7 @@ import { FcGlobe } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
 
-function page() {
+function Page() {
   //events array
   const events = [
     {
@@ -232,4 +232,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -2,7 +2,7 @@ import Dashboardwrapper from "@/components/Dashboardwrapper";
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
-function page() {
+function Page() {
   //events array
   const Users = [
     {
@@ -109,4 +109,4 @@ Deactivate
   );
 }
 
-export default page;
+export default Page;
