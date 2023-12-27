@@ -71,6 +71,7 @@ function Dashboard() {
             </li>
           </ul>
         </div>
+        {/* chart showing the rate at which profit and loss are made within the month */}
         <div className="p-4 w-full flex flex-col space-y-4 xl:space-y-0 items-center xl:flex-row">
           <ResponsiveLineChart/>
           <div className="border w-full grid place-items-center">
@@ -78,6 +79,12 @@ function Dashboard() {
           <ResponsivePieChart/>
           </div>
         </div>
+
+      {/* top five customers */}
+
+      <div className="w-full">
+
+      </div>
       </div>
     </Dashboardwrapper>
   );
