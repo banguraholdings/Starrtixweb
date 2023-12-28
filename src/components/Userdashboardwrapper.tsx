@@ -3,12 +3,15 @@
 
 import React from 'react'
 import { MdDashboard } from "react-icons/md";
-import { paths } from "@/api/dummyData";
+import { paths, userDashboardsPath } from "@/api/dummyData";
 import { FaCalendarAlt,FaUsers } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
 import { IoSettings } from "react-icons/io5";
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
+import { IoIosHome } from "react-icons/io";
+import { HiMiniSpeakerWave } from "react-icons/hi2";
+import { CiBank } from "react-icons/ci";
 
 function Userdashboardwrapper({children}:any) {
     const pathname = usePathname().split("/");
@@ -28,26 +31,20 @@ function Userdashboardwrapper({children}:any) {
 
       {/* Dashboard button  */}
       <div className="w-full h-full  flex flex-col items-center space-y-2">
-        {paths.map((value, index)=>(
-          <Link key={index} href={`/Admin/${value.value}`} className={`w-full h-12 flex items-center justify-center ${value.value===pathname[2]?"bg-white":null}`}>
+        {userDashboardsPath.map((value, index)=>(
+          <Link key={index} href={`/User/${value.value}`} className={`w-full h-12 flex items-center justify-center ${value.value===pathname[2]?"bg-white":null}`}>
           <div className=" flex items-center justify-start lg:w-10/12 h-full lg:space-x-4 ">
             {
-              value.value==="Dashboard"?<MdDashboard size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
-                value.value==="Events" ? <FaCalendarAlt size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
-                  value.value==="Reports"?<GoGraph size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
-                    value.value==="Settings"?<IoSettings size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
-                      value.value==="Users"?<FaUsers size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:null
-
-                    )
-
-                  )
-
+              value.value==="Dashboard"?<IoIosHome size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
+                value.value==="Marketing" ? <HiMiniSpeakerWave size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:(
+                  value.value==="Finance"?<CiBank size={24} color={`${value.value===pathname[2]?"black":"white"}`}/>:
+null
                 )
 
               )
 
             }
-          <h1 className={` hidden lg:block font-bold ${value.value===pathname[2]?"text-black":"text-white"}`}>
+          <h1 className={` hidden hover:block hover:text-black lg:block font-bold ${value.value===pathname[2]?"text-black":"text-white"}`}>
             {value.name}
           </h1>
           </div>

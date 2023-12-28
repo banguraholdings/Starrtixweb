@@ -101,3 +101,20 @@ value:"Settings"
 },
 
 ]
+
+
+//user dashboards path  
+export const userDashboardsPath =[
+  {
+    name:"Home",
+    value:"Dashboard",
+  },
+  {
+    name:"Marketing",
+    value:"Marketing"
+  },
+  {
+    Finance:"Finance",
+    value:"Finance"
+  }
+]
