@@ -7,7 +7,7 @@ function page() {
       {/* landing screen */}
       <div
         style={{
-          backgroundImage: `url('/images/event1.jpg')`,
+          backgroundImage: `url('images/event1.jpg')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -74,7 +74,7 @@ function page() {
         </div>
         <div>
           <img
-            src={"/pictures/AboutUs1.jpeg"}
+            src={"pictures/AboutUs1.jpeg"}
             alt="wedding pics"
             className="w-full"
           />
@@ -113,7 +113,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="/pictures/Salamatu.jpg"
+              src="pictures/Salamatu.jpg"
               alt="Software Engineer"
               className="p-8"
             />
@@ -143,7 +143,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="/pictures/Judah.png"
+              src="pictures/Judah.png"
               alt="Software Engineer"
               className="p-8"
             />
@@ -172,7 +172,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="/pictures/Solomon.jpeg"
+              src="pictures/Solomon.jpeg"
               alt="Software Engineer"
               className="p-8"
             />
