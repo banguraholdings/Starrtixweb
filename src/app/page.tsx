@@ -1,16 +1,13 @@
 "use client";
 import { eventTypes, events } from "@/api/dummyData";
-import Homwrapper from "@/components/Homwrapper";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, Fragment } from "react";
 import { BsFillCalendarEventFill } from "react-icons/bs";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { usePathname } from "next/navigation";
 import Animation from "../../public/Lottie/AnimationHome.json";
 import {
   FaTicketAlt,
@@ -25,7 +22,9 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 import Homerapper from "@/components/Homewrapper";
 import Lottie from "lottie-react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { IoMdTime } from "react-icons/io";
+import { MdLocationOn } from "react-icons/md";
+
 export default function Home() {
   const [day, setDay] = useState("");
   const [eventType, setEventType] = useState("");
@@ -52,10 +51,10 @@ export default function Home() {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="h-[100vh] text-white"
+        className="h-[100dvh] text-white"
       >
         <div
-          className={`w-full   h-[100vh] bg-blue-700 bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}
+          className={`w-full   h-[100dvh] bg-blue-700 bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}
         >
           <div className="w-8/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
@@ -269,8 +268,8 @@ export default function Home() {
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
-                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                      <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                      <div className="bg-white px-4 pb-12 pt-5 sm:p-6 sm:pb-8">
                         <div className="sm:flex sm:items-start">
                           <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                             <IoTicket
@@ -286,12 +285,74 @@ export default function Home() {
                               Purchase Ticket
                             </Dialog.Title>
                             <div className="mt-2">
-                            <Image
-                            src={"/images/event.jpg"}
-                            alt="pic"
-                            width={200}
-                            height={200}
-                            />
+                              <div className="flex flex-col lg:flex-row space-x-4 items-center space-y-4">
+                                {/* event image */}
+                                <Image
+                                  src={"/images/event.jpg"}
+                                  alt="pic"
+                                  width={200}
+                                  height={200}
+                                />
+                                {/* event timing & date*/}
+                                <div className="">
+                                  {/* timing */}
+                                  <div className="flex items-center space-x-2">
+
+                                  <IoMdTime size={24} className="text-gray-500"/>
+                                  <h1 className="text-xs text-gray-500">
+                                  Fri, 30 July at 10:00 - Mon, 2 August 2024 at 23:00
+                                  </h1>
+                                  </div>
+                                  {/* timing */}
+                                  <div className="flex items-center space-x-2">
+
+                                  <MdLocationOn size={24} className="text-gray-500"/>
+                                  <h1 className="text-xs text-gray-500">
+                                  The Door Church, Ferry Junction, Freetown, Sierra Leone
+                                  </h1>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* input Fields */}
+
+                              <div className="w-full h-20 space-y-4">
+                                <h1>
+                                  Personal Info
+                                </h1>
+
+                                {/* email and full name */}
+                                <div className=" space-x-6">
+                                  {/* full name */}
+                                  <input type="text" 
+                                  placeholder="Full Name"
+                                  className="text-xs p-2 w-5/12 border"
+                                  />
+                                  {/* email */}
+                                  <input type="email" 
+                                  placeholder="email"
+                                  className="text-xs p-2 w-5/12 border"
+
+                                  />
+                                </div>
+
+
+                                {/* address and phone number */}
+                                <div className=" space-x-6">
+                                  {/* phone number */}
+                                  <input type="number" 
+                                  placeholder="Full Name"
+                                  className="text-xs p-2 w-5/12 border"
+                                  />
+                                  {/* address */}
+                                  <input type="text" 
+                                  placeholder="email"
+                                  className="text-xs p-2 w-5/12 border"
+
+                                  />
+                                </div>
+                                {/* next */}
+                              </div>
                             </div>
                           </div>
                         </div>

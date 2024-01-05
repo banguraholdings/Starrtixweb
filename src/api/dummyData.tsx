@@ -78,6 +78,8 @@ export const events = [
     image:"images/event.jpg"
   },
 ]
+
+//admin dashboard paths
 export const paths =[
 {
   name: "Dashboard",
@@ -103,7 +105,7 @@ value:"Settings"
 ]
 
 
-//user dashboards path  
+//user dashboards path  side bar
 export const userDashboardsPath =[
   {
     name:"Home",
@@ -114,7 +116,27 @@ export const userDashboardsPath =[
     value:"Marketing"
   },
   {
-    Finance:"Finance",
+    name:"Finance",
     value:"Finance"
   }
+]
+
+//user header navigation 
+export const userNavigation =[
+{
+  name:"Home",
+  value:"Home"
+},
+{
+name:"About Us",
+value:"About"
+},
+{
+  name:"Tickets",
+  value:"Tickets"
+},
+{
+  name:"Favorites",
+  value:"Favorites"
+}
 ]

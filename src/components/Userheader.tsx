@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -7,19 +7,19 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
-
+import { userNavigation } from "@/api/dummyData";
 function Userheader() {
   // states
   const [open, setOpened] = useState(false);
 
-  const path = usePathname();
+  const path = usePathname().split("/")[2];;
   //useEffect
-  useEffect(() => {});
+  useEffect(() => {
+
+    console.log(path)
+  });
   return (
-    <header
-      
-      className="text-white "
-    >
+    <div className="text-white ">
       {/* navbar */}
       <div className="z-50 w-full p-6 bg-white items-center justify-center fixed border-b-2">
         {/* container */}
@@ -44,21 +44,11 @@ function Userheader() {
           {/* navigation */}
           <div className="  w-4/12 hidden lg:flex  text-black">
             <ul className="flex text- font-light justify-between items-center w-full">
-              <li>
-                <Link href={"#"}>Home</Link>
-              </li>
-              <li>
-                {" "}
-                <Link href={"#"}>About Us</Link>
-              </li>
-              <li>
-                {" "}
-                <Link href={"#"}>Tickets </Link>
-              </li>
-              <li>
-                {" "}
-                <Link href={"#"}>Favorites </Link>
-              </li>
+              {userNavigation.map((value: any, index) => (
+                <li key={index} className={`${path===value.value?"underline text-blue-500":null}`}>
+                  <Link href={`/User/${value.value}`}>{value.name}</Link>
+                </li>
+              ))}
             </ul>
           </div>
           {/* sign in button */}
@@ -87,19 +77,11 @@ function Userheader() {
           {open ? (
             <div>
               <ul className="w-full font-thin gap-2 flex flex-col">
-                <li className="hover:underline hover:text-[#DB4444] hover:cursor-pointer">
-                  Home
+              {userNavigation.map((value: any, index) => (
+                <li key={index} className={`${path===value.value?"underline text-blue-500":null}`}>
+                  <Link href={`/User/${value.value}`}>{value.name}</Link>
                 </li>
-                <li className="hover:underline hover:text-[#DB4444] hover:cursor-pointer">
-                  About Us
-                </li>
-                <li className="hover:underline hover:text-[#DB4444] hover:cursor-pointer">
-                  {" "}
-                  Tickets
-                </li>
-                <li className="hover:underline hover:text-[#DB4444] hover:cursor-pointer">
-                  Favorite{" "}
-                </li>
+              ))}
                 <li className="flex gap-4">
                   {/* search */}
                   <input
@@ -110,18 +92,19 @@ function Userheader() {
                 </li>
 
                 <li>
-                <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
-              Login
-            </Link>
+                  <Link
+                    className="bg-blue-500 p-4 rounded"
+                    href={"/Auth/Signin"}
+                  >
+                    Login
+                  </Link>
                 </li>
               </ul>
             </div>
           ) : null}
         </div>
       </div>
-
-    
-    </header>
+    </div>
   );
 }
 
