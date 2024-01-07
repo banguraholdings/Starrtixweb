@@ -74,7 +74,7 @@ function page() {
         </div>
         <div>
           <img
-            src={"pictures/AboutUs1.jpeg"}
+            src={"../../pictures/AboutUs1.jpeg"}
             alt="wedding pics"
             className="w-full"
           />
@@ -87,7 +87,7 @@ function page() {
         <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 ">
           {/* img name and title */}
           <div className="flex flex-col items-center">
-            <img src="/pictures/Abdulai.jpg" alt="CEO" className="p-8 " />
+            <img src="../../pictures/Abdulai.jpg" alt="CEO" className="p-8 " />
             <h1 className="text-lg font-semibold">Abdulai Conteh</h1>
             <h1 className="text-lg font-semibold text-blue-500">
               Founder & Creative Director{" "}
@@ -113,7 +113,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="pictures/Salamatu.jpg"
+              src="../../pictures/Salamatu.jpg"
               alt="Software Engineer"
               className="p-8"
             />
@@ -143,7 +143,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="pictures/Judah.png"
+              src="../../pictures/Judah.png"
               alt="Software Engineer"
               className="p-8"
             />
@@ -172,7 +172,7 @@ function page() {
           {/* img name and title */}
           <div className="flex flex-col items-center">
             <img
-              src="pictures/Solomon.jpeg"
+              src="../../pictures/Solomon.jpeg"
               alt="Software Engineer"
               className="p-8"
             />
