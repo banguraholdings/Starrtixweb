@@ -7,7 +7,7 @@ function page() {
       {/* landing screen */}
       <div
         style={{
-          backgroundImage: `url('images/event1.jpg')`,
+          backgroundImage: `url('../../images/event1.jpg')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
