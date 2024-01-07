@@ -13,7 +13,7 @@ function page() {
 
             <h1 className="text-center font-light lg:text-left">
               We love hearing from our customers! If you have any questions,
-              suggestions, or need assistance with your ticket booking, don't
+              suggestions, or need assistance with your ticket booking, dont
               hesitate to get in touch. You can email us at [email address] or
               call us at [phone number]. Our team is available from [hours of
               operation] and is always eager to help make your ticket booking
