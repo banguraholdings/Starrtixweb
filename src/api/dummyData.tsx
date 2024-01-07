@@ -1,142 +1,149 @@
-
-export const eventTypes=[
-    {
-        "id": 1,
-        "name": "Seminar",
-        "description": "A large formal gathering where people discuss specific topics."
-      },
-      {
-        "id": 2,
-        "name": "University Gradutaion",
-        "description": "A meeting for discussion or training."
-      },
-      {
-        "id": 3,
-        "name": "Workshop",
-        "description": "A brief intensive course, a seminar, or a series of meetings emphasizing interaction and exchange of information among a usually small number of participants."
-      },
-      {
-        "id": 4,
-        "name": "Wedding",
-        "description": "A seminar or other presentation that takes place on the internet, allowing participants in different locations to see and hear the presenter, ask questions, and sometimes answer polls."
-      },
-      {
-        "id": 5,
-        "name": "Trade Show",
-        "description": "An exhibition organized so that companies in a specific industry can showcase and demonstrate their latest products and services."
-      },
-      {
-        "id": 6,
-        "name": "Networking Event",
-        "description": "An event that is designed to help people meet new contacts and potentially do business together."
-      },
-      
-]
-
+export const eventTypes = [
+  {
+    id: 1,
+    name: "Seminar",
+    description:
+      "A large formal gathering where people discuss specific topics.",
+  },
+  {
+    id: 2,
+    name: "University Gradutaion",
+    description: "A meeting for discussion or training.",
+  },
+  {
+    id: 3,
+    name: "Workshop",
+    description:
+      "A brief intensive course, a seminar, or a series of meetings emphasizing interaction and exchange of information among a usually small number of participants.",
+  },
+  {
+    id: 4,
+    name: "Wedding",
+    description:
+      "A seminar or other presentation that takes place on the internet, allowing participants in different locations to see and hear the presenter, ask questions, and sometimes answer polls.",
+  },
+  {
+    id: 5,
+    name: "Trade Show",
+    description:
+      "An exhibition organized so that companies in a specific industry can showcase and demonstrate their latest products and services.",
+  },
+  {
+    id: 6,
+    name: "Networking Event",
+    description:
+      "An event that is designed to help people meet new contacts and potentially do business together.",
+  },
+];
 
 export const events = [
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event.jpg",
   },
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event1.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event1.jpg",
   },
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event2.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event2.jpg",
   },
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event3.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event3.jpg",
   },
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event4.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event4.jpg",
   },
   {
-    month:"AUG",
-    day:"14",
-    header:"Wonder Girls 2010 Wonder Girls World Tour San Francisco",
-    description:"We’ll get you directly seated and inside for you to enjoy the show.",
-    image:"images/event.jpg"
+    month: "AUG",
+    day: "14",
+    header: "Wonder Girls 2010 Wonder Girls World Tour San Francisco",
+    description:
+      "We’ll get you directly seated and inside for you to enjoy the show.",
+    image: "images/event.jpg",
   },
-]
+];
 
 //admin dashboard paths
-export const paths =[
-{
-  name: "Dashboard",
-  value:"Dashboard"
-},
-{
-  name:"All Events",
-  value:"Events"
-}, 
-{
-  name:"Users",
-  value:"Users"
-},
-{
-name:"Settings",
-value:"Settings"
-},
-{
-  name:"Reports and Analytics",
-  value:"Reports"
-},
-
-]
-
+export const paths = [
+  {
+    name: "Dashboard",
+    value: "Dashboard",
+  },
+  {
+    name: "All Events",
+    value: "Events",
+  },
+  {
+    name: "Users",
+    value: "Users",
+  },
+  {
+    name: "Settings",
+    value: "Settings",
+  },
+  {
+    name: "Reports and Analytics",
+    value: "Reports",
+  },
+];
 
 //user dashboards path  side bar
-export const userDashboardsPath =[
+export const userDashboardsPath = [
   {
-    name:"Home",
-    value:"Dashboard",
+    name: "Home",
+    value: "Dashboard",
   },
   {
-    name:"Marketing",
-    value:"Marketing"
+    name: "Marketing",
+    value: "Marketing",
   },
   {
-    name:"Finance",
-    value:"Finance"
-  }
-]
+    name: "Finance",
+    value: "Finance",
+  },
+];
 
-//user header navigation 
-export const userNavigation =[
-{
-  name:"Home",
-  value:"Home"
-},
-{
-name:"About Us",
-value:"About"
-},
-{
-  name:"Tickets",
-  value:"Tickets"
-},
-{
-  name:"Favorites",
-  value:"Favorites"
-}
-]
+//user header navigation
+export const userNavigation = [
+  {
+    name: "Tickets",
+    value: "Tickets",
+  },
+  {
+    name: "About Us",
+    value: "About",
+  },
+  {
+    name: "Contact Us",
+    value: "Contact",
+  },
+
+  {
+    name: "Favorites",
+    value: "Favorites",
+  },
+];
