@@ -147,3 +147,35 @@ export const userNavigation = [
     value: "Favorites",
   },
 ];
+
+//user dashboard dummy activities
+export const activities =[
+  {
+    "event":"MedFest",
+    "activity":"added a new photo", 
+    "time":"2 hours ago",
+    "about":"eating fest ongoing",
+    "img":"/images/loginback.png"
+
+  },
+  {
+    "event":"MedFest",
+    "activity":"added a new photo", 
+    "time":"2 hours ago",
+    "about":"eating fest ongoing",
+    "img":"/images/african.jpg"
+  },
+  {
+    "event":"MedFest",
+    "activity":"added a new photo", 
+    "time":"2 hours ago",
+    "about":"eating fest ongoing"
+  },
+  {
+    "event":"MedFest",
+    "activity":"added a new photo", 
+    "time":"2 hours ago",
+    "about":"eating fest ongoing"
+  },
+
+]

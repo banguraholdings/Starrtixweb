@@ -2,7 +2,7 @@
 import { eventTypes, events } from "@/api/dummyData";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, Fragment } from "react";
+import { useState, useRef, Fragment, useEffect } from "react";
 import { BsFillCalendarEventFill } from "react-icons/bs";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -24,13 +24,20 @@ import Lottie from "lottie-react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdTime } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";
+import { authToken } from "@/api/Auth";
+import { userAuth } from "../../useContext";
 
 export default function Home() {
+
+  const {username, logout, isAuthenticated}=userAuth()
+
+
+
   const [day, setDay] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCategory, setEventCategory] = useState("");
   const [open, setOpen] = useState(false);
-
+  const [user, setUser] = useState(null)
   const cancelButtonRef = useRef(null);
 
   const handleDayChange = (event: SelectChangeEvent) => {
@@ -43,6 +50,23 @@ export default function Home() {
     setEventCategory(event.target.value as string);
   };
 
+  // //get user token from local storage
+  // const getToken = async () => {
+  //   try {
+  //     const token = await localStorage.getItem("token");
+  //     if (token) {
+  //       authToken(token).then((value)=>{
+  //         setUser(value?.data)
+  //       })
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // };
+
+  useEffect(() => {
+console.log(isAuthenticated)
+  }, []);
   return (
     <Homerapper>
       <div
@@ -60,7 +84,7 @@ export default function Home() {
             {/* header */}
             <h1 className="lg:text-4xl text-xl md:text-2xl font-serif text-center lg:text-start ">
               Maximize Your Sales, Minimize Your Fees Affordable Ticketing,
-              Unmatched Efficiency
+              Unmatched Efficiency 
             </h1>
             {/* body */}
             <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start">
@@ -72,13 +96,23 @@ export default function Home() {
 
             <div className="flex flex-row space-x-2">
               {/* button */}
-
-              <Link
+              {
+                username?
+                <Link
                 href={"/User/Dashboard"}
                 className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
               >
-                <h1 className="">Create an Event</h1>
+                <h1 className="">Create Event</h1>
               </Link>
+              :
+              <Link
+              href={"/User/Dashboard"}
+              className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
+            >
+              <h1 className="">Find Event</h1>
+            </Link>
+              }
+             
             </div>
           </div>
           <div className=" p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
@@ -297,19 +331,25 @@ export default function Home() {
                                 <div className="">
                                   {/* timing */}
                                   <div className="flex items-center space-x-2">
-
-                                  <IoMdTime size={24} className="text-gray-500"/>
-                                  <h1 className="text-xs text-gray-500">
-                                  Fri, 30 July at 10:00 - Mon, 2 August 2024 at 23:00
-                                  </h1>
+                                    <IoMdTime
+                                      size={24}
+                                      className="text-gray-500"
+                                    />
+                                    <h1 className="text-xs text-gray-500">
+                                      Fri, 30 July at 10:00 - Mon, 2 August 2024
+                                      at 23:00
+                                    </h1>
                                   </div>
                                   {/* timing */}
                                   <div className="flex items-center space-x-2">
-
-                                  <MdLocationOn size={24} className="text-gray-500"/>
-                                  <h1 className="text-xs text-gray-500">
-                                  The Door Church, Ferry Junction, Freetown, Sierra Leone
-                                  </h1>
+                                    <MdLocationOn
+                                      size={24}
+                                      className="text-gray-500"
+                                    />
+                                    <h1 className="text-xs text-gray-500">
+                                      The Door Church, Ferry Junction, Freetown,
+                                      Sierra Leone
+                                    </h1>
                                   </div>
                                 </div>
                               </div>
@@ -317,38 +357,37 @@ export default function Home() {
                               {/* input Fields */}
 
                               <div className="w-full h-20 space-y-4">
-                                <h1>
-                                  Personal Info
-                                </h1>
+                                <h1>Personal Info</h1>
 
                                 {/* email and full name */}
                                 <div className=" space-x-6">
                                   {/* full name */}
-                                  <input type="text" 
-                                  placeholder="Full Name"
-                                  className="text-xs p-2 w-5/12 border"
+                                  <input
+                                    type="text"
+                                    placeholder="Full Name"
+                                    className="text-xs p-2 w-5/12 border"
                                   />
                                   {/* email */}
-                                  <input type="email" 
-                                  placeholder="email"
-                                  className="text-xs p-2 w-5/12 border"
-
+                                  <input
+                                    type="email"
+                                    placeholder="email"
+                                    className="text-xs p-2 w-5/12 border"
                                   />
                                 </div>
-
 
                                 {/* address and phone number */}
                                 <div className=" space-x-6">
                                   {/* phone number */}
-                                  <input type="number" 
-                                  placeholder="Full Name"
-                                  className="text-xs p-2 w-5/12 border"
+                                  <input
+                                    type="number"
+                                    placeholder="Full Name"
+                                    className="text-xs p-2 w-5/12 border"
                                   />
                                   {/* address */}
-                                  <input type="text" 
-                                  placeholder="email"
-                                  className="text-xs p-2 w-5/12 border"
-
+                                  <input
+                                    type="text"
+                                    placeholder="email"
+                                    className="text-xs p-2 w-5/12 border"
                                   />
                                 </div>
                                 {/* next */}

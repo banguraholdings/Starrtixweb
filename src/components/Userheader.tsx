@@ -8,16 +8,39 @@ import { IoClose } from "react-icons/io5";
 import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
 import { userNavigation } from "@/api/dummyData";
+import { authToken } from "@/api/Auth";
+import { FaRegUserCircle } from "react-icons/fa";
+import { userAuth } from "../../useContext";
+
 function Userheader() {
   // states
   const [open, setOpened] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
-  const path = usePathname().split("/")[2];;
-  //useEffect
+    const {username}=userAuth()
+  const path = usePathname().split("/")[2];
+  // //get user token from local storage
+  // const getToken = async () => {
+   
+  //     const token = await localStorage.getItem("token");
+  //     if (token) {
+  //       authToken(token).then((value) => {
+  //         if(value){
+
+  //           setUser(value?.data);
+  //         }else{
+  //           setUser(null)
+  //         }
+  //       });
+  //     }
+   
+  // };
+
   useEffect(() => {
-
-    console.log(path)
-  });
+//  getToken().catch((error) => {
+//   console.log(error)
+//  })
+}, []);
   return (
     <div className="text-white ">
       {/* navbar */}
@@ -32,7 +55,7 @@ function Userheader() {
             {/* search bar */}
             <Link
               href={"/Pages/Search"}
-              className="w-96 h-12 hidden bg-gray-200 lg:flex items-center p-2 gap-4"
+              className="w-96 h-12 hidden rounded-lg bg-gray-200 lg:flex items-center p-2 gap-4"
             >
               <FaSearch color={"grey"} />
               <div className="flex-1 text-sm text-gray-400">
@@ -45,17 +68,32 @@ function Userheader() {
           <div className="  w-4/12 hidden lg:flex  text-black">
             <ul className="flex text- font-light justify-between items-center w-full">
               {userNavigation.map((value: any, index) => (
-                <li key={index} className={`${path===value.value?"underline text-blue-500":null}`}>
+                <li
+                  key={index}
+                  className={`${
+                    path === value.value ? "underline text-blue-500" : null
+                  }`}
+                >
                   <Link href={`/User/${value.value}`}>{value.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
-          {/* sign in button */}
-          <div className="p-2 hidden lg:block">
-            <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
-              Login
-            </Link>
+          {/* sign in button or Authenticated user*/}
+          <div className="p-2 hidden lg:block ">
+            {username ? (
+              <div className="text-black flex items-center space-x-2">
+                <FaRegUserCircle size={24}/>
+                <h1>
+
+                hi
+                </h1>
+              </div>
+            ) : (
+              <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
+                Login
+              </Link>
+            )}
           </div>
 
           {/* harmburger */}
@@ -77,11 +115,16 @@ function Userheader() {
           {open ? (
             <div>
               <ul className="w-full font-thin gap-2 flex flex-col">
-              {userNavigation.map((value: any, index) => (
-                <li key={index} className={`${path===value.value?"underline text-blue-500":null}`}>
-                  <Link href={`/User/${value.value}`}>{value.name}</Link>
-                </li>
-              ))}
+                {userNavigation.map((value: any, index) => (
+                  <li
+                    key={index}
+                    className={`${
+                      path === value.value ? "underline text-blue-500" : null
+                    }`}
+                  >
+                    <Link href={`/User/${value.value}`}>{value.name}</Link>
+                  </li>
+                ))}
                 <li className="flex gap-4">
                   {/* search */}
                   <input
@@ -92,12 +135,17 @@ function Userheader() {
                 </li>
 
                 <li>
-                  <Link
-                    className="bg-blue-500 p-4 rounded"
-                    href={"/Auth/Signin"}
-                  >
-                    Login
-                  </Link>
+                {username ? (
+              <div className="text-black flex items-center space-x-2">
+                <FaRegUserCircle size={24}/>
+                <h1>
+hi                </h1>
+              </div>
+            ) : (
+              <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
+                Login
+              </Link>
+            )}
                 </li>
               </ul>
             </div>

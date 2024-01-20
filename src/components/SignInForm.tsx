@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { login } from "@/api/Auth";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-
+import {useRouter} from 'next/navigation'
+import { userAuth } from "../../useContext";
 const SignInForm = () => {
+
+const { loginAuthUser} =userAuth()
+
+  const Router =useRouter()
   //state
   const [isLoading, setIsLoading] = useState(false);
   // Define your validation schema using Yup
@@ -27,16 +32,27 @@ const SignInForm = () => {
   // Handle form submission
   const handleSubmit = (values: any) => {
     console.log(values);
-
-    login(values.email, values.password).then((data) => {
-      setIsLoading(true)
-      console.log(data.data.status);
-      if(data.data.status ===200){
-        setIsLoading(false)
-      }
-    });
+    // login(values.email, values.password).then((data) => {
+    //   setIsLoading(true)
+    //   console.log(data.data.token);
+    //   if(data.data.status ===200){
+    //     localStorage.setItem('token',data.data.token)
+    //     setIsAuthenticated(true)
+    //     setIsLoading(false)
+    //     Router.push("/")
+    //   }
+    // });
     // Handle sign-in logic here
+    const Auth = {
+      email:values.email,
+      password:values.password,
+    }
+loginAuthUser(Auth)
+
   };
+
+  useEffect(()=>{
+  })
 
   return (
     <Formik

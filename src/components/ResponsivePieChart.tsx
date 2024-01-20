@@ -31,7 +31,7 @@ const ResponsivePieChart = () => {
     };
 
     return (
-        <div className='w-10/12 h-[40vh] flex justify-center p-4 '>
+        <div className='w-full bg-white rounded-lg  h-[40vh] flex justify-center p-6 '>
             <Pie data={data} />
         </div>
     );

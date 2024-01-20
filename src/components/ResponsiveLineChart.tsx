@@ -24,7 +24,12 @@ const ResponsiveLineChart = () => {
     };
 
     return (
-        <div className='w-full lg:w-10/12 h-[40vh] bg-blue-200 p-4 rounded-lg'>
+        <div className='w-full  h-[40vh] bg-white p-12 rounded-lg '>
+            <div>
+                <h1 className='text-gray-500'>
+                    TICKET SALES OVER THE MONTH
+                </h1>
+            </div>
             <Line data={data} options={options} />
         </div>
     );
