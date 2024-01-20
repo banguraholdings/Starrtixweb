@@ -155,7 +155,7 @@ export const activities =[
     "activity":"added a new photo", 
     "time":"2 hours ago",
     "about":"eating fest ongoing",
-    "img":"/images/loginback.png"
+    "img":"../../images/loginback.png"
 
   },
   {
@@ -163,7 +163,7 @@ export const activities =[
     "activity":"added a new photo", 
     "time":"2 hours ago",
     "about":"eating fest ongoing",
-    "img":"/images/african.jpg"
+    "img":"../../images/african.jpg"
   },
   {
     "event":"MedFest",

@@ -72,7 +72,7 @@ function Page() {
 
             <li
               style={{
-                backgroundImage: `url('/background/ev.jpg')`,
+                backgroundImage: `url('../../background/ev.jpg')`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
               }}
@@ -110,7 +110,7 @@ function Page() {
                 <button key={index} className="border p-4 hover:bg-gray-100">
                   <div className="flex space-x-2 b">
                     <img
-                      src="/Lottie/people.png"
+                      src="../../Lottie/people.png"
                       alt="event icon"
                       className="w-6 h-6 rounded-full"
                     />
