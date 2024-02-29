@@ -17,11 +17,11 @@ function Userheader() {
   const [open, setOpened] = useState(false);
   const [user, setUser] = useState<any>(null);
 
-    const {username}=userAuth()
+  const { username } = userAuth();
   const path = usePathname().split("/")[2];
   // //get user token from local storage
   // const getToken = async () => {
-   
+
   //     const token = await localStorage.getItem("token");
   //     if (token) {
   //       authToken(token).then((value) => {
@@ -33,14 +33,14 @@ function Userheader() {
   //         }
   //       });
   //     }
-   
+
   // };
 
   useEffect(() => {
-//  getToken().catch((error) => {
-//   console.log(error)
-//  })
-}, []);
+    //  getToken().catch((error) => {
+    //   console.log(error)
+    //  })
+  }, []);
   return (
     <div className="text-white ">
       {/* navbar */}
@@ -50,7 +50,7 @@ function Userheader() {
           {/* logo */}
           <div className="flex gap-12">
             <h1 className="text-4xl font-bold  text-blue-500">
-              Sky<span className="text-xl text-white text-border">tix</span>
+              Starr<span className="text-xl text-white text-border">tix</span>
             </h1>
             {/* search bar */}
             <Link
@@ -83,16 +83,18 @@ function Userheader() {
           <div className="p-2 hidden lg:block ">
             {username ? (
               <div className="text-black flex items-center space-x-2">
-                <FaRegUserCircle size={24}/>
-                <h1>
-
-                hi
-                </h1>
+                <FaRegUserCircle size={24} />
+                <h1>hi</h1>
               </div>
             ) : (
-              <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
-                Login
-              </Link>
+              <div className="flex-row space-x-2">
+                <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
+                  Login
+                </Link>
+                <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signup"}>
+                  Sign Up
+                </Link>
+              </div>
             )}
           </div>
 
@@ -125,27 +127,33 @@ function Userheader() {
                     <Link href={`/User/${value.value}`}>{value.name}</Link>
                   </li>
                 ))}
-                <li className="flex gap-4">
+                <li className="flex gap-4 mb-2 bg-red-500">
                   {/* search */}
-                  <input
-                    type="search"
-                    placeholder="what are you looking for?"
-                    className="w-60 p-2 rounded"
-                  />
+                  <Link
+                    href={"/Pages/Search"}
+                    className="w-96 h-12 hidden rounded-lg bg-gray-200 lg:flex items-center p-2 gap-4"
+                  >
+                    <FaSearch color={"grey"} />
+                    <div className="flex-1 text-sm text-gray-400">
+                      <h1>Search for event</h1>
+                    </div>
+                  </Link>
                 </li>
 
                 <li>
-                {username ? (
-              <div className="text-black flex items-center space-x-2">
-                <FaRegUserCircle size={24}/>
-                <h1>
-hi                </h1>
-              </div>
-            ) : (
-              <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
-                Login
-              </Link>
-            )}
+                  {username ? (
+                    <div className="text-black flex items-center space-x-2">
+                      <FaRegUserCircle size={24} />
+                      <h1>hi </h1>
+                    </div>
+                  ) : (
+                    <Link
+                      className="bg-blue-500 p-4 rounded"
+                      href={"/Auth/Signin"}
+                    >
+                      Login
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>

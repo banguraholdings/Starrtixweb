@@ -6,6 +6,8 @@ import { IoFilterSharp } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { FcGlobe } from "react-icons/fc";
+import { IoIosAddCircle } from "react-icons/io";
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -163,7 +165,7 @@ function Page() {
               !isActive ? "border-blue-500 border-b-4" : null
             }  space-x-1`}
           >
-            <p>{"{10}"}</p>
+            <p className="bg-blue-500 w-10 h-10 items-center justify-center flex rounded-full text-white">{"10"}</p>
             <button onClick={() => setIsActive(false)}>Active Event</button>
           </div>
           <div
@@ -171,61 +173,68 @@ function Page() {
               isActive ? "border-blue-500 border-b-4" : null
             }  space-x-1`}
           >
-            <p>{"{2}"}</p>
+            <p className="bg-blue-500 w-10 h-10 items-center justify-center flex p-2 rounded-full text-white">{"2"}</p>
             <button onClick={() => setIsActive(true)}>Ended Event</button>
           </div>
         </div>
 
-
-
         {/* event data viewing and adding */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full place-items-center p-2 gap-4">
-            {/* adding event */}
-            <div className="w-11/12 h-40 md:h-full bg-gray-100 border-[0.2px] shadow-md flex flex-col items-center justify-center">
-            <FcGlobe size={60}/>
-            <button className="p-2 md:p-4 bg-blue-500 text-white rounded">
-
-              Add Event
+          {/* adding event */}
+          <div
+            style={{
+              backgroundImage: `url('../../background/ev.jpg')`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+            className="w-11/12 h-40 md:h-full bg-gray-100 border-[0.2px] shadow-md flex flex-col items-center justify-center rounded-xl"
+          >
+            <button className="w-full flex items-center justify-center h-full bg-opacity-50 bg-blue-500 text-white rounded-xl">
+              <IoIosAddCircle
+                color="white"
+                size={40}
+                className="hover:text-gray-300"
+              />{" "}
             </button>
-            </div>
-            {/* event data */}
-            {events.map((value, index) => (
-                  <Link
-                    style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-                    href={"#"}
-                    key={index}
-                    passHref
-                  >
-                    {/* img */}
-                    <div className="w-full">
-                      <Image
-                        width={100}
-                        height={100}
-                        style={{
-                          width: "100%",
-                          borderTopLeftRadius: 18.95,
-                          borderTopRightRadius: 18.95,
-                        }}
-                        src={value.image}
-                        alt="pic"
-                      />
-                    </div>
-                    {/* decription */}
-                    <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
-                      {/* date */}
-                      <div className="text-center">
-                        <p className="font-bold text-blue-500">{value.month}</p>
-                        <h1>{value.day}</h1>
-                      </div>
+          </div>
+          {/* event data */}
+          {events.map((value, index) => (
+            <Link
+              style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
+              href={"#"}
+              key={index}
+              passHref
+            >
+              {/* img */}
+              <div className="w-full">
+                <Image
+                  width={100}
+                  height={100}
+                  style={{
+                    width: "100%",
+                    borderTopLeftRadius: 18.95,
+                    borderTopRightRadius: 18.95,
+                  }}
+                  src={value.image}
+                  alt="pic"
+                />
+              </div>
+              {/* decription */}
+              <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
+                {/* date */}
+                <div className="text-center">
+                  <p className="font-bold text-blue-500">{value.month}</p>
+                  <h1>{value.day}</h1>
+                </div>
 
-                      {/* decription */}
-                      <div className="space-y-2">
-                        <p className="text-xs font-bold">{value.header}</p>
-                        <p className="text-xs font-thin">{value.description}</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                {/* decription */}
+                <div className="space-y-2">
+                  <p className="text-xs font-bold">{value.header}</p>
+                  <p className="text-xs font-thin">{value.description}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </Dashboardwrapper>

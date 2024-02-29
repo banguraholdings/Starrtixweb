@@ -12,7 +12,7 @@ function Footer() {
         <div className=" space-y-2 flex md:flex-col">
           <div>
             <h1 className="text-4xl font-bold  text-blue-500">
-              Sky<span className="text-xl text-white text-border">tix</span>
+              Starr<span className="text-xl text-white text-border">tix</span>
             </h1>
             {/* web description */}
             <p className="text-white text-sm font-thin w-11/12">

@@ -37,7 +37,7 @@ function Signin() {
             <div className="flex items-center ">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
               <h1 className="text-4xl font-bold  text-blue-500">
-                Sky<span className="text-xl text-white text-border">tix</span>
+                Starr<span className="text-xl text-white text-border">tix</span>
               </h1>
             </div>
             {/* form fields */}

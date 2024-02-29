@@ -31,7 +31,7 @@ function Header() {
           {/* logo */}
           <div className="flex gap-12">
             <h1 className="text-4xl font-bold  text-blue-500">
-              Sky<span className="text-xl text-white text-border">tix</span>
+              Starr<span className="text-xl text-white text-border">tix</span>
             </h1>
             {/* search bar */}
             <Link

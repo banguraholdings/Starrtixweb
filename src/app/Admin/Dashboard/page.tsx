@@ -7,85 +7,67 @@ import { RiLoader2Fill } from "react-icons/ri";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { PieChart } from "@mui/x-charts/PieChart";
 import ResponsiveLineChart from "@/components/ResponsiveLineChart";
+import { IoIosAddCircle } from "react-icons/io";
+
 import ResponsivePieChart from "@/components/ResponsivePieChart";
 
 function Dashboard() {
  
   return (
     <Dashboardwrapper>
-      <div className="w-full h-full  p-4 flex flex-col items-center">
-        <div className=" w-full flex  flex-col items-center p-4">
-          {/* amounts */}
-          <ul className="w-11/12 items-center flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-2">
-            <li className="w-full h-20 bg-gray-100 border-[0.2px] border-gray-400 shadow-sm shadow-black flex  ">
-              <div className="w-4/12 h-full bg-blue-500 border flex items-center justify-center">
-                <FaArrowAltCircleRight size={32} color="white" />
-              </div>
-              <div className="w-full h-full  flex items-center justify-center">
-                <div className="w-11/12">
-                  <h1 className="font-bold text-xl">2000</h1>
-                  <h1 className="text-sm font-light text-gray-600">
-                    Upcoming Event
-                  </h1>
-                </div>
-              </div>
-            </li>
-            <li className="w-full h-20 bg-gray-100 border-[0.2px] border-gray-400 shadow-sm shadow-black flex ">
-              <div className="w-4/12 h-full bg-blue-900 flex items-center justify-center">
-                <FaArrowAltCircleLeft size={32} color="white" />
-              </div>
-              <div className="w-full h-full  flex items-center justify-center">
-                <div className="w-11/12">
-                  <h1 className="font-bold text-xl">2000</h1>
-                  <h1 className="text-sm font-light text-gray-600">
-                    Past Event
-                  </h1>
-                </div>
-              </div>
-            </li>
-            <li className="w-full h-20 bg-gray-100 border-[0.2px] border-gray-400 shadow-sm shadow-black flex ">
-              <div className="w-4/12 h-full bg-blue-500 flex items-center justify-center">
-                <RiLoader2Fill size={32} color="white" />
-              </div>
-              <div className="w-full h-full  flex items-center justify-center">
-                <div className="w-11/12">
-                  <h1 className="font-bold text-xl">2000</h1>
-                  <h1 className="text-sm font-light text-gray-600">
-                    Ongoing Event
-                  </h1>
-                </div>
-              </div>
-            </li>
-            <li className="w-full h-20 bg-gray-100 border-[0.2px] border-gray-400 shadow-sm shadow-black flex ">
-              <div className="w-4/12 h-full bg-blue-900 flex items-center justify-center">
-                <TbFreeRights size={32} color="white" />
-              </div>
-              <div className="w-full h-full  flex items-center justify-center">
-                <div className="w-11/12">
-                  <h1 className="font-bold text-xl">2000</h1>
-                  <h1 className="text-sm font-light text-gray-600">
-                    Free Event
-                  </h1>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        {/* chart showing the rate at which profit and loss are made within the month */}
-        <div className="p-4 w-full flex flex-col space-y-4 xl:space-y-0 items-center xl:flex-row">
-          {/* <ResponsiveLineChart/> */}
-          <div className="border w-full grid place-items-center">
+             {/* container */}
+             <div className=" bg-gray-100 border-b-2 w-full p-2 z-0">
+          {/* header */}
+          <div className="flex w-full  items-center pl-4 pr-4">
+            <h1>Dashboard</h1>
 
-          <ResponsivePieChart/>
+            {/* user credentials */}
+            <div className=" flex-1 w-full h-12 flex items-center justify-end space-x-2">
+              {/* profile picture */}
+              <div className="w-8 h-8 rounded-full bg-gray-400"></div>
+
+              {/* username */}
+              <h1 className="text-sm">Admin</h1>
+            </div>
           </div>
         </div>
 
-      {/* top five customers */}
 
-      <div className="w-full">
+        {/* body */}
+    
+        {/* event numbers */}
+        <div className="p-4 bg-gray-100 w-full xl:justify-center xl:flex">
+          <ul className="flex justify-between w-full">
+            {/* grid 1 */}
+            <li className=" space-y-4  w-20 text-[8px] items-center justify-center flex flex-col h-20 md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
+              <h1 className="text-gray-400">UPCOMING EVENT</h1>
 
-      </div>
-      </div>
+              <h1 className="text-base md:text-2xl">2000</h1>
+            </li>
+            {/* grid 2 */}
+
+            <li className="space-y-4 w-20 h-20 text-[8px] items-center justify-center flex flex-col md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
+              <h1 className="text-gray-400">PAST EVENT</h1>
+
+              <h1 className="text-base md:text-2xl">3725</h1>
+            </li>
+            {/* grid 3 */}
+
+            <li className="space-y-4 w-20 h-20 text-[8px] items-center justify-center flex flex-col md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
+              <h1 className="text-center text-gray-400">ONGOING EVENT</h1>
+
+              <h1 className="text-base md:text-2xl">4578</h1>
+            </li>
+            {/* grid 4 */}
+            <li className="space-y-4 w-20 h-20 text-[8px] items-center justify-center flex flex-col md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
+              <h1 className="text-center text-gray-400">FREE EVENT</h1>
+
+              <h1 className="text-base md:text-2xl">4578</h1>
+            </li>
+            
+          </ul>
+        </div>
+
     </Dashboardwrapper>
   );
 }

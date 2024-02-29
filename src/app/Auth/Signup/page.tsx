@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import Authenticated from "@/components/ProtectedRoute/Authenticated";
+import SignUpForm from "@/components/SignupForm";
 function Signup() {
   return (
     <Authenticated>
@@ -35,12 +36,12 @@ function Signup() {
             <div className="flex items-center ">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
               <h1 className="text-4xl font-bold  text-blue-500">
-                Sky<span className="text-xl text-white text-border">tix</span>
+                Starr<span className="text-xl text-white text-border">tix</span>
               </h1>
             </div>
             {/* form fields */}
             <div className="flex flex-col space-y-4 md:space-y-4 w-80">
-              <SignInForm/>
+              <SignUpForm/>
             </div>
           </div>
         </div>

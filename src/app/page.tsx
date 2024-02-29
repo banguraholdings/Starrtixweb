@@ -28,16 +28,13 @@ import { authToken } from "@/api/Auth";
 import { userAuth } from "../../useContext";
 
 export default function Home() {
-
-  const {username, logout, isAuthenticated}=userAuth()
-
-
+  const { username, logout, isAuthenticated } = userAuth();
 
   const [day, setDay] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCategory, setEventCategory] = useState("");
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   const cancelButtonRef = useRef(null);
 
   const handleDayChange = (event: SelectChangeEvent) => {
@@ -65,7 +62,7 @@ export default function Home() {
   // };
 
   useEffect(() => {
-console.log(isAuthenticated)
+    console.log(isAuthenticated);
   }, []);
   return (
     <Homerapper>
@@ -75,44 +72,40 @@ console.log(isAuthenticated)
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="h-[100dvh] text-white"
+        className="h-[100dvh] text-white md:h-[80vh]"
       >
         <div
-          className={`w-full   h-[100dvh] bg-blue-700 bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}
+          className={`w-full   h-[100dvh] md:h-[80vh] bg-blue-700 bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}
         >
           <div className="w-8/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
             <h1 className="lg:text-4xl text-xl md:text-2xl font-serif text-center lg:text-start ">
               Maximize Your Sales, Minimize Your Fees Affordable Ticketing,
-              Unmatched Efficiency 
+              Unmatched Efficiency
             </h1>
             {/* body */}
             <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start">
-              Tired of losing a chunk of your profits to exorbitant ticketing
-              fees? Say goodbye to hefty charges and hello to more earnings! Our
-              platform revolutionizes the way you sell tickets - it&apos;s not
-              just affordable, it&apos;s effective.
+              We offer event organizers and attendees a reliable user-friendly
+              platform for seemless ticketing real time event updates, and
+              marketing, tailored to multiple payment methods all in one place
             </h1>
 
             <div className="flex flex-row space-x-2">
               {/* button */}
-              {
-                username?
-                <Link
+
+              <Link
                 href={"/User/Dashboard"}
                 className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
               >
                 <h1 className="">Create Event</h1>
               </Link>
-              :
+
               <Link
-              href={"/User/Dashboard"}
-              className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
-            >
-              <h1 className="">Find Event</h1>
-            </Link>
-              }
-             
+                href={"/User/Dashboard"}
+                className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
+              >
+                <h1 className="">Buy Ticket</h1>
+              </Link>
             </div>
           </div>
           <div className=" p-4 bg-blue-200 rounded-full bg-opacity-50 flex items-center justify-center">
