@@ -19,7 +19,6 @@ function Dashboardwrapper({ children }: any) {
   const [open, setOpened] = useState(false);
 
   useEffect(() => {
-    console.log(pathname[2]);
   }, []);
   return (
     <div className="lg:flex ">
