@@ -34,7 +34,7 @@ function Userdashboardwrapper({ children }: any) {
           {/* logo */}
           <div>
           <img
-             src="../../images/LOGOSTAR.png"
+             src="../images/LOGOSTAR.png"
              className="w-20 h-20"
              />
           </div>
