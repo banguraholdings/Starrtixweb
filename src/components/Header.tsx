@@ -18,7 +18,7 @@ function Header() {
   return (
     <header
       style={{
-        backgroundImage: `url('/background/main.jpg')`,
+        backgroundImage: `url('../../background/main.jpg')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
@@ -31,7 +31,7 @@ function Header() {
           {/* logo */}
           <div className="flex gap-12">
           <img
-             src="./images/LOGOSTAR.png"
+             src="../../images/LOGOSTAR.png"
              className="w-40 h-40"
              />
             {/* search bar */}
