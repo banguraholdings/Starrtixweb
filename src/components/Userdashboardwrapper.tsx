@@ -33,9 +33,10 @@ function Userdashboardwrapper({ children }: any) {
         <div className="z-50 flex w-full bg-blue-950 p-6 items-center">
           {/* logo */}
           <div>
-            <h1 className="text-4xl font-bold  text-blue-500">
-              Starr<span className="text-xl text-white text-border">tix</span>
-            </h1>
+          <img
+             src="../../images/LOGOSTAR.png"
+             className="w-20 h-20"
+             />
           </div>
 
           {/* menu button */}
@@ -112,19 +113,15 @@ function Userdashboardwrapper({ children }: any) {
         </div>
       </div>
 
-
-
       {/* large screen */}
 
       <div className="h-screen hidden space-y-4 bg-blue-950 relative lg:w-72 w-20 lg:flex flex-col items-center">
         {/* header */}
-        <div className="w-full h-16 border-b border-gray-400 flex justify-center items-center">
-          <h1 className="text-sm lg:text-4xl font-bold  text-blue-500 p-4">
-            Sky
-            <span className="text-sm lg:text-xl text-white text-border">
-              tix
-            </span>
-          </h1>
+        <div className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
+        <img
+             src="../../images/LOGOSTAR.png"
+             className="w-20 h-20"
+             />
         </div>
 
         {/* Dashboard button  */}
@@ -166,7 +163,9 @@ function Userdashboardwrapper({ children }: any) {
           ))}
         </div>
       </div>
-      <div className="flex-1 h-screen overflow-scroll w-screen z-0 ">{children}</div>
+      <div className="flex-1 h-screen overflow-scroll w-screen z-0 ">
+        {children}
+      </div>
     </div>
   );
 }

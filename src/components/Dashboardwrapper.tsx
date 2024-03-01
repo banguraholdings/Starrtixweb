@@ -29,9 +29,10 @@ function Dashboardwrapper({ children }: any) {
         <div className="z-50 flex w-full bg-blue-950 p-6 items-center">
           {/* logo */}
           <div>
-            <h1 className="text-4xl font-bold  text-blue-500">
-              Starr<span className="text-xl text-white text-border">tix</span>
-            </h1>
+          <img
+             src="../../images/LOGOSTAR.png"
+             className="w-20 h-20"
+             />
           </div>
 
           {/* menu button */}
@@ -109,13 +110,11 @@ function Dashboardwrapper({ children }: any) {
       </div>
       <div className="h-screen space-y-4 bg-blue-900 relative lg:w-72 w-20 hidden lg:flex flex-col items-center">
         {/* header */}
-        <div className="w-full h-16 border-b border-gray-400 flex justify-center items-center">
-          <h1 className="text-sm lg:text-4xl font-bold  text-blue-500 p-4">
-            Sky
-            <span className="text-sm lg:text-xl text-white text-border">
-              tix
-            </span>
-          </h1>
+        <div className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
+        <img
+             src="../../images/LOGOSTAR.png"
+             className="w-20 h-20"
+             />
         </div>
 
         {/* Dashboard button  */}

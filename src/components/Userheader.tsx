@@ -49,9 +49,10 @@ function Userheader() {
         <div className="flex  justify-between">
           {/* logo */}
           <div className="flex gap-12">
-            <h1 className="text-4xl font-bold  text-blue-500">
-              Starr<span className="text-xl text-white text-border">tix</span>
-            </h1>
+          <img
+             src="../../images/LOGOSTAR.png"
+             className="w-20 h-20"
+             />
             {/* search bar */}
             <Link
               href={"/Pages/Search"}

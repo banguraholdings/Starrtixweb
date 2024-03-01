@@ -34,11 +34,12 @@ function Signin() {
 
           <div className="w-full h-full  justify-center  p-2 flex flex-col items-center  md:space-y-2">
             {/* Welcome */}
-            <div className="flex items-center ">
+            <div className=" items-center ">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
-              <h1 className="text-4xl font-bold  text-blue-500">
-                Starr<span className="text-xl text-white text-border">tix</span>
-              </h1>
+             <img
+             src="../../images/LOGOSTAR.png"
+             className="w-40 h-40"
+             />
             </div>
             {/* form fields */}
             <div className="flex flex-col space-y-4 md:space-y-4 ">

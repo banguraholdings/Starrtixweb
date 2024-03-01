@@ -19,7 +19,7 @@ function page() {
           </h1>
           <div className="w-9/12 md:w-8/12">
             <h1 className="text-center text-xl">
-              Skytix is a self-service ticketing platform created to
+              StarrTix is a self-service ticketing platform created to
               revolutionize event management through a mission to facilitate and
               enhance the event planning process. We provide a robust
               self-service ticketing platform that allows event organizers to
@@ -38,7 +38,7 @@ function page() {
             <h1 className="text-2xl xl:text-4xl">Our Mission</h1>
 
             <h1 className="text-center w-9/12 xl:text-lg ">
-              At Skytix our mission is to empower event organizers by providing
+              At StarrTix our mission is to empower event organizers by providing
               a user-friendly, & innovative platform ensuring that event
               creators deliver the best event experiences.
             </h1>
@@ -63,7 +63,7 @@ function page() {
               now.
             </h1>
             <h1 className="text-center w-9/12 xl:text-lg">
-              At Skytix, we power amazing live events and online experiences all
+              At StarrTix, we power amazing live events and online experiences all
               around Africa. With the help of our platform, event planners can
               enhance the guest experience by using mobile tools. Our platform
               seamlessly combines mobile ticketing, QR code technology, and
@@ -102,7 +102,7 @@ function page() {
               addition to his vast academic experience, Abdulai contributes a
               specific skill set in International finance, international
               marketing, and product development to his position as the founder
-              and creative director of Skytix. Abdulai has devoted himself to
+              and creative director of StarrTix. Abdulai has devoted himself to
               using his experience to promote innovation, quality, and strategic
               growth in the fields of product development and more.
             </h1>
@@ -132,7 +132,7 @@ function page() {
               foundation in accounting principles, she possesses additional
               knowledge and hands-on experience in event management,
               accumulating over four years in the dynamic field of the
-              entertainment industry. In her role at Skytix, Salamatu is
+              entertainment industry. In her role at StarrTix, Salamatu is
               entrusted with the pivotal responsibilities of overseeing
               operations and fostering the companys growth....
             </h1>

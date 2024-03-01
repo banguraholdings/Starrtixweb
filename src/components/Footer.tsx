@@ -11,12 +11,13 @@ function Footer() {
         {/* section1 */}
         <div className=" space-y-2 flex md:flex-col">
           <div>
-            <h1 className="text-4xl font-bold  text-blue-500">
-              Starr<span className="text-xl text-white text-border">tix</span>
-            </h1>
+          <img
+             src="../../images/LOGOSTAR.png"
+             className="w-40 h-40"
+             />
             {/* web description */}
             <p className="text-white text-sm font-thin w-11/12">
-              Skytix is a global self-service platform for live experiences that
+              StarrTix is a global self-service platform for live experiences that
               allows anyone to create share find and attend events athat fuel
               their passions and enrich their lives
             </p>
@@ -62,7 +63,10 @@ function Footer() {
             </ul>
           </div>
           <div className=" space-y-2 flex flex-col text-white  items-end md:items-start">
-            <h1 className=" text-white font-bold">Skytix</h1>
+          <img
+             src="../../images/LOGOSTAR.png"
+             className="w-40 h-40"
+             />
             <ul className="flex flex-col space-y-2 items-end md:items-start">
               <li>
                 <Link href={""}>
