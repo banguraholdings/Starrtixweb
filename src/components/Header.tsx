@@ -18,7 +18,7 @@ function Header() {
   return (
     <header
       style={{
-        backgroundImage: `url('/background/main.jpg')`,
+        backgroundImage: `url('../background/main.jpg')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
