@@ -42,10 +42,10 @@ function Page() {
   };
   //screens
   const screens = [
-    <Step1 closeStep={nextScreen} />,
-    <Step2 closeStep={nextScreen} />,
-    <Step3 closeStep={nextScreen} />,
-    <Step4 closeStep={nextScreen} />,
+    <Step1 key={currentIndex} closeStep={nextScreen} />,
+    <Step2 key={currentIndex} closeStep={nextScreen} />,
+    <Step3 key={currentIndex} closeStep={nextScreen} />,
+    <Step4 key={currentIndex} closeStep={nextScreen} />,
   ];
   return (
     <NotAuthecticated>
