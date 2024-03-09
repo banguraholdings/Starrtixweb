@@ -35,6 +35,7 @@ export default function Home() {
   const [eventCategory, setEventCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [hover, setHover] = useState(false);
   const cancelButtonRef = useRef(null);
 
   const handleDayChange = (event: SelectChangeEvent) => {
@@ -79,16 +80,13 @@ export default function Home() {
         >
           <div className="w-8/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
-            <h1 className="lg:text-4xl text-xl md:text-2xl font-serif text-center lg:text-start ">
-              Maximize Your Sales, Minimize Your Fees Affordable Ticketing,
-              Unmatched Efficiency
-            </h1>
-            {/* body */}
-            <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start">
+            <h1 className="lg:text-xl text-xl md:text-2xl font-serif text-center lg:text-start ">
               We offer event organizers and attendees a reliable user-friendly
               platform for seemless ticketing real time event updates, and
               marketing, tailored to multiple payment methods all in one place
             </h1>
+            {/* body */}
+            <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start"></h1>
 
             <div className="flex flex-row space-x-2">
               {/* button */}
@@ -102,7 +100,7 @@ export default function Home() {
 
               <Link
                 href={"/User/Dashboard"}
-                className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
+                className="items-center justify-center flex bg-[#fb8500] w-40 h-12 border rounded "
               >
                 <h1 className="">Buy Ticket</h1>
               </Link>
@@ -234,18 +232,36 @@ export default function Home() {
               key={index}
             >
               {/* img */}
-              <div className="w-full">
-                <Image
-                  width={100}
-                  height={100}
-                  style={{
-                    width: "100%",
-                    borderTopLeftRadius: 18.95,
-                    borderTopRightRadius: 18.95,
-                  }}
-                  src={value.image}
-                  alt="pic"
-                />
+              <div
+                className="w-full"
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+              >
+                {hover ? (
+                  <video
+                    width={100}
+                    height={100}
+                    style={{
+                      width: "100%",
+                      borderTopLeftRadius: 18.95,
+                      borderTopRightRadius: 18.95,
+                    }}
+                  >
+                    <source src={value.video} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image
+                    width={100}
+                    height={100}
+                    style={{
+                      width: "100%",
+                      borderTopLeftRadius: 18.95,
+                      borderTopRightRadius: 18.95,
+                    }}
+                    src={value.image}
+                    alt="pic"
+                  />
+                )}
               </div>
               {/* decription */}
               <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">

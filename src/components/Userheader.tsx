@@ -40,6 +40,7 @@ function Userheader() {
     //  getToken().catch((error) => {
     //   console.log(error)
     //  })
+    console.log("path name" + path);
   }, []);
   return (
     <div className="text-white ">
@@ -48,15 +49,12 @@ function Userheader() {
         {/* container */}
         <div className="flex  justify-between">
           {/* logo */}
-          <div className="flex gap-12">
-          <img
-             src="../../images/LOGOSTAR.png"
-             className="w-20 h-20"
-             />
+          <div className="flex gap-16 items-center">
+            <img src="../../images/LOGOSTAR.png" className="w-24 h-20" />
             {/* search bar */}
             <Link
               href={"/Pages/Search"}
-              className="w-96 h-12 hidden rounded-lg bg-gray-200 lg:flex items-center p-2 gap-4"
+              className="w-80 xl:w-96 h-12 hidden rounded-lg bg-gray-200 lg:flex items-center p-2 gap-4"
             >
               <FaSearch color={"grey"} />
               <div className="flex-1 text-sm text-gray-400">
@@ -66,7 +64,7 @@ function Userheader() {
           </div>
 
           {/* navigation */}
-          <div className="  w-4/12 hidden lg:flex  text-black">
+          <div className="  w-3/12 hidden lg:flex lg:items-center  text-black">
             <ul className="flex text- font-light justify-between items-center w-full">
               {userNavigation.map((value: any, index) => (
                 <li
@@ -75,24 +73,28 @@ function Userheader() {
                     path === value.value ? "underline text-blue-500" : null
                   }`}
                 >
-                  <Link href={`/User/${value.value}`}>{value.name}</Link>
+                  <Link
+                    href={value.value === undefined ? "/" : `/User/${value.value}`}
+                  >
+                    {value.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           {/* sign in button or Authenticated user*/}
-          <div className="p-2 hidden lg:block ">
+          <div className="p-2 hidden  items-center  lg:flex">
             {username ? (
               <div className="text-black flex items-center space-x-2">
                 <FaRegUserCircle size={24} />
                 <h1>hi</h1>
               </div>
             ) : (
-              <div className="flex-row space-x-2">
+              <div className="flex-row space-x-2  items-center">
                 <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
                   Login
                 </Link>
-                <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signup"}>
+                <Link className="bg-[#fb8500] p-4 rounded" href={"/Auth/Signup"}>
                   Sign Up
                 </Link>
               </div>
@@ -128,7 +130,7 @@ function Userheader() {
                     <Link href={`/User/${value.value}`}>{value.name}</Link>
                   </li>
                 ))}
-                <li className="flex gap-4 mb-2 bg-red-500">
+                <li className="flex gap-4 mb-2 bg-red-500 ">
                   {/* search */}
                   <Link
                     href={"/Pages/Search"}
@@ -148,12 +150,18 @@ function Userheader() {
                       <h1>hi </h1>
                     </div>
                   ) : (
+                    <div className="space-x-4">
+
                     <Link
-                      className="bg-blue-500 p-4 rounded"
+                      className="bg-blue-500 p-4 rounded text-white"
                       href={"/Auth/Signin"}
                     >
                       Login
                     </Link>
+                    <Link className="bg-[#fb8500] text-white p-4 rounded" href={"/Auth/Signup"}>
+                  Sign Up
+                </Link>
+                    </div>
                   )}
                 </li>
               </ul>
