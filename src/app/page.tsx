@@ -246,7 +246,7 @@ export default function Home() {
                       borderTopLeftRadius: 18.95,
                       borderTopRightRadius: 18.95,
                     }}
-                    autoplay
+                    autoPlay
                     muted
                   >
                     <source src={value.video} type="video/mp4" />
