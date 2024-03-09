@@ -3,19 +3,50 @@
 import NotAuthecticated from "@/components/ProtectedRoute/NotAuthecticated";
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
 import React, { useState } from "react";
-import { IoIosAddCircle } from "react-icons/io";
+import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
 import Calendar from "react-calendar";
 import { activities } from "@/api/dummyData";
 import ResponsiveLineChart from "@/components/ResponsiveLineChart";
 import ResponsivePieChart from "@/components/ResponsivePieChart";
 import ResponsiveEventTable from "@/components/ResponsiveEventTable";
-
+import EventCreation from "@/components/EventCreation";
+import { eventSteps } from "@/constants/Event";
+import Step1 from "@/components/EventSteps/Step1";
+import Step2 from "@/components/EventSteps/Step2";
+import Step3 from "@/components/EventSteps/Step3";
+import Step4 from "@/components/EventSteps/Step4";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 function Page() {
   //states
   const [value, onChange] = useState<Value>(new Date());
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  // Function to navigate to the next screen
+  const nextScreen = (value: number) => {
+    if (currentIndex < screens.length - 1) {
+      setCurrentIndex(currentIndex + value);
+    }
+  };
+
+  // Function to navigate to the previous screen
+  const prevScreen = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+  //screens
+  const screens = [
+    <Step1 closeStep={nextScreen} />,
+    <Step2 closeStep={nextScreen} />,
+    <Step3 closeStep={nextScreen} />,
+    <Step4 closeStep={nextScreen} />,
+  ];
   return (
     <NotAuthecticated>
       <Userdashboardwrapper>
@@ -79,6 +110,7 @@ function Page() {
               className="w-20 h-20 md:w-40 md:h-40 xl:w-60 bg-white border rounded-lg shadow"
             >
               <button
+                onClick={openModal}
                 type="button"
                 className="w-full h-full rounded-lg bg-blue-500 bg-opacity-50 flex items-center justify-center"
               >
@@ -91,6 +123,36 @@ function Page() {
             </li>
           </ul>
         </div>
+        {/* event creation modal */}
+        {isOpen ? (
+          <EventCreation>
+            <div className="w-full flex justify-end p-2">
+              <button
+              
+              onClick={()=>{
+                closeModal();
+
+              }}>
+                <IoIosCloseCircle size={24} color={"red"}/>
+              </button>
+            </div>
+            <div className="flex flex-row  space-x-8 justify-center">
+              {/* step preview */}
+              {eventSteps.map((value) => (
+                <div
+                
+                className={`${currentIndex>value.id?"text-green-500":""}`}
+                key={value.id}>{value.step}</div>
+              ))}
+            </div>
+
+            {/* Render the current screen */}
+            {screens[currentIndex]}
+            {/* button */}
+
+           
+          </EventCreation>
+        ) : null}
 
         {/* calendar and other event */}
         <div className="grid grid-cols-1 p-4 lg:grid-cols-2">

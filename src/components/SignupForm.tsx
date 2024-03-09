@@ -123,7 +123,7 @@ const SignUpForm = () => {
             </ErrorMessage>
           </div>
 
-          <label>
+          <label className="flex gap-4">
             <input
               type="checkbox"
               name="agreeToTerms"
@@ -139,7 +139,8 @@ const SignUpForm = () => {
 
 
           <button type="submit"
-          style={{backgroundColor:"#2196F3", color:"white", padding:6, borderRadius:12}}
+          style={{ color:"white", padding:6, borderRadius:12}}
+          className="bg-blue-600"
           >Sign Up</button>
         </Form>
       )}
