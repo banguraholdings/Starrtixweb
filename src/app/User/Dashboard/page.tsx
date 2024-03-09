@@ -131,7 +131,7 @@ function Page() {
               
               onClick={()=>{
                 closeModal();
-
+                setCurrentIndex(0)
               }}>
                 <IoIosCloseCircle size={24} color={"red"}/>
               </button>
