@@ -7,13 +7,13 @@ function Footer() {
   return (
     <footer className="w-full bg-blue-900 p-12">
       {/* container */}
-      <div className="grid grid-cols-1 md:grid-cols-2  md:place lg:grid-cols-3 space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2   md:place-items-center lg:grid-cols-3 space-y-8">
         {/* section1 */}
         <div className=" space-y-2 flex md:flex-col">
           <div>
           <img
              src="../../images/LOGOSTAR.png"
-             className="w-40 h-40"
+             className="w-20 h-20"
              />
             {/* web description */}
             <p className="text-white text-sm font-thin w-11/12">
@@ -41,7 +41,7 @@ function Footer() {
         </div>
 
         {/* section 2 */}
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 lg:gap-20">
           <div className=" space-y-2 flex flex-col text-white">
             <h1 className=" text-white font-bold">Plan Events</h1>
             <ul className="flex flex-col space-y-2">
@@ -63,10 +63,7 @@ function Footer() {
             </ul>
           </div>
           <div className=" space-y-2 flex flex-col text-white  items-end md:items-start">
-          <img
-             src="../../images/LOGOSTAR.png"
-             className="w-40 h-40"
-             />
+        
             <ul className="flex flex-col space-y-2 items-end md:items-start">
               <li>
                 <Link href={""}>
@@ -102,10 +99,10 @@ function Footer() {
           </p>
 
           {/* email */}
-          <div className="flex bg-white p-2 rounded-full items-center">
-            <input type="text" className="flex-1 h-12 lg:h-8 rounded" />
-            <button className="w-40 lg:w-4/12 h-12 lg:h-8 rounded-full bg-[#F5167E] text-xs">
-              Subscribe Now
+          <div className="flex  p-2 rounded-full justify-center">
+            <input type="text" className="flex-1 h-12 lg:h-8  bg-white rounded-l-full text-gray-700" />
+            <button className="w-40 lg:w-4/12 h-12 lg:h-8 rounded-r-full bg-[#F5167E] text-xs p-2">
+              Subscribe 
             </button>
           </div>
         </div>

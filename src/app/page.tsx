@@ -26,6 +26,8 @@ import { IoMdTime } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";
 import { authToken } from "@/api/Auth";
 import { userAuth } from "../../useContext";
+import Video from "next-video";
+import EventItem from "@/components/HomeComponent/EventItem";
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
@@ -37,6 +39,7 @@ export default function Home() {
   const [user, setUser] = useState(null);
   const [hover, setHover] = useState(false);
   const cancelButtonRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleDayChange = (event: SelectChangeEvent) => {
     setDay(event.target.value as string);
@@ -223,6 +226,7 @@ export default function Home() {
       </div>
       {/* events */}
       <div className="w-full flex justify-center p-4 ">
+        {/* <Video src={"/vidoes/video1.mp4"} /> */}
         {/* container */}
         <div className="w-11/12 lg:w-10/12   grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {events.map((value, index) => (
@@ -232,39 +236,8 @@ export default function Home() {
               key={index}
             >
               {/* img */}
-              <div
-                className="w-full"
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-              >
-                {hover ? (
-                  <video
-                    width={100}
-                    height={100}
-                    style={{
-                      width: "100%",
-                      borderTopLeftRadius: 18.95,
-                      borderTopRightRadius: 18.95,
-                    }}
-                    autoPlay
-                    muted
-                  >
-                    <source src={value.video} type="video/mp4" />
-                  </video>
-                ) : (
-                  <Image
-                    width={100}
-                    height={100}
-                    style={{
-                      width: "100%",
-                      borderTopLeftRadius: 18.95,
-                      borderTopRightRadius: 18.95,
-                    }}
-                    src={value.image}
-                    alt="pic"
-                  />
-                )}
-              </div>
+              <EventItem image={value.image} videoSrc={value.video} /> {/* Make sure the path is correct */}
+
               {/* decription */}
               <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
                 {/* date */}

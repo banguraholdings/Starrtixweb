@@ -44,7 +44,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
   },
   {
     month: "AUG",
@@ -53,7 +53,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event1.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
 
   },
   {
@@ -63,7 +63,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event2.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
 
   },
   {
@@ -73,7 +73,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event3.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
 
   },
   {
@@ -83,7 +83,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event4.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
 
   },
   {
@@ -93,7 +93,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event.jpg",
-    video:"videos/video1.mp4"
+    video:"/vidoes/video1.mp4"
 
   },
 ];

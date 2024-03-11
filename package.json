@@ -28,6 +28,7 @@
     "mongoose": "^8.0.3",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
+    "next-video": "^0.16.0",
     "primereact": "^10.2.1",
     "react": "^18.2.0",
     "react-calendar": "^4.8.0",
