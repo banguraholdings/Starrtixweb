@@ -18,6 +18,8 @@ import {
 } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
+import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
+
 import { RiVipCrown2Fill } from "react-icons/ri";
 import Homerapper from "@/components/Homewrapper";
 import Lottie from "lottie-react";
@@ -28,6 +30,7 @@ import { authToken } from "@/api/Auth";
 import { userAuth } from "../../useContext";
 import Video from "next-video";
 import EventItem from "@/components/HomeComponent/EventItem";
+import EventCreation from "@/components/EventCreation";
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
@@ -148,80 +151,7 @@ export default function Home() {
           <div className="text-xl font-bold">Upcoming Events</div>
 
           {/* dropdown filters */}
-          <div className="grid grid-cols-2 md:grid-cols-3  gap-4 ">
-            {/* days dropdown */}
-            <div className="b">
-              <FormControl
-                variant="filled"
-                sx={{ minWidth: 120, backgroundColor: "#F2F4FF" }}
-              >
-                <InputLabel id="demo-simple-select-filled-label">
-                  day
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  value={day}
-                  label="Age"
-                  onChange={handleDayChange}
-                >
-                  <MenuItem value={10}>Musical</MenuItem>
-                  <MenuItem value={20}>Tuesday</MenuItem>
-                  <MenuItem value={30}>Wednesday</MenuItem>
-                  <MenuItem value={30}>Thursday</MenuItem>
-                  <MenuItem value={30}>Friday</MenuItem>
-                  <MenuItem value={30}>Saturday</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            {/* category dropdown */}
-
-            <div className="flex justify-end md:justify-start">
-              <FormControl
-                variant="filled"
-                sx={{ minWidth: 120, backgroundColor: "#F2F4FF" }}
-              >
-                <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={eventType}
-                  label="Age"
-                  onChange={handlEventChange}
-                >
-                  <MenuItem value={10}>Monday</MenuItem>
-                  <MenuItem value={20}>Tuesday</MenuItem>
-                  <MenuItem value={30}>Wednesday</MenuItem>
-                  <MenuItem value={30}>Thursday</MenuItem>
-                  <MenuItem value={30}>Friday</MenuItem>
-                  <MenuItem value={30}>Saturday</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            {/* event type dropdown */}
-            <div className="">
-              <FormControl
-                variant="filled"
-                sx={{ minWidth: 120, backgroundColor: "#F2F4FF" }}
-              >
-                <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={eventCategory}
-                  label="Age"
-                  onChange={handlCategoryChange}
-                >
-                  <MenuItem value={10}>Monday</MenuItem>
-                  <MenuItem value={20}>Tuesday</MenuItem>
-                  <MenuItem value={30}>Wednesday</MenuItem>
-                  <MenuItem value={30}>Thursday</MenuItem>
-                  <MenuItem value={30}>Friday</MenuItem>
-                  <MenuItem value={30}>Saturday</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </div>
+         
         </div>
       </div>
       {/* events */}
@@ -256,153 +186,23 @@ export default function Home() {
           ))}
 
           {/* event creation modal */}
-          <Transition.Root show={open} as={Fragment}>
-            <Dialog
-              as="div"
-              className="relative z-10"
-              initialFocus={cancelButtonRef}
-              onClose={setOpen}
-            >
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-              </Transition.Child>
+         {
+          open?
+          <EventCreation>
+            <div className="w-full flex justify-end p-2">
+              <button
+              
+              onClick={()=>{
+                setOpen(false)
+                  // setCurrentIndex(0)
+              }}>
+                <IoIosCloseCircle size={24} color={"red"}/>
+              </button>
+            </div>
 
-              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  >
-                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
-                      <div className="bg-white px-4 pb-12 pt-5 sm:p-6 sm:pb-8">
-                        <div className="sm:flex sm:items-start">
-                          <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                            <IoTicket
-                              className="h-6 w-6 text-green-600"
-                              aria-hidden="true"
-                            />
-                          </div>
-                          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                            <Dialog.Title
-                              as="h3"
-                              className="text-base font-semibold leading-6 text-gray-900"
-                            >
-                              Purchase Ticket
-                            </Dialog.Title>
-                            <div className="mt-2">
-                              <div className="flex flex-col lg:flex-row space-x-4 items-center space-y-4">
-                                {/* event image */}
-                                <Image
-                                  src={"/images/event.jpg"}
-                                  alt="pic"
-                                  width={200}
-                                  height={200}
-                                />
-                                {/* event timing & date*/}
-                                <div className="">
-                                  {/* timing */}
-                                  <div className="flex items-center space-x-2">
-                                    <IoMdTime
-                                      size={24}
-                                      className="text-gray-500"
-                                    />
-                                    <h1 className="text-xs text-gray-500">
-                                      Fri, 30 July at 10:00 - Mon, 2 August 2024
-                                      at 23:00
-                                    </h1>
-                                  </div>
-                                  {/* timing */}
-                                  <div className="flex items-center space-x-2">
-                                    <MdLocationOn
-                                      size={24}
-                                      className="text-gray-500"
-                                    />
-                                    <h1 className="text-xs text-gray-500">
-                                      The Door Church, Ferry Junction, Freetown,
-                                      Sierra Leone
-                                    </h1>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* input Fields */}
-
-                              <div className="w-full h-20 space-y-4">
-                                <h1>Personal Info</h1>
-
-                                {/* email and full name */}
-                                <div className=" space-x-6">
-                                  {/* full name */}
-                                  <input
-                                    type="text"
-                                    placeholder="Full Name"
-                                    className="text-xs p-2 w-5/12 border"
-                                  />
-                                  {/* email */}
-                                  <input
-                                    type="email"
-                                    placeholder="email"
-                                    className="text-xs p-2 w-5/12 border"
-                                  />
-                                </div>
-
-                                {/* address and phone number */}
-                                <div className=" space-x-6">
-                                  {/* phone number */}
-                                  <input
-                                    type="number"
-                                    placeholder="Full Name"
-                                    className="text-xs p-2 w-5/12 border"
-                                  />
-                                  {/* address */}
-                                  <input
-                                    type="text"
-                                    placeholder="email"
-                                    className="text-xs p-2 w-5/12 border"
-                                  />
-                                </div>
-                                {/* next */}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                          onClick={() => setOpen(false)}
-                        >
-                          Proceed
-                        </button>
-                        <button
-                          type="button"
-                          className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                          onClick={() => setOpen(false)}
-                          ref={cancelButtonRef}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </Dialog.Panel>
-                  </Transition.Child>
-                </div>
-              </div>
-            </Dialog>
-          </Transition.Root>
+          </EventCreation>:
+          null
+         }
         </div>
       </div>
       {/* more events view */}
