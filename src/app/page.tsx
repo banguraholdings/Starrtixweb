@@ -75,7 +75,7 @@ const navigation = useRouter()
     <Homerapper>
       <div
         style={{
-          backgroundImage: `url('../../background/main.jpg')`,
+          backgroundImage: `url('background/main.jpg')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
