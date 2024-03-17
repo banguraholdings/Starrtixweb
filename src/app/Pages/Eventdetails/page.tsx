@@ -4,6 +4,9 @@
 import { useRouter } from "next/router";
 import Homerapper from "@/components/Homewrapper";
 import Tickets from "@/components/TicketBuying/Tickets";
+import { IoCalendar } from "react-icons/io5";
+import { FaClock } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 const EventDetails = () => {
   // const router = useRouter();
@@ -43,7 +46,7 @@ const EventDetails = () => {
         </div>
 
         {/* event details */}
-        <div className="w-full flex p-4 flex-col  items-center">
+        <div className="w-full flex p-4 flex-col space-y-6  items-center">
           <div className="w-11/12 md:w-10/12  lg:w-9/12 flex  ">
             <h1 className="text-4xl font-semibold">{event.event_title}</h1>
           </div>
@@ -51,13 +54,28 @@ const EventDetails = () => {
           {/* time and date */}
           <div className="w-11/12 md:w-10/12  lg:w-9/12 flex  flex-col">
             <h1 className="text-lg font-semibold">Date and time</h1>
-            <h1 className="text-lg font-light">{event.event_date}</h1>
-            <h1 className="text-lg font-light">{event.event_time}</h1>
+            <h1 className="text-lg font-light flex items-center space-x-4">
+              <span>
+                <IoCalendar />
+              </span>
+              {event.event_date}
+            </h1>
+            <h1 className="text-lg font-light flex items-center space-x-4">
+              <span>
+
+              <FaClock />
+              </span>
+
+              {event.event_time}
+            </h1>
           </div>
           {/* Location */}
           <div className="w-11/12 md:w-10/12  lg:w-9/12 flex  flex-col">
             <h1 className="text-lg font-semibold">Location</h1>
-            <h1 className="text-lg font-light">{event.event_location}</h1>
+            <h1 className="text-lg font-light flex items-center space-x-4">
+              <FaLocationDot />
+                   {" "} {event.event_location}
+            </h1>
           </div>
           {/* Descritpion */}
           <div className="w-11/12 md:w-10/12  lg:w-9/12 flex  flex-col">
@@ -94,7 +112,7 @@ const EventDetails = () => {
           <div className="w-full flex  flex-col items-center">
             <h1 className="text-lg font-semibold">Payment</h1>
             <div className="flex-row flex gap-4 p-20 border border-blue-500 w-11/12 lg:w-10/12">
-             <Tickets/>
+              <Tickets />
             </div>
           </div>
         </div>

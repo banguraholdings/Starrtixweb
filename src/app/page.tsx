@@ -19,7 +19,6 @@ import {
 import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
 import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
-
 import { RiVipCrown2Fill } from "react-icons/ri";
 import Homerapper from "@/components/Homewrapper";
 import Lottie from "lottie-react";
@@ -31,10 +30,11 @@ import { userAuth } from "../../useContext";
 import Video from "next-video";
 import EventItem from "@/components/HomeComponent/EventItem";
 import EventCreation from "@/components/EventCreation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
-
+const navigation = useRouter()
   const [day, setDay] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCategory, setEventCategory] = useState("");
@@ -75,7 +75,7 @@ export default function Home() {
     <Homerapper>
       <div
         style={{
-          backgroundImage: `url('/background/main.jpg')`,
+          backgroundImage: `url('../../background/main.jpg')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -162,7 +162,9 @@ export default function Home() {
           {events.map((value, index) => (
             <button
               style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                navigation.push("/Pages/Eventdetails")
+              }}
               key={index}
             >
               {/* img */}

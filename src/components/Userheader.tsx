@@ -74,7 +74,9 @@ function Userheader() {
                   }`}
                 >
                   <Link
-                    href={value.value === undefined ? "/" : `/User/${value.value}`}
+                    href={
+                      value.value === undefined ? "/" : `/User/${value.value}`
+                    }
                   >
                     {value.name}
                   </Link>
@@ -94,7 +96,10 @@ function Userheader() {
                 <Link className="bg-blue-500 p-4 rounded" href={"/Auth/Signin"}>
                   Login
                 </Link>
-                <Link className="bg-[#fb8500] p-4 rounded" href={"/Auth/Signup"}>
+                <Link
+                  className="bg-[#fb8500] p-4 rounded"
+                  href={"/Auth/Signup"}
+                >
                   Sign Up
                 </Link>
               </div>
@@ -151,16 +156,18 @@ function Userheader() {
                     </div>
                   ) : (
                     <div className="space-x-4">
-
-                    <Link
-                      className="bg-blue-500 p-4 rounded text-white"
-                      href={"/Auth/Signin"}
-                    >
-                      Login
-                    </Link>
-                    <Link className="bg-[#fb8500] text-white p-4 rounded" href={"/Auth/Signup"}>
-                  Sign Up
-                </Link>
+                      <Link
+                        className="bg-blue-500 p-4 rounded text-white"
+                        href={"/Auth/Signin"}
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        className="bg-[#fb8500] text-white p-4 rounded"
+                        href={"/Auth/Signup"}
+                      >
+                        Sign Up
+                      </Link>
                     </div>
                   )}
                 </li>
