@@ -50,7 +50,7 @@ function Userheader() {
         <div className="flex  justify-between">
           {/* logo */}
           <div className="flex gap-16 items-center">
-            <img src="../../images/LOGOSTAR.png" className="w-24 h-20" />
+            <img src="images/LOGOSTAR.png" className="w-24 h-20" />
             {/* search bar */}
             <Link
               href={"/Pages/Search"}
