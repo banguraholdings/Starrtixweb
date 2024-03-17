@@ -25,7 +25,6 @@ const EventItem: React.FC<EventItemProps> = ({ image, videoSrc }) => {
         }
       }}
       style={{
-        borderRadius: 18.95,
         overflow: 'hidden', // Ensures the borderRadius is applied to child components
       }}
     >
