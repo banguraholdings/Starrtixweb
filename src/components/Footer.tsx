@@ -12,7 +12,7 @@ function Footer() {
         <div className=" space-y-2 flex md:flex-col">
           <div>
           <img
-             src="../../images/LOGOSTAR.png"
+             src="images/LOGOSTAR.png"
              className="w-20 h-20"
              />
             {/* web description */}
