@@ -1,13 +1,13 @@
 export const eventTypes = [
   {
     id: 1,
-    name: "Free",
+    name: "Free Event",
     description:
       "A large formal gathering where people discuss specific topics.",
   },
   {
     id: 2,
-    name: "Paid",
+    name: "Paid For Event",
     description: "A meeting for discussion or training.",
   },
   
