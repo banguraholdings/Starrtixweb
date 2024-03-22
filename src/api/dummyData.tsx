@@ -1,39 +1,16 @@
 export const eventTypes = [
   {
     id: 1,
-    name: "Seminar",
+    name: "Free",
     description:
       "A large formal gathering where people discuss specific topics.",
   },
   {
     id: 2,
-    name: "University Gradutaion",
+    name: "Paid",
     description: "A meeting for discussion or training.",
   },
-  {
-    id: 3,
-    name: "Workshop",
-    description:
-      "A brief intensive course, a seminar, or a series of meetings emphasizing interaction and exchange of information among a usually small number of participants.",
-  },
-  {
-    id: 4,
-    name: "Wedding",
-    description:
-      "A seminar or other presentation that takes place on the internet, allowing participants in different locations to see and hear the presenter, ask questions, and sometimes answer polls.",
-  },
-  {
-    id: 5,
-    name: "Trade Show",
-    description:
-      "An exhibition organized so that companies in a specific industry can showcase and demonstrate their latest products and services.",
-  },
-  {
-    id: 6,
-    name: "Networking Event",
-    description:
-      "An event that is designed to help people meet new contacts and potentially do business together.",
-  },
+  
 ];
 
 export const events = [

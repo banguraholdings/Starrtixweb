@@ -24,7 +24,7 @@ import Homerapper from "@/components/Homewrapper";
 import Lottie from "lottie-react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdTime } from "react-icons/io";
-import { MdLocationOn } from "react-icons/md";
+import { MdPaid,MdOutlineCropFree } from "react-icons/md";
 import { authToken } from "@/api/Auth";
 import { userAuth } from "../../useContext";
 import Video from "next-video";
@@ -133,7 +133,14 @@ const navigation = useRouter()
             >
               {/* event icon */}
               <div className="w-20 h-20 lg:w-32 lg:h-32 border flex rounded-full items-center justify-center hover:border-blue-400">
-                <BsFillCalendarEventFill color={"blue"} size={32} />
+                {
+                  event.name==="Paid"?
+
+                  <MdPaid color={"blue"} size={32} />
+                  :
+                  <MdOutlineCropFree color={"blue"} size={32} />
+
+                }
               </div>
               {/* event name */}
               <h1 className="text-xs text-gray-600 text-center">
