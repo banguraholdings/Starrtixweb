@@ -38,7 +38,7 @@ interface FormValues {
     video: null,
   };
   
-function Step3({ closeStep }: any) {
+function Step3({ closeStep,Finalvalues }: any) {
   return (
     <div className="max-w-md mx-auto my-10">
       <Formik
@@ -46,6 +46,7 @@ function Step3({ closeStep }: any) {
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
+          Finalvalues(values)
           setSubmitting(false);
           closeStep(1);
 

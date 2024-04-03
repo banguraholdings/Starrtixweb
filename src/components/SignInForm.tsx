@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import {useRouter} from 'next/navigation'
 import { userAuth } from "../../useContext";
+import axios from "axios";
 const SignInForm = () => {
 
 const { loginAuthUser} =userAuth()
@@ -18,7 +19,6 @@ const { loginAuthUser} =userAuth()
   // Define your validation schema using Yup
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address")
       .required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
@@ -31,7 +31,11 @@ const { loginAuthUser} =userAuth()
 
   // Handle form submission
   const handleSubmit = (values: any) => {
-    console.log(values);
+    // console.log(values);
+    const Auth = {
+      username:values.email,
+      password:values.password,
+    }
     // login(values.email, values.password).then((data) => {
     //   setIsLoading(true)
     //   console.log(data.data.token);
@@ -43,10 +47,7 @@ const { loginAuthUser} =userAuth()
     //   }
     // });
     // Handle sign-in logic here
-    const Auth = {
-      email:values.email,
-      password:values.password,
-    }
+  
 loginAuthUser(Auth)
 
   };
@@ -71,7 +72,7 @@ loginAuthUser(Auth)
             </label>
             <Field
               name="email"
-              type="email"
+              type="text"
               className={`mt-1 h-12 block p-2 w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
                 errors.email && touched.email ? "border-red-500" : ""
               }`}

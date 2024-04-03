@@ -89,7 +89,7 @@ function Userheader() {
             {username ? (
               <div className="text-black flex items-center space-x-2">
                 <FaRegUserCircle size={24} />
-                <h1>hi</h1>
+                <h1>{username.first_name} {username.last_name}</h1>
               </div>
             ) : (
               <div className="flex-row space-x-2  items-center">
@@ -152,7 +152,7 @@ function Userheader() {
                   {username ? (
                     <div className="text-black flex items-center space-x-2">
                       <FaRegUserCircle size={24} />
-                      <h1>hi </h1>
+                      <h1>{username.first_name} {username.last_name}</h1>
                     </div>
                   ) : (
                     <div className="space-x-4">

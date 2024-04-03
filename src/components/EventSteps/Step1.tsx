@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-function Step1({ closeStep }: any) {
+function Step1({ closeStep, Finalvalues }: any) {
   // Schema for form validation
   const validationSchema = Yup.object().shape({
     eventTitle: Yup.string().required("Event title is required"),
@@ -25,6 +25,7 @@ function Step1({ closeStep }: any) {
   // Submit handler
   const onSubmit = (values: any) => {
     console.log(values);
+    Finalvalues(values)
     closeStep(1);
   };
 

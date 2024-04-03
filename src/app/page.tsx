@@ -345,6 +345,18 @@ const navigation = useRouter()
           />
         </div>
       </div>
+
+      <div className="w-full p-2  flex flex-col items-center">
+        <h1>
+          how It Works
+        </h1>
+
+        <div className=" w-10/12 flex justify-center  ">
+         <video autoPlay controls>
+         <source src="/vidoes/video2.mp4"/>
+         </video>
+        </div>
+      </div>
     </Homerapper>
   );
 }

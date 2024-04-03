@@ -24,7 +24,7 @@ interface FormValues {
     quantity: 1,
     price: null,
   };
-function Step2({ closeStep }: any) {
+function Step2({ closeStep,Finalvalues }: any) {
    // Validate function ensuring correct typing for errors
   const validate = (values: FormValues): FormErrors => {
     const errors: FormErrors = {};
@@ -47,6 +47,7 @@ function Step2({ closeStep }: any) {
 
   const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     console.log(values);
+    Finalvalues(values)
     actions.setSubmitting(false);
     closeStep(1);
 

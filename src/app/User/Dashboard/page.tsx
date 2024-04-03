@@ -15,6 +15,7 @@ import Step1 from "@/components/EventSteps/Step1";
 import Step2 from "@/components/EventSteps/Step2";
 import Step3 from "@/components/EventSteps/Step3";
 import Step4 from "@/components/EventSteps/Step4";
+import { userAuth } from "../../../../useContext";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -22,11 +23,33 @@ function Page() {
   //states
   const [value, onChange] = useState<Value>(new Date());
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const { username } = userAuth();
+  const [value1, setValue1]=useState<any>({})
+  const [value2, setValue2]=useState<any>({})
+  const [value3, setValue3]=useState<any>({})
+  const [value4, setValue4]=useState<any>({})
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+
+  //function that get values
+  const values1 =(value:any)=>{
+    console.log(value)
+    setValue1(value)
+  }
+  const values2 =(value:any)=>{
+    console.log(value)
+    setValue2(value)
+  }
+  const values3 =(value:any)=>{
+    console.log(value)
+    setValue3(value)
+  }
+  const values4 =(value:any)=>{
+    console.log(value)
+    setValue4(value)
+  }
   // Function to navigate to the next screen
   const nextScreen = (value: number) => {
     if (currentIndex < screens.length - 1) {
@@ -42,10 +65,10 @@ function Page() {
   };
   //screens
   const screens = [
-    <Step1 key={currentIndex} closeStep={nextScreen} />,
-    <Step2 key={currentIndex} closeStep={nextScreen} />,
-    <Step3 key={currentIndex} closeStep={nextScreen} />,
-    <Step4 key={currentIndex} closeStep={nextScreen} />,
+    <Step1 key={currentIndex} closeStep={nextScreen} Finalvalues={values1} />,
+    <Step2 key={currentIndex} closeStep={nextScreen} Finalvalues={values2} />,
+    <Step3 key={currentIndex} closeStep={nextScreen} Finalvalues={values3} />,
+    <Step4 key={currentIndex} closeStep={nextScreen} Finalvalues={values4} />,
   ];
   return (
     <NotAuthecticated>
@@ -62,7 +85,7 @@ function Page() {
               <div className="w-8 h-8 rounded-full bg-gray-400"></div>
 
               {/* username */}
-              <h1 className="text-sm">Judah Alvin Dore</h1>
+              <h1 className="text-sm">{username?.first_name} {username?.last_name}</h1>
             </div>
           </div>
         </div>

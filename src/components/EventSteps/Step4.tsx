@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
   refundPolicy: Yup.string(),
   termsAndCondition: Yup.string(),
 });
-function Step4({ closeStep }: any) {
+function Step4({ closeStep,Finalvalues }: any) {
   return (
     <div className="max-w-4xl mx-auto mt-10">
       <h2 className="text-2xl font-semibold mb-5">Event Terms and Policies</h2>
@@ -28,6 +28,7 @@ function Step4({ closeStep }: any) {
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           console.log(values);
+          Finalvalues(values)
           actions.setSubmitting(false);
           closeStep(1);
 
