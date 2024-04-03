@@ -82,17 +82,15 @@ const navigation = useRouter()
         className="h-[100dvh] text-white md:h-[80vh]"
       >
         <div
-          className={`w-full   h-[100dvh] md:h-[80vh] bg-blue-700 bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}
-        >
-          <div className="w-8/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
+          className={`w-full bg-orange-700  h-[100dvh] md:h-[80vh]  bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}>
+          <div className="w-8/12 lg:w-6/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
-            <h1 className="lg:text-xl text-xl md:text-2xl font-serif text-center lg:text-start ">
+            <h1 className="text-xl md:text-2xl font-serif text-center lg:text-start ">
               We offer event organizers and attendees a reliable user-friendly
               platform for seemless ticketing real time event updates, and
               marketing, tailored to multiple payment methods all in one place
             </h1>
             {/* body */}
-            <h1 className="text-xs lg:text-base md:text-sm text-center lg:text-start"></h1>
 
             <div className="flex flex-row space-x-2">
               {/* button */}

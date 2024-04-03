@@ -92,3 +92,60 @@ export const getAllEvents = async ()=>{
     
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+type EventDetails = {
+  title: string;             // Assuming eventTitle is a string
+  location: string;          // Assuming fullAddress is a string
+  date: Date | string;       // Assuming startDate is a Date object or string representation of a date
+  event: string;             // Assuming startTime could also be just a string, but this seems to be duplicated
+  eventstarttime: string;    // Assuming startTime is a string representing time (e.g., "10:00 AM")
+  eventendtime: string;      // Assuming endTime is a string representing time (e.g., "11:00 AM")
+  types: string;             // Assuming eventType is a string
+  description: string; 
+  eventtags:string      // Assuming description is a string
+};
+
+//post events
+export const postEvent = async (newEvent:EventDetails)=>{
+  console.log(newEvent)
+  try {
+    
+    const response =await apiClient.post('/event/events/', newEvent)
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//post events pic
+type eventPics={
+  eventPic:File;
+  eventVideo:File;
+}
+export const eventMedia = async(pics:eventPics)=>{
+  const formData = new FormData();
+  console.log(pics)
+  formData.append('image', pics.eventPic)
+  formData.append('video', pics.eventVideo)
+  console.log(formData)
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:8000/pic/event/',
+    headers: {
+      'Content-Type': 'multipart/form-data', 
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyMTgyNzgwLCJpYXQiOjE3MTIxMzk1ODAsImp0aSI6ImYxYWI4MjQ5Y2Q0YjQ3NTU4MDdkMjhhMzE0OGM2NDMyIiwidXNlcl9pZCI6Mn0.KHERtYZ8wDic8eyMwbIOPgi3X2QhG-uF6W_WnNHkZqs'
+     },
+     data:formData
+  };
+  try {
+    const response = await axios.request(config)
+    // const response =await apiClient.post('/pic/event/', formData)
+    // return response
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}

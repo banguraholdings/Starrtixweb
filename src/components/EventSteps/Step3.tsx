@@ -19,6 +19,7 @@ interface FormValues {
   const FileInput: React.FC<FileInputProps> = ({ field, form, ...props }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
+     
       form.setFieldValue(field.name, files ? files[0] : null); // Set the file or null
     };
   

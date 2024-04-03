@@ -16,6 +16,7 @@ import Step2 from "@/components/EventSteps/Step2";
 import Step3 from "@/components/EventSteps/Step3";
 import Step4 from "@/components/EventSteps/Step4";
 import { userAuth } from "../../../../useContext";
+import { eventMedia, postEvent } from "@/api/Auth";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -47,8 +48,35 @@ function Page() {
     setValue3(value)
   }
   const values4 =(value:any)=>{
-    console.log(value)
-    setValue4(value)
+    // console.log(value)
+    // setValue4(value)
+    // const eventDetails={
+    //   title:value1.eventTitle,
+    //   location:value1.fullAddress,
+    //   date:value1.startDate,
+    //   event:value1.startTime,
+    //   eventstarttime:value1.startTime,
+    //   eventendtime:value1.endTime,
+    //   types:value2.eventType,
+    //   description:value3.description,
+    //   eventtags:"hello"
+    // }
+    const pics={
+     eventPic:value3.flyer,
+     eventVideo:value3.video
+    }
+    // //postevent
+    // postEvent(eventDetails).then((res)=>{
+    //   console.log(res)
+    // })
+    // console.log(eventDetails)
+    // console.log(value1, value2, value3, value4)
+
+    //post event pic
+    eventMedia(pics).then((res)=>{
+      console.log(res)
+    })
+    // console.log(value3.flyer.name,value3.video)
   }
   // Function to navigate to the next screen
   const nextScreen = (value: number) => {
@@ -155,6 +183,10 @@ function Page() {
               onClick={()=>{
                 closeModal();
                 setCurrentIndex(0)
+                setValue1({})
+                setValue2({})
+                setValue3({})
+                setValue4({})
               }}>
                 <IoIosCloseCircle size={24} color={"red"}/>
               </button>

@@ -45,12 +45,12 @@ function Userheader() {
   return (
     <div className="text-white ">
       {/* navbar */}
-      <div className="z-50 w-full p-6 bg-white items-center justify-center fixed border-b-2">
+      <div className="z-50  w-full p-2 lg:p-4 bg-white items-center justify-center fixed border-b-2">
         {/* container */}
-        <div className="flex  justify-between">
+        <div className="flex h-full justify-between">
           {/* logo */}
-          <div className="flex gap-16 items-center">
-            <img src="images/LOGOSTAR.png" className="w-24 h-20" />
+          <div className="flex gap-16 items-center  ">
+            <img src="images/LOGOSTAR-main.png" className="w-20 h-16" />
             {/* search bar */}
             <Link
               href={"/Pages/Search"}
