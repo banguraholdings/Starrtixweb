@@ -2,7 +2,7 @@
 
 import NotAuthecticated from "@/components/ProtectedRoute/NotAuthecticated";
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
 import Calendar from "react-calendar";
 import { activities } from "@/api/dummyData";
@@ -30,10 +30,19 @@ function Page() {
   const [value3, setValue3]=useState<any>({})
   const [value4, setValue4]=useState<any>({})
   const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState<any>("")
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
 
+  const getToken = async (): Promise<any> =>{
+    const token =await localStorage.getItem("token")
+    setToken(token)
+  }
+
+  useEffect(()=>{
+    getToken()
+  },[])
   //function that get values
   const values1 =(value:any)=>{
     console.log(value)
@@ -47,35 +56,41 @@ function Page() {
     console.log(value)
     setValue3(value)
   }
+ 
   const values4 =(value:any)=>{
     // console.log(value)
     // setValue4(value)
-    // const eventDetails={
-    //   title:value1.eventTitle,
-    //   location:value1.fullAddress,
-    //   date:value1.startDate,
-    //   event:value1.startTime,
-    //   eventstarttime:value1.startTime,
-    //   eventendtime:value1.endTime,
-    //   types:value2.eventType,
-    //   description:value3.description,
-    //   eventtags:"hello"
-    // }
+    const eventDetails={
+      title:value1.eventTitle,
+      location:value1.fullAddress,
+      date:value1.startDate,
+      event:value1.startTime,
+      eventstarttime:value1.startTime,
+      eventendtime:value1.endTime,
+      types:value2.eventType,
+      description:value3.description,
+      eventtags:"hello",
+      eventPic:value3.flyer,
+      eventVideo:value3.video,
+      token:token
+
+    }
     const pics={
      eventPic:value3.flyer,
-     eventVideo:value3.video
+     eventVideo:value3.video,
+     token:token
     }
     // //postevent
-    // postEvent(eventDetails).then((res)=>{
-    //   console.log(res)
-    // })
+    postEvent(eventDetails).then((res)=>{
+      console.log(res)
+    })
     // console.log(eventDetails)
     // console.log(value1, value2, value3, value4)
 
-    //post event pic
-    eventMedia(pics).then((res)=>{
-      console.log(res)
-    })
+    // //post event pic
+    // eventMedia(pics).then((res)=>{
+    //   console.log(res)
+    // })
     // console.log(value3.flyer.name,value3.video)
   }
   // Function to navigate to the next screen

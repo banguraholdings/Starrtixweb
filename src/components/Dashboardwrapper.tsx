@@ -32,6 +32,7 @@ function Dashboardwrapper({ children }: any) {
           <img
              src="../../images/LOGOSTAR.png"
              className="w-20 h-20"
+             alt="logo"
              />
           </div>
 

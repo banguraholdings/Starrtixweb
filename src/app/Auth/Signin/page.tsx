@@ -42,16 +42,16 @@ function Signin() {
              />
             </div>
             {/* form fields */}
-            <div className="flex flex-col space-y-4 md:space-y-4 ">
+            <div className="flex flex-col space-y-4 md:space-y-4 w-8/12">
               <SignInForm />
-              <div className="flex justify-center items-center">
+              {/* <div className="flex justify-center items-center">
                 <div className="w-full h-[0.5px] bg-black"></div>
                 <h1 className="w-80 text-center">or</h1>
                 <div className="w-full h-[0.5px] bg-black"></div>
-              </div>
+              </div> */}
 
               {/* oauth */}
-              <div className="w-full grid grid-cols-1 gap-2">
+              {/* <div className="w-full grid grid-cols-1 gap-2">
                 <a
                   href="http://localhost:1000/User/google"
                   className="w-full space-x-2 h-14 border flex items-center justify-center rounded"
@@ -63,7 +63,7 @@ function Signin() {
                   <FaFacebook size={24} color="blue" />
                   <h1>Log in with Facebook</h1>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

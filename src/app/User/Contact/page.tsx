@@ -1,10 +1,11 @@
-import Homerapper from "@/components/Homewrapper";
+import Homwrapper from "../../../components/Homwrapper";
+
 import React from "react";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 function page() {
   return (
-    <Homerapper>
+    <Homwrapper>
       <div className="w-full lg:h-[90dvh] h-full flex flex-col lg:flex-row items-center">
         {/* Contact me words */}
         <div className="h-[90dvh]   flex flex-col items-center justify-center w-full space-y-4">
@@ -70,7 +71,7 @@ function page() {
 
         </div>
       </div>
-    </Homerapper>
+    </Homwrapper>
   );
 }
 

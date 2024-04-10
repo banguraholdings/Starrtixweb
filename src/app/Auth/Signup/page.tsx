@@ -41,7 +41,7 @@ function Signup() {
              />
             </div>
             {/* form fields */}
-            <div className="flex flex-col space-y-4 md:space-y-4 w-80">
+            <div className="flex flex-col space-y-4 md:space-y-4 w-8/12">
               <SignUpForm/>
             </div>
           </div>

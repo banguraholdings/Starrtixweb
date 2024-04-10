@@ -14,10 +14,21 @@ import axios from "axios";
 //define the context type
 type users = {
   username: string;
+
+  password: string;
+};
+
+//register type
+type Reg={
+  username: string;
   first_name: string;
   last_name: string;
   password: string;
-};
+  email:string;
+  phonenumber:string;
+  date_of_birth:string;
+}
+
 
 interface authContextType {
   username: users | null;
@@ -25,7 +36,7 @@ interface authContextType {
   logout: () => void;
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  
+  signup:(newUser:Reg)=>void;
 }
 //context initliaization
 const userContext = createContext<authContextType>({} as authContextType);
@@ -38,6 +49,37 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const [username, setUser] = useState<users | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+
+
+
+  //resgiter or sign up
+  const signup=async(newUser:Reg)=>{
+   const data={
+      "username":newUser.username,
+      "email":newUser.email,
+      "password":newUser.password,
+      "first_name":newUser.first_name,
+      "last_name":newUser.last_name,
+      "phonenumber":newUser.phonenumber,
+      "date_of_birth":newUser.date_of_birth
+  }
+
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:8000/auth/register/',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  await axios.request(config).then((response) => {
+    console.log(response)
+  })
+  
+  }
     //get user token from local storage and authenticate user from the db using axios
     const getTokenAndAuthenticate = async () => {
         try {
@@ -72,13 +114,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         password: newUser.password,
       })
       .then((data) => {
-        console.log(data.data.token.access);
-        if (data.status === 200) {
+        console.log(data.data.is_supseruser);
+        if (data.status === 200 && !data.data.is_supseruser) {
           localStorage.setItem("token", data.data.token.access);
+          localStorage.setItem("user", "regular")
           setIsAuthenticated(true);
           // setIsLoading(false)
           console.log(isAuthenticated)
-        }
+        }else if(data.status === 200 && data.data.is_supseruser){
+          router.replace("/Admin/Dashboard")
+          localStorage.setItem("user", "superuser")
+
+// console.log
+       }
       }).catch((error) => {
         console.log(error)
       });
@@ -100,6 +148,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         logout,
         isAuthenticated,
         setIsAuthenticated,
+        signup
       }}
     >
       {children}

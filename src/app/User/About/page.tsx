@@ -1,9 +1,10 @@
-import Homerapper from "@/components/Homewrapper";
+import Homwrapper from "../../../components/Homwrapper";
+
 import React from "react";
 
 function page() {
   return (
-    <Homerapper>
+    <Homwrapper>
       {/* landing screen */}
       <div
         style={{
@@ -198,7 +199,7 @@ function page() {
           </div>
         </div>{" "}
       </div>
-    </Homerapper>
+    </Homwrapper>
   );
 }
 

@@ -2,7 +2,7 @@
 
 // pages/events/[id].js
 import { useRouter } from "next/router";
-import Homerapper from "@/components/Homewrapper";
+import Homwrapper from "../../../components/Homwrapper";
 import Tickets from "@/components/TicketBuying/Tickets";
 import { IoCalendar } from "react-icons/io5";
 import { FaClock } from "react-icons/fa";
@@ -38,11 +38,13 @@ const EventDetails = () => {
   };
 
   return (
-    <Homerapper>
+    <Homwrapper>
       <div className="flex-1  flex flex-col  w-full items-center pt-20  ">
         <div className="w-11/12  flex justify-center lg:p-12 lg:pt-24 pt-24  space-y-4">
           {/* image */}
-          <img src="../../background/main.jpg" className="w-11/12 rounded-xl" />
+          <img src="../../background/main.jpg" 
+          alt="pic"
+          className="w-11/12 rounded-xl" />
         </div>
 
         {/* event details */}
@@ -117,7 +119,7 @@ const EventDetails = () => {
           </div>
         </div>
       </div>
-    </Homerapper>
+    </Homwrapper>
   );
 };
 

@@ -9,13 +9,14 @@ function NotAuthecticated({children}:ProtectedRouteProps) {
 //checking if user is authenticated
 const {isAuthenticated}=userAuth()
 const auth = false
-useEffect(()=>{
-if(!isAuthenticated){
-redirect(
-    '/'
-)
-}
-},[isAuthenticated])
+// useEffect(()=>{
+//   console.log(isAuthenticated)
+// if(!isAuthenticated){
+// redirect(
+//     '/'
+// )
+// }
+// },[isAuthenticated])
   return (
     <div>
       {children}

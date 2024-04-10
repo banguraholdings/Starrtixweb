@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Homerapper from "@/components/Homewrapper";
+import Homwrapper from "../../../components/Homwrapper";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
@@ -66,22 +66,33 @@ function Page() {
     setSelectedDateValue(event.target.value);
   };
   return (
-    <Homerapper>
-      <div className="flex-1  flex flex-col  w-full items-center pt-12">
+    <Homwrapper>
+      <div className="flex-1  flex flex-col  w-full items-center ">
         {/* header */}
-        <div className="w-11/12 lg:p-12 lg:pt-24 pt-24 pb-12 space-y-4">
-          <h1 className="text-xl underline ">Search</h1>
-          <p>Use the form below to filter your Search</p>
-          <div className="w-full flex justify-center">
+        <div
+        style={{
+          backgroundImage: `url('/images/event1.jpg')`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        className="text-white h-[400px] w-full"
+        >
+
+        <div
+         
+        className="w-full bg-orange-500 lg:p-12 lg:pt-24 pt-24 pb-12 space-y-4 h-[400px] bg-opacity-30 flex flex-col items-center justify-center">
+          <p className="text-xl">Use the form below to filter your Search</p>
+          <div className="w-11/12 flex justify-center">
             <input
               type="text"
-              className="flex-1 p-2 border"
+              className="flex-1 p-2 border-[0.2px] text-sm text-gray-500 rounded-l-lg"
               placeholder="enter keyword"
             />
-            <div className="flex items-center justify-center bg-blue-500 p-2 md:p-4">
+            <div className="flex items-center justify-center bg-blue-500 p-2 md:p-4 rounded-r-lg">
               <FaSearch color="white" />
             </div>
           </div>
+        </div>
         </div>
 
         {/* body */}
@@ -272,7 +283,7 @@ function Page() {
           </div>
         </div>
       </div>
-    </Homerapper>
+    </Homwrapper>
   );
 }
 

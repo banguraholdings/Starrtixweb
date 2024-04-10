@@ -2,15 +2,17 @@ export const eventTypes = [
   {
     id: 1,
     name: "Free Event",
+    type: "free",
     description:
       "A large formal gathering where people discuss specific topics.",
   },
   {
     id: 2,
     name: "Paid For Event",
+    type: "paid",
+
     description: "A meeting for discussion or training.",
   },
-  
 ];
 
 export const events = [
@@ -21,7 +23,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event.jpg",
-    video:"/vidoes/video1.mp4"
+    video: "/vidoes/video1.mp4",
   },
   {
     month: "AUG",
@@ -30,8 +32,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event1.jpg",
-    video:"/vidoes/video1.mp4"
-
+    video: "/vidoes/video1.mp4",
   },
   {
     month: "AUG",
@@ -40,8 +41,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event2.jpg",
-    video:"/vidoes/video1.mp4"
-
+    video: "/vidoes/video1.mp4",
   },
   {
     month: "AUG",
@@ -50,8 +50,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event3.jpg",
-    video:"/vidoes/video1.mp4"
-
+    video: "/vidoes/video1.mp4",
   },
   {
     month: "AUG",
@@ -60,8 +59,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event4.jpg",
-    video:"/vidoes/video1.mp4"
-
+    video: "/vidoes/video1.mp4",
   },
   {
     month: "AUG",
@@ -70,8 +68,7 @@ export const events = [
     description:
       "We’ll get you directly seated and inside for you to enjoy the show.",
     image: "images/event.jpg",
-    video:"/vidoes/video1.mp4"
-
+    video: "/vidoes/video1.mp4",
   },
 ];
 
@@ -113,13 +110,17 @@ export const userDashboardsPath = [
     name: "Finance",
     value: "Finance",
   },
+  {
+    name: "Profile",
+    value: "Profile",
+  },
 ];
 
 //user header navigation
 export const userNavigation = [
   {
-    name:"Home",
-    value:undefined
+    name: "Home",
+    value: undefined,
   },
   // {
   //   name: "Tickets",
@@ -141,33 +142,31 @@ export const userNavigation = [
 ];
 
 //user dashboard dummy activities
-export const activities =[
+export const activities = [
   {
-    "event":"MedFest",
-    "activity":"added a new photo", 
-    "time":"2 hours ago",
-    "about":"eating fest ongoing",
-    "img":"../../images/loginback.png"
-
+    event: "MedFest",
+    activity: "added a new photo",
+    time: "2 hours ago",
+    about: "eating fest ongoing",
+    img: "../../images/loginback.png",
   },
   {
-    "event":"MedFest",
-    "activity":"added a new photo", 
-    "time":"2 hours ago",
-    "about":"eating fest ongoing",
-    "img":"../../images/african.jpg"
+    event: "MedFest",
+    activity: "added a new photo",
+    time: "2 hours ago",
+    about: "eating fest ongoing",
+    img: "../../images/african.jpg",
   },
   {
-    "event":"MedFest",
-    "activity":"added a new photo", 
-    "time":"2 hours ago",
-    "about":"eating fest ongoing"
+    event: "MedFest",
+    activity: "added a new photo",
+    time: "2 hours ago",
+    about: "eating fest ongoing",
   },
   {
-    "event":"MedFest",
-    "activity":"added a new photo", 
-    "time":"2 hours ago",
-    "about":"eating fest ongoing"
+    event: "MedFest",
+    activity: "added a new photo",
+    time: "2 hours ago",
+    about: "eating fest ongoing",
   },
-
-]
+];

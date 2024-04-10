@@ -22,6 +22,7 @@ function ResponsiveEventTable() {
                 <th className="px-4 py-2 text-left">Event Date</th>
                 <th className="px-4 py-2 text-left">Event tags</th>
                 <th className="px-4 py-2 text-left">Event Location</th>
+                <th className="px-4 py-2 text-left">Event Flyer</th>
                 <th className="px-4 py-2 text-left">Action</th>
             </tr>
         </thead>
@@ -39,6 +40,12 @@ function ResponsiveEventTable() {
                     <span className="bg-green-200 text-green-700 px-2 py-1 rounded">{value.eventtags}</span>
                 </td>
                 <td className="px-4 py-2">{value.location}</td>
+                <td className="px-4 py-2"><img
+                src="http://127.0.0.1:8000/media/images/LOGOSTAR-main.png"
+                className='w-8 h-8'
+                />
+                
+                </td>
 
                 <td className="px-4 py-2">
                     <button className="bg-red-500 text-white px-3 py-1 rounded mr-2">Cancel</button>

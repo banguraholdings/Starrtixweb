@@ -20,14 +20,10 @@ import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
 import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
 import { RiVipCrown2Fill } from "react-icons/ri";
-import Homerapper from "@/components/Homewrapper";
+import Homwrapper from "../components/Homwrapper";
 import Lottie from "lottie-react";
-import { Dialog, Transition } from "@headlessui/react";
-import { IoMdTime } from "react-icons/io";
 import { MdPaid,MdOutlineCropFree } from "react-icons/md";
-import { authToken } from "@/api/Auth";
 import { userAuth } from "../../useContext";
-import Video from "next-video";
 import EventItem from "@/components/HomeComponent/EventItem";
 import EventCreation from "@/components/EventCreation";
 import { useRouter } from "next/navigation";
@@ -72,27 +68,27 @@ const navigation = useRouter()
     console.log(isAuthenticated);
   }, []);
   return (
-    <Homerapper>
+    <Homwrapper>
       <div
         style={{
           backgroundImage: `url('background/main.jpg')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="h-[100dvh] text-white md:h-[80vh]"
+        className=" text-white h-[700px]"
       >
         <div
-          className={`w-full bg-orange-700  h-[100dvh] md:h-[80vh]  bg-opacity-50 flex lg:flex-row lg:p-12 pt-12  flex-col items-center justify-center gap-8 `}>
+          className={`w-full bg-blue-700 h-full  bg-opacity-50 flex md:flex-row    flex-col-reverse items-center justify-center gap-8 `}>
           <div className="w-8/12 lg:w-6/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
-            <h1 className="text-xl md:text-2xl font-serif text-center lg:text-start ">
+            <h1 className="text-xl md:text-2xl font-serif text-center md:text-start ">
               We offer event organizers and attendees a reliable user-friendly
               platform for seemless ticketing real time event updates, and
               marketing, tailored to multiple payment methods all in one place
             </h1>
             {/* body */}
 
-            <div className="flex flex-row space-x-2">
+            <div className="flex flex-row space-x-2  w-full md:justify-start justify-center">
               {/* button */}
 
               <Link
@@ -132,7 +128,7 @@ const navigation = useRouter()
               {/* event icon */}
               <div className="w-20 h-20 lg:w-32 lg:h-32 border flex rounded-full items-center justify-center hover:border-blue-400">
                 {
-                  event.name==="Paid"?
+                  event.type==="paid"?
 
                   <MdPaid color={"blue"} size={32} />
                   :
@@ -192,31 +188,14 @@ const navigation = useRouter()
             </button>
           ))}
 
-          {/* event creation modal */}
-         {
-          open?
-          <EventCreation>
-            <div className="w-full flex justify-end p-2">
-              <button
-              
-              onClick={()=>{
-                setOpen(false)
-                  // setCurrentIndex(0)
-              }}>
-                <IoIosCloseCircle size={24} color={"red"}/>
-              </button>
-            </div>
-
-          </EventCreation>:
-          null
-         }
+    
         </div>
       </div>
       {/* more events view */}
       <div className="w-full justify-center flex p-4">
-        <button className="w-40 h-14 rounded-xl border-blue-500 border text-blue-500">
+        <Link href={"/Pages/Search"} className="w-40 h-14 items-center justify-center flex rounded-xl border-blue-500 border text-blue-500">
           See More
-        </button>
+        </Link>
       </div>
 
       <div className="w-full  flex justify-center text-center p-4">
@@ -355,6 +334,6 @@ const navigation = useRouter()
          </video>
         </div>
       </div>
-    </Homerapper>
+    </Homwrapper>
   );
 }

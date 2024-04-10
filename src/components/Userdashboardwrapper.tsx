@@ -13,6 +13,7 @@ import { IoIosHome } from "react-icons/io";
 import { HiMiniSpeakerWave } from "react-icons/hi2";
 import { CiBank } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaRegUserCircle } from "react-icons/fa";
 import AOS from "aos";
 import { IoClose } from "react-icons/io5";
 function Userdashboardwrapper({ children }: any) {
@@ -150,6 +151,9 @@ function Userdashboardwrapper({ children }: any) {
                     size={24}
                     color={`${value.value === pathname[2] ? "black" : "white"}`}
                   />
+                ) : value.value === "Profile" ? (
+                  <FaRegUserCircle size={24} color={`${value.value === pathname[2] ? "black" : "white"}`}/>
+
                 ) : null}
                 <h1
                   className={` hidden hover:block lg:block font-bold ${

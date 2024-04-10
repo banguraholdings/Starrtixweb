@@ -97,21 +97,54 @@ export const getAllEvents = async ()=>{
 type EventDetails = {
   title: string;             // Assuming eventTitle is a string
   location: string;          // Assuming fullAddress is a string
-  date: Date | string;       // Assuming startDate is a Date object or string representation of a date
-  event: string;             // Assuming startTime could also be just a string, but this seems to be duplicated
+  date: Date| string;       // Assuming startDate is a Date object or string representation of a date
+  event:  string;             // Assuming startTime could also be just a string, but this seems to be duplicated
   eventstarttime: string;    // Assuming startTime is a string representing time (e.g., "10:00 AM")
   eventendtime: string;      // Assuming endTime is a string representing time (e.g., "11:00 AM")
   types: string;             // Assuming eventType is a string
   description: string; 
-  eventtags:string      // Assuming description is a string
+  eventtags:string ;     // Assuming description is a string
+  eventPic:File;
+  eventVideo:File;
+  token:string; // Assuming token is a string
 };
 
 //post events
 export const postEvent = async (newEvent:EventDetails)=>{
+   ///form data
+   const formData =new FormData()
+   formData.append('title',newEvent.title )
+   formData.append('location',newEvent.location)
+   if (newEvent.date instanceof Date) {
+    // Now TypeScript knows 'value' is a Date, so .toISOString() can be called safely
+    formData.append('date', newEvent.date.toISOString());
+  } else {
+    // TypeScript knows 'value' is a string here, so it can be appended directly
+    formData.append('date', newEvent.date);
+  }
+  //  formData.append('date',newEvent.date.toISOString())
+   formData.append('event',newEvent.eventstarttime )
+   formData.append('eventstarttime',newEvent.eventstarttime  )
+   formData.append('eventendtime',newEvent.eventendtime )
+   formData.append('types',newEvent.types )
+   formData.append('description',newEvent.description )
+   formData.append('eventtags',"hello" )
+   formData.append('image',newEvent.eventPic)
+   formData.append('video',newEvent.eventVideo)
   console.log(newEvent)
   try {
-    
-    const response =await apiClient.post('/event/events/', newEvent)
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://127.0.0.1:8000/event/events/',
+      headers: {
+        'Content-Type': 'multipart/form-data', 
+          'Authorization': `Bearer ${newEvent.token}`
+       },
+       data:formData
+    };
+    // const response =await apiClient.post('/event/events/', formData)
+    const response =await apiClient.request(config)
     return response
   } catch (error) {
     console.log(error)
@@ -123,6 +156,7 @@ export const postEvent = async (newEvent:EventDetails)=>{
 type eventPics={
   eventPic:File;
   eventVideo:File;
+  token:string;
 }
 export const eventMedia = async(pics:eventPics)=>{
   const formData = new FormData();
@@ -136,7 +170,7 @@ export const eventMedia = async(pics:eventPics)=>{
     url: 'http://127.0.0.1:8000/pic/event/',
     headers: {
       'Content-Type': 'multipart/form-data', 
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyMTgyNzgwLCJpYXQiOjE3MTIxMzk1ODAsImp0aSI6ImYxYWI4MjQ5Y2Q0YjQ3NTU4MDdkMjhhMzE0OGM2NDMyIiwidXNlcl9pZCI6Mn0.KHERtYZ8wDic8eyMwbIOPgi3X2QhG-uF6W_WnNHkZqs'
+        'Authorization': `Bearer ${pics.token}`
      },
      data:formData
   };
@@ -148,4 +182,22 @@ export const eventMedia = async(pics:eventPics)=>{
   } catch (error) {
     console.log(error)
   }
+}
+
+////////////////////////////////////////////////////////////////////////
+//upload profile pic
+export const uploadProfilePic=(data:any, token:string)=>{
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:8000/pic/profilepic/',
+    headers: { 
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    },
+    data:data
+  };
+
+  const response = axios.request(config)
+  return response
 }

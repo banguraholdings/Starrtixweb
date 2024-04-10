@@ -1,18 +1,23 @@
+'use client'
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
+  const path = usePathname().split("/")[2];
+
   return (
-    <footer className="w-full bg-blue-900 p-12">
+    <footer className="w-full bg-blue-900 p-12 items-center flex flex-col ">
       {/* container */}
-      <div className="grid grid-cols-1 md:grid-cols-2   md:place-items-center lg:grid-cols-3 space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2   md:place-items-center  space-y-8">
         {/* section1 */}
-        <div className=" space-y-2 flex md:flex-col">
+        <div className=" space-y-2 flex md:flex-col ">
           <div>
           <img
-             src="images/LOGOSTAR.png"
+             src={path==="Search"?"/images/LOGOSTAR.png":"images/LOGOSTAR.png"}
              className="w-20 h-20"
              />
             {/* web description */}
@@ -41,7 +46,7 @@ function Footer() {
         </div>
 
         {/* section 2 */}
-        <div className="grid grid-cols-2 lg:gap-20">
+        <div className="grid grid-cols-2 lg:gap-20 gap-10 ">
           <div className=" space-y-2 flex flex-col text-white">
             <h1 className=" text-white font-bold">Plan Events</h1>
             <ul className="flex flex-col space-y-2">
@@ -89,23 +94,7 @@ function Footer() {
           </div>
         </div>
 
-        {/* section 3 */}
-        <div className="text-white flex flex-col space-y-2 md:w-10/12 md:grid md:col-span-3 lg:col-span-1">
-          <h1 className="text-xl font-bold text-center lg:text-left">
-            Stay in The Loop
-          </h1>
-          <p className="text-xs font-thin text-center lg:text-left">
-            join our mailing list to stay in the loop for Event and Concert
-          </p>
-
-          {/* email */}
-          <div className="flex  p-2 rounded-full justify-center">
-            <input type="text" className="flex-1 h-12 lg:h-8  bg-white rounded-l-full text-gray-700" />
-            <button className="w-40 lg:w-4/12 h-12 lg:h-8 rounded-r-full bg-[#F5167E] text-xs p-2">
-              Subscribe 
-            </button>
-          </div>
-        </div>
+       
       </div>
 
       <hr className="mt-8 mb-8" />

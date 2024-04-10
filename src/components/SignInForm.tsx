@@ -8,7 +8,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import {useRouter} from 'next/navigation'
 import { userAuth } from "../../useContext";
-import axios from "axios";
+
+
+
+
+type auth ={
+  username:string;
+  password:string;
+}
+
 const SignInForm = () => {
 
 const { loginAuthUser} =userAuth()
@@ -31,8 +39,9 @@ const { loginAuthUser} =userAuth()
 
   // Handle form submission
   const handleSubmit = (values: any) => {
+    
     // console.log(values);
-    const Auth = {
+    const Auth:auth = {
       username:values.email,
       password:values.password,
     }
