@@ -1,17 +1,115 @@
 "use client";
 
 import Dashboardwrapper from "@/components/Dashboardwrapper";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { FcGlobe } from "react-icons/fc";
-import { IoIosAddCircle } from "react-icons/io";
-
+import { IoIosAddCircle, IoIosCloseCircle } from "react-icons/io";
+import Step1 from "@/components/EventSteps/Step1";
+import Step2 from "@/components/EventSteps/Step2";
+import Step3 from "@/components/EventSteps/Step3";
+import Step4 from "@/components/EventSteps/Step4";
 import Link from "next/link";
 import Image from "next/image";
+ import EventCreation from "@/components/EventCreation";
+  import { eventSteps } from "@/constants/Event";
+import { postEvent } from "@/api/Auth";
 
 function Page() {
+ 
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [value1, setValue1] = useState<any>({})
+  const [value2, setValue2] = useState<any>({})
+  const [value3, setValue3] = useState<any>({})
+  const [value4, setValue4] = useState<any>({})
+  const [token, setToken] = useState<any>("")
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+
+
+  
+  const getToken = async (): Promise<any> => {
+    const token = await localStorage.getItem("token")
+    setToken(token)
+  }
+
+  useEffect(() => {
+    getToken()
+  }, [])
+  //function that get values
+  const values1 = (value: any) => {
+    console.log(value)
+    setValue1(value)
+  }
+  const values2 = (value: any) => {
+    console.log(value)
+    setValue2(value)
+  }
+  const values3 = (value: any) => {
+    console.log(value)
+    setValue3(value)
+  }
+
+  const values4 = (value: any) => {
+    // console.log(value)
+    // setValue4(value)
+    const eventDetails = {
+      title: value1.eventTitle,
+      location: value1.fullAddress,
+      date: value1.startDate,
+      event: value1.startTime,
+      eventstarttime: value1.startTime,
+      eventendtime: value1.endTime,
+      types: value2.eventType,
+      description: value3.description,
+      eventtags: "hello",
+      eventPic: value3.flyer,
+      eventVideo: value3.video,
+      token: token
+
+    }
+    const pics = {
+      eventPic: value3.flyer,
+      eventVideo: value3.video,
+      token: token
+    }
+    // //postevent
+    postEvent(eventDetails).then((res) => {
+      console.log(res)
+    })
+    // console.log(eventDetails)
+    // console.log(value1, value2, value3, value4)
+
+    // //post event pic
+    // eventMedia(pics).then((res)=>{
+    //   console.log(res)
+    // })
+    // console.log(value3.flyer.name,value3.video)
+  }
+  // Function to navigate to the next screen
+  const nextScreen = (value: number) => {
+    if (currentIndex < screens.length - 1) {
+      setCurrentIndex(currentIndex + value);
+    }
+  };
+
+  // Function to navigate to the previous screen
+  const prevScreen = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+  //screens
+  const screens = [
+    <Step1 key={currentIndex} closeStep={nextScreen} Finalvalues={values1} />,
+    <Step2 key={currentIndex} closeStep={nextScreen} Finalvalues={values2} />,
+    <Step3 key={currentIndex} closeStep={nextScreen} Finalvalues={values3} />,
+    <Step4 key={currentIndex} closeStep={nextScreen} Finalvalues={values4} />,
+  ];
   //events array
   const events = [
     {
@@ -189,7 +287,7 @@ function Page() {
             }}
             className="w-11/12 h-40 md:h-full bg-gray-100 border-[0.2px] shadow-md flex flex-col items-center justify-center rounded-xl"
           >
-            <button className="w-full flex items-center justify-center h-full bg-opacity-50 bg-blue-500 text-white rounded-xl">
+            <button onClick={openModal} className="w-full flex items-center justify-center h-full bg-opacity-50 bg-blue-500 text-white rounded-xl">
               <IoIosAddCircle
                 color="white"
                 size={40}
@@ -237,6 +335,41 @@ function Page() {
           ))}
         </div>
       </div>
+
+      {/* event creation modal */}
+      {isOpen ? (
+        <EventCreation>
+          <div className="w-full flex justify-end p-2">
+            <button
+
+              onClick={() => {
+                closeModal();
+                setCurrentIndex(0)
+                setValue1({})
+                setValue2({})
+                setValue3({})
+                setValue4({})
+              }}>
+              <IoIosCloseCircle size={24} color={"red"} />
+            </button>
+          </div>
+          <div className="flex flex-row  space-x-8 justify-center">
+            {/* step preview */}
+            {eventSteps.map((value) => (
+              <div
+
+                className={`${currentIndex > value.id ? "text-green-500" : ""}`}
+                key={value.id}>{value.step}</div>
+            ))}
+          </div>
+
+          {/* Render the current screen */}
+          {screens[currentIndex]}
+          {/* button */}
+
+
+        </EventCreation>
+      ) : null}
     </Dashboardwrapper>
   );
 }
