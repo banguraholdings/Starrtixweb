@@ -19,6 +19,7 @@
     "aos": "^2.3.4",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
+    "date-fns": "^3.6.0",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.2",
     "formik": "^2.4.5",

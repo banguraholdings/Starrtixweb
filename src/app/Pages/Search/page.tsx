@@ -244,7 +244,7 @@ function Page() {
                 {events.map((value, index) => (
                   <Link
                     style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-                    href={"#"}
+                    href={"/Pages/Eventdetails"}
                     key={index}
                     passHref
                   >

@@ -13,13 +13,13 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { FaStarOfLife } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { userAuth } from "../../useContext";
-
+import Logo from "../../public/images/LOGOSTAR-main.png"
 function Userheader() {
   // states
   const [open, setOpened] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [scroll, setIsScrolled] = useState<boolean>(false);
-  const { username } = userAuth();
+  const { username,logout } = userAuth();
   const path = usePathname().split("/")[2];
   // //get user token from local storage
   // const getToken = async () => {
@@ -85,10 +85,10 @@ function Userheader() {
             <img
               src={
                 path === "Search"
-                  ? "/images/LOGOSTAR-main.png"
-                  : "images/LOGOSTAR-main.png"
+                  ? "/images/starrtix.png"
+                  : "images/starrtix.png"
               }
-              className="w-32 h-32"
+              className="w-32 h-14"
               alt="logo"
             />
           </div>
@@ -107,7 +107,7 @@ function Userheader() {
                   key={index}
                   className={`${
                     path === value.value ? "underline underline-color " : null
-                  }`}
+                  } hover:underline hover:underline-color`}
                 >
                   <Link
                     href={
@@ -151,12 +151,14 @@ function Userheader() {
                   >
                     Profile
                   </a>
-                  <a
-                    href="#"
+                  <button
+                  onClick={()=>{
+                    logout()
+                  }}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             ) : (
@@ -164,7 +166,7 @@ function Userheader() {
                 <Link
                   className={`${
                     scroll ? "text-black" : "text-white"
-                  } p-4 rounded`}
+                  } p-4 rounded hover:underline underline-color`}
                   href={"/Auth/Signin"}
                 >
                   Sign in
@@ -252,13 +254,16 @@ function Userheader() {
                       </Link>
                       <FaStarOfLife size={12} color="#2196F3" />
 
-                      <Link
-                        href={""}
+                      <button
+                      onClick={()=>{
+                        logout()
+
+                      }}
                         className="text-black border w-24 p-1 rounded hover:border-red-500 flex items-center space-x-2"
                       >
                         <FiLogOut size={24} color="red" />
                         <h1>Logout</h1>
-                      </Link>
+                      </button>
                     </div>
                   ) : (
                     <div className="space-x-4">
@@ -266,14 +271,14 @@ function Userheader() {
                         className="bg-blue-500 p-4 rounded text-white"
                         href={"/Auth/Signin"}
                       >
-                        Login
+                        Sign In
                       </Link>
 
                       <Link
                         className="bg-[#fb8500] text-white p-4 rounded"
                         href={"/Auth/Signup"}
                       >
-                        Sign Up
+                        Register
                       </Link>
                     </div>
                   )}

@@ -44,7 +44,7 @@ const EventDetails = () => {
           {/* image */}
           <img src="../../background/main.jpg" 
           alt="pic"
-          className="w-11/12 rounded-xl" />
+          className="w-11/12 md:w-8/12 lg:w-6/12 rounded-xl" />
         </div>
 
         {/* event details */}

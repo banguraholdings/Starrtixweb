@@ -27,45 +27,39 @@ import { userAuth } from "../../useContext";
 import EventItem from "@/components/HomeComponent/EventItem";
 import EventCreation from "@/components/EventCreation";
 import { useRouter } from "next/navigation";
+import { getAllEvents } from "@/api/Auth";
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
 const navigation = useRouter()
-  const [day, setDay] = useState("");
-  const [eventType, setEventType] = useState("");
-  const [eventCategory, setEventCategory] = useState("");
-  const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [hover, setHover] = useState(false);
-  const cancelButtonRef = useRef(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [eventsList, setEventsList]=useState([]);
 
-  const handleDayChange = (event: SelectChangeEvent) => {
-    setDay(event.target.value as string);
-  };
-  const handlEventChange = (event: SelectChangeEvent) => {
-    setEventType(event.target.value as string);
-  };
-  const handlCategoryChange = (event: SelectChangeEvent) => {
-    setEventCategory(event.target.value as string);
-  };
 
-  // //get user token from local storage
-  // const getToken = async () => {
-  //   try {
-  //     const token = await localStorage.getItem("token");
-  //     if (token) {
-  //       authToken(token).then((value)=>{
-  //         setUser(value?.data)
-  //       })
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
+  const DateFormatToArrayExample = (day:Date) => {
+    const date = new Date(day);
+    // Formatting the date using toLocaleDateString
+    const formattedDate = date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    // Splitting the formatted date into an array
+    // The formatted date might look like "April 19, 2024"
+    // Note: The exact format can vary depending on the browser and OS locale settings
+    const dateParts = formattedDate.split(' '); // Attempting to split by space
+    // Adjusting for potential differences in format (e.g., removing commas)
+    dateParts[1] = dateParts[1].replace(',', ''); // Making sure the day part is clean
+    
+    return <div>{JSON.stringify(dateParts)}</div>; //
+  };
+  
+  
 
   useEffect(() => {
     console.log(isAuthenticated);
+    getAllEvents().then((events) => {
+      console.log(events)
+    })
   }, []);
   return (
     <Homwrapper>
@@ -92,14 +86,14 @@ const navigation = useRouter()
               {/* button */}
 
               <Link
-                href={"/User/Dashboard"}
+                href={username?"/User/Dashboard": "/Auth/Signin"}
                 className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
               >
                 <h1 className="">Create Event</h1>
               </Link>
 
               <Link
-                href={"/User/Dashboard"}
+                href={"/Pages/Search"}
                 className="items-center justify-center flex bg-[#fb8500] w-40 h-12 border rounded "
               >
                 <h1 className="">Buy Ticket</h1>
@@ -230,7 +224,7 @@ const navigation = useRouter()
             <FaCompass size={32} color="green" />
             {/* service details 2*/}
             <div>
-              <h1 className="font-bold xl:text-xl">Event Discovery</h1>
+              <h1 className="font-bold ">Event Discovery</h1>
               <h1 className="font-light text-sm xl:text-lg">
                 Helping users discover events based on their interests or
                 location.
@@ -283,7 +277,7 @@ const navigation = useRouter()
             <RiVipCrown2Fill size={32} color="green" />
             {/* service details 2*/}
             <div>
-              <h1 className="font-bold xl:text-xl">VIP & Package Sales</h1>
+              <h1 className="font-bold ">VIP & Package Sales</h1>
               <h1 className="font-light text-sm xl:text-lg">
                 Selling premium packages that may include VIP seating,
                 meet-and-greets, or merchandise.
