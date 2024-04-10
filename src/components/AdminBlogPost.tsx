@@ -158,6 +158,8 @@ export default function AdminBlogPost() {
                     </div>
                 </div>
             </div>
+            {/* hero blog ends */}
+
             {/* blog data */}
             {events.map((value, index) => (
                 <div
