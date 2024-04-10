@@ -14,9 +14,17 @@ import axios from "axios";
 //define the context type
 type users = {
   username: string;
-
+  first_name:string;
+  last_name:string;
   password: string;
 };
+
+
+type user={
+  username: string;
+  password: string;
+
+}
 
 //register type
 type Reg={
@@ -106,7 +114,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         }
       };
   //login provider for user authentication
-  const loginAuthUser = async (newUser: users) => {
+  const loginAuthUser = async (newUser: user) => {
     // console.log(newUser)
     await axios
       .post("http://127.0.0.1:8000/auth/login/", {

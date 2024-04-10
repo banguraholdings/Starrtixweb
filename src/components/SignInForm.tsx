@@ -15,6 +15,8 @@ import { userAuth } from "../../useContext";
 type auth ={
   username:string;
   password:string;
+  first_name:string;
+  last_name:string;
 }
 
 const SignInForm = () => {
@@ -44,6 +46,9 @@ const { loginAuthUser} =userAuth()
     const Auth:auth = {
       username:values.email,
       password:values.password,
+      first_name:"",
+      last_name:""
+
     }
     // login(values.email, values.password).then((data) => {
     //   setIsLoading(true)
