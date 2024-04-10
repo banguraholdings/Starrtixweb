@@ -76,10 +76,10 @@ function Userheader() {
       <div
         className={`${scroll ? "bg-white" : null} ${
           open ? "bg-white" : ""
-        }    z-50  w-full  fixed  items-center justify-center  `}
+        }    z-50  w-full  fixed  items-center justify-center  p-4`}
       >
         {/* container */}
-        <div className="flex h-full justify-between">
+        <div className="flex h-full justify-between ">
           {/* logo */}
           <div className="flex gap-16 items-center ">
             <img

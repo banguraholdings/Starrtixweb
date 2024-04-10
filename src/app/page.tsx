@@ -75,7 +75,7 @@ const navigation = useRouter()
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className=" text-white h-[700px]"
+        className=" text-white h-[700px] xl:h-[900px]"
       >
         <div
           className={`w-full bg-blue-700 h-full  bg-opacity-50 flex md:flex-row    flex-col-reverse items-center justify-center gap-8 `}>
