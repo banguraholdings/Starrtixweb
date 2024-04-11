@@ -29,10 +29,27 @@ import EventCreation from "@/components/EventCreation";
 import { useRouter } from "next/navigation";
 import { getAllEvents } from "@/api/Auth";
 
+
+
+type Event={
+  id:number;
+  title:string;
+  types:string;
+  event:string;
+  eventendtime:string;
+  eventstarttime:string;
+  eventtags:string;
+  image:string;
+  location:string;
+  organizer:string;
+  video:string;
+  description:string;
+}
+
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
 const navigation = useRouter()
-  const [eventsList, setEventsList]=useState([]);
+  const [eventsList, setEventsList]=useState<Event[]>([])
 
 
   const DateFormatToArrayExample = (day:Date) => {
@@ -53,13 +70,21 @@ const navigation = useRouter()
     return <div>{JSON.stringify(dateParts)}</div>; //
   };
   
-  
+  const getAllEvent=async()=>{
+    try {
+      
+      await getAllEvents().then((events:any) => {
+        console.log(events?.data)
+        setEventsList(events?.data)
+      })
+    } catch (error) {
+      
+    }
+  }
 
   useEffect(() => {
     console.log(isAuthenticated);
-    getAllEvents().then((events) => {
-      console.log(events)
-    })
+    getAllEvent()
   }, []);
   return (
     <Homwrapper>
@@ -154,12 +179,11 @@ const navigation = useRouter()
         {/* <Video src={"/vidoes/video1.mp4"} /> */}
         {/* container */}
         <div className="w-11/12 lg:w-10/12   grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {events.map((value, index) => (
-            <button
+          {eventsList.map((value, index) => (
+            <Link
               style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-              onClick={() => {
-                navigation.push("/Pages/Eventdetails")
-              }}
+              href={`/Pages/${value.id}`}
+            
               key={index}
             >
               {/* img */}
@@ -169,17 +193,17 @@ const navigation = useRouter()
               <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
                 {/* date */}
                 <div className="text-center">
-                  <p className="font-bold text-blue-500">{value.month}</p>
-                  <h1>{value.day}</h1>
+                  {/* <p className="font-bold text-blue-500">{value.month}</p>
+                  <h1>{value.day}</h1> */}
                 </div>
 
                 {/* decription */}
                 <div className="space-y-2">
-                  <p className="text-xs font-bold">{value.header}</p>
+                  <p className="text-xs font-bold">{value.title}</p>
                   <p className="text-xs font-thin">{value.description}</p>
                 </div>
               </div>
-            </button>
+            </Link>
           ))}
 
     

@@ -1,26 +1,54 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { BookdTicket } from '@/api/Auth';
 
 const registrationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  phoneNumber: Yup.string().matches(/^[0-9]+$/, "Must be only digits").min(10, 'Must be exactly 10 digits').max(10, 'Must be exactly 10 digits').required('Phone number is required'),
+  phoneNumber: Yup.string().required('Phone number is required'),
   numberOfTickets: Yup.number().min(1, 'At least one ticket is required').required('Number of tickets is required'),
   ticketType: Yup.string().required('Ticket type is required'),
 });
 
-function Tickets() {
+// Define the interface if it's not already imported
+interface ChildProps {
+  val: (value: string) => void;
+  event:any;
+}
+const  Tickets:React.FC<ChildProps>=({event, val})=> {
+
+  const sendValueToParent = (value:string): void => {
+    val(value);
+  };
   return (
     <div className="w-full h-full">
       <Formik
         initialValues={{ name: '', email: '', phoneNumber: '', numberOfTickets: '', ticketType: '' }}
         validationSchema={registrationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+
+          // console.log(event)
+          const data:any={
+            event:event,
+            name:values.name,
+            email:values.email,
+            phonenumber:values.phoneNumber,
+            number_of_tickets:values.numberOfTickets
+          }
+          // console.log(data)
+          BookdTicket(data).then((data)=>{
+            const value:any = {
+             qrcode: data?.data.qrcode,
+             openModal:true
+            }
+            sendValueToParent(data?.data.qrcode)
+            // console.log(data?.data)
+          })
+          // setTimeout(() => {
+          //   alert(JSON.stringify(values, null, 2));
+          //   setSubmitting(false);
+          // }, 400);
         }}
       >
         {({ isSubmitting }) => (

@@ -8,7 +8,8 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaUpload } from "react-icons/fa6";
-import { uploadProfilePic } from "@/api/Auth";
+import { uploadProfilePic, getProfilePic } from "@/api/Auth";
+import { userAuth } from "../../../../useContext";
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -43,11 +44,12 @@ const initialValues: FormValues = {
 
 
 export default function Page() {
+  const { username, logout, isAuthenticated } = userAuth();
 
  
     const [selectedImage, setSelectedImage] = useState<any>(null);
     const [token, setToken]=useState<string>("")
-
+  const [profilepic, setProfilepic] = useState<string>("")
     const getToken=async()=>{
         const token = await localStorage.getItem("token");
         setToken(token||"");
@@ -74,6 +76,11 @@ export default function Page() {
 
 
       useEffect(()=>{
+        //get profile picture
+        getProfilePic().then((value) => {
+          console.log(value?.data[0].image)
+          setProfilepic(value?.data[0].image)
+        })
         getToken()
 console.log(token)
       },[token])
@@ -83,7 +90,9 @@ console.log(token)
         <div className="text-lg font-bold">Profile</div>
         {/* profile pic */}
         <div className="w-full flex p-1 lg:w-8/12  flex-col md:flex-row items-center gap-2">
-          <div className="lg:w-40 lg:h-40 w-24 h-24 bg-gray-200 rounded-full"></div>
+          <div className="lg:w-40 lg:h-40 w-24 h-24 bg-gray-200 rounded-full border">
+            <img src={profilepic && profilepic}/>
+          </div>
 
           {/* action buttons */}
           <div className="flex lg:h-full flex-col justify-center gap-2">
@@ -134,6 +143,7 @@ console.log(token)
               <Field
                 name="firstname"
                 type="text"
+                placeholder={username?.first_name}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -148,6 +158,7 @@ console.log(token)
               <Field
                 name="lastname"
                 type="text"
+                placeholder={username?.last_name}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -164,6 +175,8 @@ console.log(token)
               <Field
                 name="email"
                 type="email"
+                placeholder={username?.email}
+
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -178,6 +191,7 @@ console.log(token)
               <Field
                 name="username"
                 type="text"
+                placeholder={username?.username}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -192,6 +206,8 @@ console.log(token)
               <Field
                 name="phonenumber"
                 type="text"
+                placeholder={username?.phonenumber}
+
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage

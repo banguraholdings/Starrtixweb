@@ -17,6 +17,8 @@ type auth ={
   password:string;
   first_name:string;
   last_name:string;
+  phonenumber:string;
+  email:string;
 }
 
 const SignInForm = () => {
@@ -47,8 +49,9 @@ const { loginAuthUser} =userAuth()
       username:values.email,
       password:values.password,
       first_name:"",
-      last_name:""
-
+      last_name:"",
+      phonenumber:"",
+      email:""
     }
     // login(values.email, values.password).then((data) => {
     //   setIsLoading(true)

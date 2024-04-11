@@ -18,6 +18,8 @@ type users = {
   first_name: string;
   last_name: string;
   password: string;
+  email:string;
+  phonenumber: string;
 };
 
 type user = {

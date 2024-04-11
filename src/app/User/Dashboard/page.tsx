@@ -16,7 +16,7 @@ import Step2 from "@/components/EventSteps/Step2";
 import Step3 from "@/components/EventSteps/Step3";
 import Step4 from "@/components/EventSteps/Step4";
 import { userAuth } from "../../../../useContext";
-import { eventMedia, postEvent } from "@/api/Auth";
+import { eventMedia, getProfilePic, postEvent } from "@/api/Auth";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -31,6 +31,8 @@ function Page() {
   const [value4, setValue4]=useState<any>({})
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState<any>("")
+  const [profilepic, setProfilepic] = useState<string>("")
+
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -42,6 +44,11 @@ function Page() {
 
   useEffect(()=>{
     getToken()
+      //get profile picture
+      getProfilePic().then((value) => {
+        console.log(value?.data[0].image)
+        setProfilepic(value?.data[0].image)
+      })
   },[])
   //function that get values
   const values1 =(value:any)=>{
@@ -125,7 +132,9 @@ function Page() {
             {/* user credentials */}
             <div className=" flex-1 w-full h-12 flex items-center justify-end space-x-2">
               {/* profile picture */}
-              <div className="w-8 h-8 rounded-full bg-gray-400"></div>
+              <div className="w-8 h-8 rounded-full bg-gray-400">
+                <img src={profilepic} className="rounded-full"/>
+              </div>
 
               {/* username */}
               <h1 className="text-sm">{username?.first_name} {username?.last_name}</h1>
@@ -133,14 +142,7 @@ function Page() {
           </div>
         </div>
 
-        {/* event selection */}
-        <div className="p-4 w-full bg-blue-500">
-          <select name="" id="" className="w-40 p-1">
-            <option value="1">event 1</option>
-            <option value="1">event 1</option>
-            <option value="1">event 1</option>
-          </select>
-        </div>
+       
 
         {/* event numbers */}
         <div className="p-4 bg-gray-100 w-full xl:justify-center xl:flex">
