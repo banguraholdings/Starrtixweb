@@ -1,4 +1,4 @@
-import Userdashboardwrapper from '@/components/Userdashboardwrapper'
+import Userdashboardwrapper from '../../../components/Userdashboardwrapper'
 import React from 'react'
 
 function page() {

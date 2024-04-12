@@ -1,6 +1,6 @@
 "use client";
 
-import Userdashboardwrapper from "@/components/Userdashboardwrapper";
+import Userdashboardwrapper from "../../../components/Userdashboardwrapper";
 import React, { useEffect, useState } from "react";
 import QrReader from "react-qr-scanner";
 import TableComponent from "@/components/TicketComponents/Table";
