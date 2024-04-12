@@ -1,16 +1,23 @@
 import axios from "axios";
 
-
-const url = process.env.NEXT_PUBLIC_BASE_URL
-// Create an axios instance
+const url = process.env.NEXT_PUBLIC_BASE_URL;
+// Create an axios instance for authenticated users
 const apiClient = axios.create({
   baseURL: url,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   maxBodyLength: Infinity,
 });
 
+//for non authenticated
+const api = axios.create({
+  baseURL: url,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  maxBodyLength: Infinity,
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 type users = {
   username: string;
@@ -30,11 +37,11 @@ const getToken = async () => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 apiClient.interceptors.request.use(
   async (config) => {
-    const token =await getToken();
-        console.log(token)
+    const token = await getToken();
+    console.log(token);
 
     if (token) {
-      config.headers.Authorization= `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -85,121 +92,189 @@ export const authToken = async (token: String) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //get all event
-export const getAllEvents = async ()=>{
+export const getAllEvents = async () => {
   try {
-    
-    const response =  apiClient.get('/event/events')
-  return response 
-  } catch (error) {
-    
-  }
-}
+    const response = api.get("/public/events");
+    return response;
+  } catch (error) {}
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 type EventDetails = {
-  title: string;             // Assuming eventTitle is a string
-  location: string;          // Assuming fullAddress is a string
-  date: Date| string;       // Assuming startDate is a Date object or string representation of a date
-  event:  string;             // Assuming startTime could also be just a string, but this seems to be duplicated
-  eventstarttime: string;    // Assuming startTime is a string representing time (e.g., "10:00 AM")
-  eventendtime: string;      // Assuming endTime is a string representing time (e.g., "11:00 AM")
-  types: string;             // Assuming eventType is a string
-  description: string; 
-  eventtags:string ;     // Assuming description is a string
-  eventPic:File;
-  eventVideo:File;
-  token:string; // Assuming token is a string
+  title: string; // Assuming eventTitle is a string
+  location: string; // Assuming fullAddress is a string
+  date: Date | string; // Assuming startDate is a Date object or string representation of a date
+  event: string; // Assuming startTime could also be just a string, but this seems to be duplicated
+  eventstarttime: string; // Assuming startTime is a string representing time (e.g., "10:00 AM")
+  eventendtime: string; // Assuming endTime is a string representing time (e.g., "11:00 AM")
+  types: string; // Assuming eventType is a string
+  description: string;
+  eventtags: string; // Assuming description is a string
+  eventPic: File;
+  eventVideo: File;
+  token: string; // Assuming token is a string
 };
 
 //post events
-export const postEvent = async (newEvent:EventDetails)=>{
-   ///form data
-   const formData =new FormData()
-   formData.append('title',newEvent.title )
-   formData.append('location',newEvent.location)
-   if (newEvent.date instanceof Date) {
+export const postEvent = async (newEvent: EventDetails) => {
+  ///form data
+  const formData = new FormData();
+  formData.append("title", newEvent.title);
+  formData.append("location", newEvent.location);
+  if (newEvent.date instanceof Date) {
     // Now TypeScript knows 'value' is a Date, so .toISOString() can be called safely
-    formData.append('date', newEvent.date.toISOString());
+    formData.append("date", newEvent.date.toISOString());
   } else {
     // TypeScript knows 'value' is a string here, so it can be appended directly
-    formData.append('date', newEvent.date);
+    formData.append("date", newEvent.date);
   }
   //  formData.append('date',newEvent.date.toISOString())
-   formData.append('event',newEvent.eventstarttime )
-   formData.append('eventstarttime',newEvent.eventstarttime  )
-   formData.append('eventendtime',newEvent.eventendtime )
-   formData.append('types',newEvent.types )
-   formData.append('description',newEvent.description )
-   formData.append('eventtags',"hello" )
-   formData.append('image',newEvent.eventPic)
-   formData.append('video',newEvent.eventVideo)
-  console.log(newEvent)
+  formData.append("event", newEvent.eventstarttime);
+  formData.append("eventstarttime", newEvent.eventstarttime);
+  formData.append("eventendtime", newEvent.eventendtime);
+  formData.append("types", newEvent.types);
+  formData.append("description", newEvent.description);
+  formData.append("eventtags", "hello");
+  formData.append("image", newEvent.eventPic);
+  formData.append("video", newEvent.eventVideo);
+  console.log(newEvent);
   try {
     let config = {
-      method: 'post',
+      method: "post",
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/event/events/',
+      url: "http://127.0.0.1:8000/event/events/",
       headers: {
-        'Content-Type': 'multipart/form-data', 
-          'Authorization': `Bearer ${newEvent.token}`
-       },
-       data:formData
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${newEvent.token}`,
+      },
+      data: formData,
     };
     // const response =await apiClient.post('/event/events/', formData)
-    const response =await apiClient.request(config)
-    return response
+    const response = await apiClient.request(config);
+    return response;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //post events pic
-type eventPics={
-  eventPic:File;
-  eventVideo:File;
-  token:string;
-}
-export const eventMedia = async(pics:eventPics)=>{
+type eventPics = {
+  eventPic: File;
+  eventVideo: File;
+  token: string;
+};
+export const eventMedia = async (pics: eventPics) => {
   const formData = new FormData();
-  console.log(pics)
-  formData.append('image', pics.eventPic)
-  formData.append('video', pics.eventVideo)
-  console.log(formData)
+  console.log(pics);
+  formData.append("image", pics.eventPic);
+  formData.append("video", pics.eventVideo);
+  console.log(formData);
   let config = {
-    method: 'post',
+    method: "post",
     maxBodyLength: Infinity,
-    url: 'http://127.0.0.1:8000/pic/event/',
+    url: "http://127.0.0.1:8000/pic/event/",
     headers: {
-      'Content-Type': 'multipart/form-data', 
-        'Authorization': `Bearer ${pics.token}`
-     },
-     data:formData
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${pics.token}`,
+    },
+    data: formData,
   };
   try {
-    const response = await axios.request(config)
+    const response = await axios.request(config);
     // const response =await apiClient.post('/pic/event/', formData)
     // return response
-    return response
+    return response;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 ////////////////////////////////////////////////////////////////////////
 //upload profile pic
-export const uploadProfilePic=(data:any, token:string)=>{
+export const uploadProfilePic = (data: any, token: string) => {
   let config = {
-    method: 'post',
+    method: "post",
     maxBodyLength: Infinity,
-    url: 'http://127.0.0.1:8000/pic/profilepic/',
-    headers: { 
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data'
+    url: "http://127.0.0.1:8000/pic/profilepic/",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
     },
-    data:data
+    data: data,
   };
 
-  const response = axios.request(config)
-  return response
+  const response = axios.request(config);
+  return response;
+};
+
+////////////////////////////////////////////////////////////////////////
+//get profile pic
+
+export const getProfilePic = async () => {
+  try {
+    const response = await apiClient.get("/pic/profilepic/");
+    return response;
+  } catch (error) {}
+};
+
+////////////////////////////////////////////////////////////////////////
+//create ticket
+
+type ticket = {
+  ticketnumber: string;
+  expirationdate: string;
+  event: number;
+};
+export const createTicket = async (values: ticket) => {
+  const data = {
+    ticketnumber: values.ticketnumber,
+    expirationdate: values.expirationdate,
+    ticketsold: 0,
+    ticketleft: values.ticketnumber,
+    ticketscanned: 0,
+    event: values.event,
+  };
+  try {
+    const response = await apiClient.post("/event/tickets/", data);
+    return response;
+  } catch (error) {}
+};
+
+////////////////////////////////////////////////////////////////////////
+//create ticket
+export const getAllTickets = async () => {
+  try {
+    const response = await apiClient.get("/event/tickets");
+    return response;
+  } catch (error) {}
+};
+
+
+
+////////////////////////////////////////////////////////////////////////
+//Book ticket
+
+
+type BookTicket ={
+  event:number;
+  name:string;
+  email:string;
+  phonenumber:string;
+  number_of_tickets:number;
+}
+export const BookdTicket=async (values:BookTicket) => {
+  const data={
+    event:values.event,
+    name:values.name,
+    email:values.email,
+    phonenumber:values.phonenumber,
+    number_of_tickets:values.number_of_tickets
+  }
+  try {
+    const response = await api.post("/event/booking/create/",data)
+    return response
+  } catch (error) {
+    
+  }
 }
