@@ -1,6 +1,7 @@
 import Dashboardwrapper from "@/components/Dashboardwrapper";
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import Authenticated from "../../../components/ProtectedRoute/Authenticated"
 
 function Page() {
   //events array
@@ -31,6 +32,7 @@ function Page() {
     },
   ];
   return (
+    <Authenticated>
     <Dashboardwrapper>
       <div className="flex flex-col items-center w-full flex-1">
         <div className="w-full p-4 flex flex-col md:flex-row md:items-center space-y-2 md:space-x-2">
@@ -106,6 +108,7 @@ Deactivate
         </table>
       </div>
     </Dashboardwrapper>
+    </Authenticated>
   );
 }
 

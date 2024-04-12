@@ -52,7 +52,7 @@ function Userheader() {
     }
   };
   useEffect(() => {
-    // console.log("path name" + path);
+    console.log("path name" + path);
   }, []);
   useEffect(() => {
     //  getToken().catch((error) => {

@@ -1,6 +1,5 @@
 "use client";
 
-import NotAuthecticated from "@/components/ProtectedRoute/NotAuthecticated";
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
 import React, { useEffect, useState } from "react";
 import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
@@ -16,7 +15,9 @@ import Step2 from "@/components/EventSteps/Step2";
 import Step3 from "@/components/EventSteps/Step3";
 import Step4 from "@/components/EventSteps/Step4";
 import { userAuth } from "../../../../useContext";
+
 import { eventMedia, getProfilePic, postEvent } from "@/api/Auth";
+import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -121,7 +122,8 @@ function Page() {
     <Step4 key={currentIndex} closeStep={nextScreen} Finalvalues={values4} />,
   ];
   return (
-    <NotAuthecticated>
+    <ISuperUser >
+
       <Userdashboardwrapper>
         {/* container */}
         <div className=" bg-gray-100 border-b-2 w-full p-2 z-0">
@@ -301,7 +303,7 @@ function Page() {
           <ResponsiveEventTable />
         </div>
       </Userdashboardwrapper>
-    </NotAuthecticated>
+    </ISuperUser>
   );
 }
 

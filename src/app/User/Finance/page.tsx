@@ -43,6 +43,7 @@ const columns: Column<TicketData>[] = [
 
 const data: TicketData[] = []; // Your data here
 
+import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 
 function Page() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -79,6 +80,8 @@ function Page() {
     });
   }, []);
   return (
+    <ISuperUser>
+
     <Userdashboardwrapper>
       {/* container */}
       <div className="p-4  space-y-2 w-full">
@@ -103,6 +106,7 @@ function Page() {
         <p>{result}</p> */}
       </div>
     </Userdashboardwrapper>
+    </ISuperUser>
   );
 }
 

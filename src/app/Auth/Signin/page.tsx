@@ -3,12 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import Authenticated from "@/components/ProtectedRoute/Authenticated";
+import NotAuthecticated from "@/components/ProtectedRoute/NotAuthecticated";
 
 function Signin() {
   return (
-    <Authenticated>
-      
+      <NotAuthecticated>
       <div className="flex w-full justify-center">
         <div className=" h-[100vh]  hidden w-full lg:block lg:">
           <img
@@ -68,7 +67,7 @@ function Signin() {
           </div>
         </div>
       </div>
-    </Authenticated>
+      </NotAuthecticated>
   );
 }
 

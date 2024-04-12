@@ -2,9 +2,12 @@ import Dashboardwrapper from '@/components/Dashboardwrapper';
 import AdminBlogPost from "@/components/AdminBlogPost";
 import React from 'react';
 import { FaSearch } from "react-icons/fa";
+import Authenticated from "../../../components/ProtectedRoute/Authenticated"
 
 function Page() {
   return (
+    <Authenticated>
+
     <Dashboardwrapper>
       <div className='text-gray-900 py-4'>
 
@@ -38,6 +41,7 @@ function Page() {
         </div>
       </div>
     </Dashboardwrapper>
+    </Authenticated>
   )
 }
 

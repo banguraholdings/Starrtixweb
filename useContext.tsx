@@ -8,7 +8,7 @@ import {
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { authToken } from "@/api/Auth";
+import { authToken, fetchuser } from "@/api/Auth";
 import axios from "axios";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -45,6 +45,8 @@ interface authContextType {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   signup: (newUser: Reg) => void;
+  user:string;
+  superuser:boolean;
 }
 //context initliaization
 const userContext = createContext<authContextType>({} as authContextType);
@@ -57,7 +59,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const [username, setUser] = useState<users | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [user, setuser] = useState<string>("");
+  const [superuser, setsuperuser] = useState(false)
+  //get user
+  const getUser = async () => {
+    const user = await localStorage.getItem("user");
+    const auth = await localStorage.getItem("authenticated");
+      // console.log(auth)
+      if(auth && auth ==="true"){
+        setIsAuthenticated(true)
+        if(user==="superuser"){setsuperuser(true)}
+        if(user==="regular"){setsuperuser(false)}
+      }
+      }
+    
+  
   //resgiter or sign up
   const signup = async (newUser: Reg) => {
     const data = {
@@ -85,30 +101,30 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     });
   };
   //get user token from local storage and authenticate user from the db using axios
-  const getTokenAndAuthenticate = async () => {
-    try {
-      const token = await localStorage.getItem("token");
-      if (token) {
-        await axios
-          .get(`${url}/auth/user/`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          })
-          .then((value) => {
-            console.log(value.data.userProfile);
-            if (value.status === 200) {
-              setIsAuthenticated(true);
-              console.log(isAuthenticated);
-              setUser(value.data.userProfile);
-            }
-          });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getTokenAndAuthenticate = async () => {
+  //   try {
+  //     const token = await localStorage.getItem("token");
+  //     if (token) {
+  //       await axios
+  //         .get(`${url}/auth/user/`, {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //             "Content-Type": "application/json",
+  //           },
+  //         })
+  //         .then((value) => {
+  //           console.log(value.data.userProfile);
+  //           if (value.status === 200) {
+  //             // setIsAuthenticated(true);
+  //             console.log(isAuthenticated);
+  //             setUser(value.data.userProfile);
+  //           }
+  //         });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   //login provider for user authentication
   const loginAuthUser = async (newUser: user) => {
     // console.log(newUser)
@@ -118,10 +134,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         password: newUser.password,
       })
       .then((data) => {
+        localStorage.setItem("authenticated", "true");
+
         console.log(data.data.is_supseruser);
         if (data.status === 200 && !data.data.is_supseruser) {
           localStorage.setItem("token", data.data.token.access);
+          // document.cookie = `token=${data.data.token.access}`;
           localStorage.setItem("user", "regular");
+          router.replace("/");
+
           setIsAuthenticated(true);
           // setIsLoading(false)
           console.log(isAuthenticated);
@@ -141,20 +162,41 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("authenticated");
     setIsAuthenticated(false);
     window.location.reload();
   };
 
   useEffect(() => {
-    getTokenAndAuthenticate();
-  }, [isAuthenticated]);
+    // getTokenAndAuthenticate();
+    // localStorage.removeItem("authenticated")
+    console.log(isAuthenticated,superuser)
+
+    getUser()
+    fetchuser().then((user) => {
+      console.log(user?.data.userProfile)
+      // if(user?.data.isSuperuser){
+      //   setIsAuthenticated(true)
+      //   // setsuperuser(true)
+      // }else{
+        // setIsAuthenticated(true)
+        setUser(user?.data.userProfile)
+        // setsuperuser(false)
+      // }
+  }).catch((error)=>{
+    console.log(error)
+  })
+    // getUser();
+  }, [isAuthenticated,superuser]);
   return (
     <userContext.Provider
       value={{
         username,
+        user,
         loginAuthUser,
         logout,
         isAuthenticated,
+        superuser,
         setIsAuthenticated,
         signup,
       }}

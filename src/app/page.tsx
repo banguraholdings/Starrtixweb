@@ -28,28 +28,21 @@ import EventItem from "@/components/HomeComponent/EventItem";
 import EventCreation from "@/components/EventCreation";
 import { useRouter } from "next/navigation";
 import { getAllEvents } from "@/api/Auth";
+import HomeProtection from "@/components/ProtectedRoute/HomeProtection";
 
 
-
-type Event={
+type EventList={
   id:number;
-  title:string;
-  types:string;
-  event:string;
-  eventendtime:string;
-  eventstarttime:string;
-  eventtags:string;
   image:string;
-  location:string;
-  organizer:string;
   video:string;
+  title:string;
   description:string;
 }
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
 const navigation = useRouter()
-  const [eventsList, setEventsList]=useState<Event[]>([])
+  const [eventsList, setEventsList]=useState<EventList[]>([]);
 
 
   const DateFormatToArrayExample = (day:Date) => {
@@ -84,9 +77,12 @@ const navigation = useRouter()
 
   useEffect(() => {
     console.log(isAuthenticated);
-    getAllEvent()
+    getAllEvents().then((events) => {
+      console.log(events)
+    })
   }, []);
   return (
+    <HomeProtection>
     <Homwrapper>
       <div
         style={{
@@ -353,5 +349,6 @@ const navigation = useRouter()
         </div>
       </div>
     </Homwrapper>
+</HomeProtection>
   );
 }

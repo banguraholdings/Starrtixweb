@@ -16,6 +16,7 @@ import Image from "next/image";
  import EventCreation from "@/components/EventCreation";
   import { eventSteps } from "@/constants/Event";
 import { postEvent } from "@/api/Auth";
+import Authenticated from "../../../components/ProtectedRoute/Authenticated"
 
 function Page() {
  
@@ -171,6 +172,8 @@ function Page() {
     setSelectedDateValue(event.target.value);
   };
   return (
+    <Authenticated >
+
     <Dashboardwrapper>
       <div className="w-full flex  justify-center">
         {/* header */}
@@ -371,6 +374,7 @@ function Page() {
         </EventCreation>
       ) : null}
     </Dashboardwrapper>
+    </Authenticated>
   );
 }
 

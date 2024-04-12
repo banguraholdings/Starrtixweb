@@ -2,6 +2,8 @@
 
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
 import React from "react";
+import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
+
 import {
   FaRegCalendarAlt,
   FaArrowRight,
@@ -26,6 +28,7 @@ function page() {
     // Process the video file as needed
   };
   return (
+    <ISuperUser>
     <Userdashboardwrapper>
       {/* drop down to select event */}
       <div className="w-full p-2 ">
@@ -181,6 +184,7 @@ function page() {
         </div>
       </div>
     </Userdashboardwrapper>
+    </ISuperUser>
   );
 }
 

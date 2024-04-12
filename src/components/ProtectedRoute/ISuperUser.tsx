@@ -8,19 +8,24 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-
-const Authenticated:React.FC<ProtectedRouteProps>=({children})=> {
+const ISuperUser:React.FC<ProtectedRouteProps>=({children})=> {
     const {isAuthenticated,  superuser} =userAuth()
     const path = usePathname().split("/")[1]
-    
+
+    const getUser=()=>{
+      const user = localStorage.getItem("authenticated")
+    }
     useEffect(()=>{
-      if(!isAuthenticated){
-        return redirect("/")
+       // console.log(superuser,isAuthenticated )
+       if(isAuthenticated && superuser ){
+        return redirect("/Admin/Dashboard")
       }
-      console.log(superuser)
-      if(isAuthenticated && !superuser ){
-        return redirect("/")
+      if(!superuser){
+        return 
       }
+     if(!isAuthenticated){
+      return redirect("/")
+     }
       // console.log(isAuthenticated)
       // if (!isAuthenticated) {
         
@@ -32,9 +37,8 @@ const Authenticated:React.FC<ProtectedRouteProps>=({children})=> {
         
       //   return redirect(redirectRoute);
       // }
-    },[])
+    },[isAuthenticated,superuser])
     return <>{children}</>;
-
 }
 
-export default Authenticated
+export default ISuperUser

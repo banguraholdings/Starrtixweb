@@ -11,6 +11,8 @@ import { FaUpload } from "react-icons/fa6";
 import { uploadProfilePic, getProfilePic } from "@/api/Auth";
 import { userAuth } from "../../../../useContext";
 
+import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
+
 // Validation schema
 const validationSchema = Yup.object({
   firstname: Yup.string().required("Required"),
@@ -43,8 +45,8 @@ const initialValues: FormValues = {
 
 
 
-export default function Page() {
   const { username, logout, isAuthenticated } = userAuth();
+function Page() {
 
  
     const [selectedImage, setSelectedImage] = useState<any>(null);
@@ -85,6 +87,8 @@ export default function Page() {
 console.log(token)
       },[token])
   return (
+    <ISuperUser>
+
     <Userdashboardwrapper>
       <div className="w-full flex-col flex p-6  items-center  justify-center">
         <div className="text-lg font-bold">Profile</div>
@@ -241,5 +245,7 @@ console.log(token)
         </Formik>
       </div>
     </Userdashboardwrapper>
+    </ISuperUser>
   );
 }
+export default  Page

@@ -9,10 +9,18 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import ResponsiveLineChart from "@/components/ResponsiveLineChart";
 import { IoIosAddCircle } from "react-icons/io";
 import ResponsivePieChart from "@/components/ResponsivePieChart";
+import Authenticated from "../../../components/ProtectedRoute/Authenticated"
+import { usePathname } from "next/navigation";
 
 function Dashboard() {
+  const path = usePathname().split("/")[1]
 
+  useEffect(()=>{
+console.log(path)
+  },[])
   return (
+    <Authenticated >
+
     <Dashboardwrapper>
       {/* container */}
       <div className=" bg-gray-100 border-b-2 w-full p-2 z-0">
@@ -82,6 +90,7 @@ function Dashboard() {
       </div>
 
     </Dashboardwrapper>
+    </Authenticated>
   );
 }
 
