@@ -17,7 +17,7 @@ function Dashboard() {
 
   useEffect(()=>{
 console.log(path)
-  },[])
+  },[path])
   return (
     <Authenticated >
 

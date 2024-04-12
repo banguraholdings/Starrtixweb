@@ -19,6 +19,7 @@ function Footer() {
           <img
              src={path==="Search"?"/images/LOGOSTAR.png":"images/LOGOSTAR.png"}
              className="w-20 h-20"
+             alt="image"
              />
             {/* web description */}
             <p className="text-white text-sm font-thin w-11/12">

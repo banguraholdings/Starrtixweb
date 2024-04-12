@@ -32,7 +32,7 @@ const Authenticated:React.FC<ProtectedRouteProps>=({children})=> {
         
       //   return redirect(redirectRoute);
       // }
-    },[])
+    },[isAuthenticated,superuser ])
     return <>{children}</>;
 
 }

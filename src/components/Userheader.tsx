@@ -8,12 +8,12 @@ import { IoClose } from "react-icons/io5";
 import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
 import { userNavigation } from "@/api/dummyData";
-import { authToken } from "@/api/Auth";
+import { authToken, getProfilePic } from "@/api/Auth";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaStarOfLife } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { userAuth } from "../../useContext";
-import Logo from "../../public/images/LOGOSTAR-main.png"
+import { FaUser } from "react-icons/fa6";
 function Userheader() {
   // states
   const [open, setOpened] = useState(false);
@@ -21,6 +21,8 @@ function Userheader() {
   const [scroll, setIsScrolled] = useState<boolean>(false);
   const { username,logout } = userAuth();
   const path = usePathname().split("/")[2];
+  const [profilepic, setProfilepic] = useState<string>("")
+
   // //get user token from local storage
   // const getToken = async () => {
 
@@ -52,7 +54,11 @@ function Userheader() {
     }
   };
   useEffect(() => {
-    console.log("path name" + path);
+    getProfilePic().then((value) => {
+      console.log(value?.data[0].image)
+      setProfilepic(value?.data[0].image)
+    })
+    // console.log("path name" + path);
   }, []);
   useEffect(() => {
     //  getToken().catch((error) => {
@@ -81,17 +87,19 @@ function Userheader() {
         {/* container */}
         <div className="flex h-full justify-between ">
           {/* logo */}
-          <div className="flex gap-16 items-center ">
+          <Link
+          href={"/"}
+          >
             <img
               src={
-                path === "Search"
+                path === ""
                   ? "/images/starrtix.png"
-                  : "images/starrtix.png"
+                  : "/images/starrtix.png"
               }
               className="w-32 h-14"
               alt="logo"
             />
-          </div>
+          </Link>
 
           {/* navigation */}
           <div
@@ -135,10 +143,19 @@ function Userheader() {
             {username ? (
               <div className="mr-8  group">
                 <div className="text-white hover:cursor-pointer hover:underline flex items-center space-x-2">
+                  {
+                    profilepic?
+                    <img
+                    src={profilepic}
+                    className="w-12 h-12 rounded-full border"
+                    alt="image"
+                    />
+                    :
                   <FaRegUserCircle
                     size={24}
                     color={scroll ? "black" : "white"}
                   />
+                  }
                   <h1 className={`${scroll ? "text-black" : "text-white"}`}>
                     {username.first_name} {username.last_name}
                   </h1>
@@ -146,18 +163,28 @@ function Userheader() {
 
                 <div className="absolute w-32 hidden group-hover:block bg-white shadow-lg rounded mt-2">
                   <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    href="/User/Profile"
+                    className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
+                    <h1>
+
                     Profile
+                    </h1>
+                    <FaUser size={18}  />
+
                   </a>
                   <button
                   onClick={()=>{
                     logout()
                   }}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className=" flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
+                    <h1>
+
                     Logout
+                    </h1>
+                    <FiLogOut size={18} color="red" />
+
                   </button>
                 </div>
               </div>

@@ -13,7 +13,7 @@ useEffect(()=>{
 if(isAuthenticated && superuser ){
   return redirect("/Admin/Dashboard")
 }
-},[isAuthenticated])
+},[isAuthenticated,superuser])
   return (
     <div>
       {children}

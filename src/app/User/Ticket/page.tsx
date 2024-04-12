@@ -6,7 +6,9 @@ import QrReader from "react-qr-scanner";
 import TableComponent from "@/components/TicketComponents/Table";
 import ModalComponent from "@/components/TicketComponents/ModalComponent";
 import { Column } from "react-table";
-import { getAllEvents, getAllTickets } from "@/api/Auth";
+import { getAllEvent, getAllTickets, getTicket } from "@/api/Auth";
+import { Scanner } from '@yudiel/react-qr-scanner';
+import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 
 type Event = {
   id: number;
@@ -32,6 +34,21 @@ interface TicketData {
   eventName: string;
 }
 
+
+type ticket = {
+  booked_on:string;
+  email:string;
+  event:number;
+  id:number;
+  name:string;
+  number_of_tickets:number;
+  phonenumber:string;
+  qrcode:string;
+  unique_id:string;
+}
+
+
+
 const columns: Column<TicketData>[] = [
   { Header: "Ticket Number", accessor: "ticketNumber" },
   { Header: "Expiration Date", accessor: "expirationDate" },
@@ -41,20 +58,20 @@ const columns: Column<TicketData>[] = [
   { Header: "Event Name", accessor: "eventName" },
 ];
 
-const data: TicketData[] = []; // Your data here
 
-import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 
 function Page() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [event, setEvents] = useState<Event[]>([]);
   const [ticket, setTicket] = useState<TicketData[]>([])
-  // const [result, setResult] = useState("No result");
-  // const handleScan = (data: any) => {
-  //   if (data) {
-  //     setResult(data);
-  //   }
-  // };
+  const [result, setResult] = useState<any|null>();
+  const [scan, setScan]=useState<boolean>(false)
+  const handleScan = (data: any) => {
+    console.log(data)
+    // if (data) {
+    //   setResult(data);
+    // }
+  };
 
   const handleError = (err: any) => {
     console.error(err);
@@ -68,7 +85,7 @@ function Page() {
   useEffect(() => {
     ////////////////////////////////////////////////////////////////////////
     //get all events
-    getAllEvents().then((events) => {
+    getAllEvent().then((events) => {
       console.log(events?.data);
       setEvents(events?.data);
     });
@@ -77,6 +94,7 @@ function Page() {
     getAllTickets().then((response) => {
       console.log(response?.data);
       setTicket(response?.data);
+
     });
   }, []);
   return (
@@ -86,10 +104,25 @@ function Page() {
       {/* container */}
       <div className="p-4  space-y-2 w-full">
         <button
-          className="p-2 rounded-lg text-white bg-blue-500"
+          className="p-2 rounded-lg text-white bg-blue-500 mr-2"
           onClick={() => setIsModalOpen(true)}
         >
           Create Ticket
+        </button>
+        <button
+          className={`p-2 rounded-lg text-white ${scan?"bg-red-500 hover:bg-red-700":"bg-green-500 hover:bg-green-700"} `}
+          onClick={() => setScan(!scan)}
+        >
+          {
+            scan?
+            <h1>
+              Close Scanner
+            </h1>
+            :
+<h1>
+Scan Ticket
+</h1>
+          }
         </button>
         <TableComponent<TicketData> columns={columns} data={ticket} />
         <ModalComponent
@@ -97,13 +130,44 @@ function Page() {
           onRequestClose={() => setIsModalOpen(false)}
           events={event}
         />
-        {/* <QrReader
-          delay={100}
-          style={previewStyle}
-          onError={handleError}
-          onScan={handleScan}
-        />
-        <p>{result}</p> */}
+        <div className="w-40 h-40 border">
+
+{
+  scan?
+
+  <Scanner
+     onResult={(text, result) => {
+       
+       
+       console.log( text)
+     getTicket(text).then((ticket) => {
+       if(ticket){
+
+         setResult(ticket)
+         // console.log(ticket)
+       }
+       // console.log(ticket?.items)
+     })
+     }}
+     onError={(error) => console.log(error?.message)}
+ />
+ :null
+}
+        </div>
+            
+        
+          <div>
+             <p>date Booked: {result && result.booked_on}</p>
+        <p>Email: { result &&result.email}</p>
+        <p> Event: { result &&result.event}</p>
+        <p>Name: { result &&result.name}</p>
+        <p>Number of Tickets: { result &&result.number_of_tickets}</p>
+        <p>Phone Number: { result &&result.phonenumber}</p>
+        <p>id: { result &&result.unique_id}</p>
+          </div>
+        
+     
+       
       </div>
     </Userdashboardwrapper>
     </ISuperUser>

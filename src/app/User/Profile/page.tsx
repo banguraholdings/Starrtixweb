@@ -45,8 +45,8 @@ const initialValues: FormValues = {
 
 
 
-  const { username, logout, isAuthenticated } = userAuth();
 function Page() {
+  const { username } = userAuth();
 
  
     const [selectedImage, setSelectedImage] = useState<any>(null);
@@ -95,7 +95,9 @@ console.log(token)
         {/* profile pic */}
         <div className="w-full flex p-1 lg:w-8/12  flex-col md:flex-row items-center gap-2">
           <div className="lg:w-40 lg:h-40 w-24 h-24 bg-gray-200 rounded-full border">
-            <img src={profilepic && profilepic}/>
+            <img src={profilepic && profilepic}
+            alt="image"
+            />
           </div>
 
           {/* action buttons */}

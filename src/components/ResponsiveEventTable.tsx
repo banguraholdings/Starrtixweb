@@ -1,11 +1,11 @@
 'use client'
-import { getAllEvents } from '@/api/Auth'
+import { getAllEvent } from '@/api/Auth'
 import React, { useEffect, useState } from 'react'
 
 function ResponsiveEventTable() {
     const [events,setEvents]=useState<any>([])
     useEffect(()=>{
-        getAllEvents().then((events)=>{
+        getAllEvent().then((events)=>{
             setEvents(events?.data)
             console.log(events?.data)
         })
@@ -41,7 +41,8 @@ function ResponsiveEventTable() {
                 </td>
                 <td className="px-4 py-2">{value.location}</td>
                 <td className="px-4 py-2"><img
-                src="http://127.0.0.1:8000/media/images/LOGOSTAR-main.png"
+                src={value.image}
+                alt='image'
                 className='w-8 h-8'
                 />
                 

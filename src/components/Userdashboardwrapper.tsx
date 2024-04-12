@@ -2,18 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
-import { MdDashboard } from "react-icons/md";
 import { paths, userDashboardsPath } from "@/api/dummyData";
-import { FaCalendarAlt, FaUsers } from "react-icons/fa";
-import { GoGraph } from "react-icons/go";
-import { IoSettings } from "react-icons/io5";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoIosHome } from "react-icons/io";
 import { HiMiniSpeakerWave } from "react-icons/hi2";
 import { CiBank } from "react-icons/ci";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaRegUserCircle } from "react-icons/fa";
+import { GiHamburgerMenu,GiTicket } from "react-icons/gi";
+import { FaRegUserCircle,FaBlog } from "react-icons/fa";
 import AOS from "aos";
 import { IoClose } from "react-icons/io5";
 function Userdashboardwrapper({ children }: any) {
@@ -35,8 +31,9 @@ function Userdashboardwrapper({ children }: any) {
           {/* logo */}
           <div>
           <img
-             src="../images/LOGOSTAR.png"
-             className="w-20 h-20"
+             src="../../images/starrtix.png"
+             className=" h-20"
+             alt="image"
              />
           </div>
 
@@ -97,14 +94,28 @@ function Userdashboardwrapper({ children }: any) {
                             value.value === pathname[2] ? "black" : "white"
                           }`}
                         />
-                      ) : value.value === "Finance" ? (
-                        <CiBank
+                      ) : value.value === "Ticket" ? (
+                        <GiTicket
                           size={24}
                           color={`${
                             value.value === pathname[2] ? "black" : "white"
                           }`}
                         />
-                      ) : null}
+                      ) : value.value==="Blog"?(
+                        <FaBlog
+                          size={24}
+                          color={`${
+                            value.value === pathname[2] ? "black" : "white"
+                          }`}
+                        />
+                      ) : value.value==="Profile"?(
+                        <FaRegUserCircle
+                          size={24}
+                          color={`${
+                            value.value === pathname[2] ? "black" : "white"
+                          }`}
+                        />
+                      ):null}
                     </div>
                   </div>
                 </Link>
@@ -120,8 +131,9 @@ function Userdashboardwrapper({ children }: any) {
         {/* header */}
         <div className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
         <img
-             src="../../images/LOGOSTAR.png"
-             className="w-20 h-20"
+             src="../../images/starrtix.png"
+             className="w-32 h-20"
+             alt="image"
              />
         </div>
 
@@ -146,15 +158,21 @@ function Userdashboardwrapper({ children }: any) {
                     size={24}
                     color={`${value.value === pathname[2] ? "black" : "white"}`}
                   />
-                ) : value.value === "Finance" ? (
-                  <CiBank
+                ) : value.value === "Ticket" ? (
+                  <GiTicket
                     size={24}
                     color={`${value.value === pathname[2] ? "black" : "white"}`}
                   />
                 ) : value.value === "Profile" ? (
                   <FaRegUserCircle size={24} color={`${value.value === pathname[2] ? "black" : "white"}`}/>
 
-                ) : null}
+                ) : (
+                  value.name==="Blog"?
+                  <FaBlog size={24} color={`${value.value === pathname[2] ? "black" : "white"}`}/>
+
+                  :
+                  null
+                )}
                 <h1
                   className={` hidden hover:block lg:block font-bold ${
                     value.value === pathname[2] ? "text-black" : "text-white"

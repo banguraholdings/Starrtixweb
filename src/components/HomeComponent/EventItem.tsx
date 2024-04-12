@@ -12,6 +12,7 @@ const EventItem: React.FC<EventItemProps> = ({ image, videoSrc }) => {
 
   return (
     <div
+    className='border rounded-t-3xl'
       onMouseEnter={() => {
         setHover(true);
         if (videoRef.current) {

@@ -119,6 +119,7 @@ function Dashboardwrapper({ children }: any) {
         <img
              src="../../images/starrtix.png"
              className="w-32 h-20"
+             alt="image"
              />
         </div>
 

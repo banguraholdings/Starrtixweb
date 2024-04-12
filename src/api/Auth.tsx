@@ -101,10 +101,18 @@ export const authToken = async (token: String) => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//get all event
-export const getAllEvents = async () => {
+//get  event by if=d
+export const getAllEvents = async (id:string) => {
   try {
-    const response = api.get("/public/events");
+    const response = api.get(`/public/events/${id}`);
+    return response;
+  } catch (error) {}
+};
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//get all event
+export const getAllEvent = async () => {
+  try {
+    const response = api.get("/public/events/");
     return response;
   } catch (error) {}
 };
@@ -282,8 +290,37 @@ export const BookdTicket=async (values:BookTicket) => {
     number_of_tickets:values.number_of_tickets
   }
   try {
-    const response = await api.post("/event/booking/create/",data)
+    const response = await api.post("/event/booking/",data)
     return response
+  } catch (error) {
+    
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////
+// get Booked ticket
+
+export type tickets = {
+  booked_on:string;
+  email:string;
+  event:number;
+  id:number;
+  name:string;
+  number_of_tickets:number;
+  phonenumber:string;
+  qrcode:string;
+  unique_id:string;
+}
+
+
+export interface ApiResponse{
+  items:tickets[];
+}
+export const getTicket=async(id:string)=>{
+  try {
+    const response = await apiClient.get(`/event/booking/by-unique-id/${id}`)
+    return response.data
   } catch (error) {
     
   }

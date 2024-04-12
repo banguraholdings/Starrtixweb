@@ -27,7 +27,7 @@ import { userAuth } from "../../useContext";
 import EventItem from "@/components/HomeComponent/EventItem";
 import EventCreation from "@/components/EventCreation";
 import { useRouter } from "next/navigation";
-import { getAllEvents } from "@/api/Auth";
+import { getAllEvent } from "@/api/Auth";
 import HomeProtection from "@/components/ProtectedRoute/HomeProtection";
 
 
@@ -63,11 +63,11 @@ const navigation = useRouter()
     return <div>{JSON.stringify(dateParts)}</div>; //
   };
   
-  const getAllEvent=async()=>{
+  const getAllEvents=async()=>{
     try {
       
-      await getAllEvents().then((events:any) => {
-        console.log(events?.data)
+      await getAllEvent().then((events:any) => {
+        console.log(events)
         setEventsList(events?.data)
       })
     } catch (error) {
@@ -77,10 +77,8 @@ const navigation = useRouter()
 
   useEffect(() => {
     console.log(isAuthenticated);
-    getAllEvents().then((events) => {
-      console.log(events)
-    })
-  }, []);
+    getAllEvents()
+  }, [isAuthenticated]);
   return (
     <HomeProtection>
     <Homwrapper>
@@ -134,7 +132,7 @@ const navigation = useRouter()
       {/* event genre */}
       <div className="w-full p-4 items-center justify-center flex ">
         <div className="flex gap-6 lg:gap-10 overflow-scroll  hide-scrollbar">
-          {eventTypes.map((event) => (
+          {eventTypes && eventTypes.map((event) => (
             <Link
               key={event.id}
               href={""}
@@ -175,10 +173,14 @@ const navigation = useRouter()
         {/* <Video src={"/vidoes/video1.mp4"} /> */}
         {/* container */}
         <div className="w-11/12 lg:w-10/12   grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {eventsList.map((value, index) => (
+          {eventsList &&  eventsList.map((value, index) => (
             <Link
               style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-              href={`/Pages/${value.id}`}
+              href={{
+                pathname:`/Pages/Eventdetails`,
+              query:{
+                id:value.id
+              }}}
             
               key={index}
             >

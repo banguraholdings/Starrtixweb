@@ -107,8 +107,12 @@ export const userDashboardsPath = [
     value: "Marketing",
   },
   {
-    name: "Finance",
-    value: "Finance",
+    name: "Ticket",
+    value: "Ticket",
+  },
+  {
+    name: "Blog",
+    value: "Blog",
   },
   {
     name: "Profile",
