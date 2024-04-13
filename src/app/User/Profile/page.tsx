@@ -11,6 +11,7 @@ import { FaUpload } from "react-icons/fa6";
 import { uploadProfilePic, getProfilePic } from "@/api/Auth";
 import { userAuth } from "../../../../useContext";
 
+
 // Validation schema
 const validationSchema = Yup.object({
   firstname: Yup.string().required("Required"),
@@ -43,8 +44,8 @@ const initialValues: FormValues = {
 
 
 
-export default function Page() {
-  const { username, logout, isAuthenticated } = userAuth();
+function Page() {
+  const { username } = userAuth();
 
  
     const [selectedImage, setSelectedImage] = useState<any>(null);
@@ -85,13 +86,16 @@ export default function Page() {
 console.log(token)
       },[token])
   return (
+
     <Userdashboardwrapper>
       <div className="w-full flex-col flex p-6  items-center  justify-center">
         <div className="text-lg font-bold">Profile</div>
         {/* profile pic */}
         <div className="w-full flex p-1 lg:w-8/12  flex-col md:flex-row items-center gap-2">
           <div className="lg:w-40 lg:h-40 w-24 h-24 bg-gray-200 rounded-full border">
-            <img src={profilepic && profilepic}/>
+            <img src={profilepic && profilepic}
+            alt="image"
+            />
           </div>
 
           {/* action buttons */}
@@ -243,3 +247,4 @@ console.log(token)
     </Userdashboardwrapper>
   );
 }
+export default  Page

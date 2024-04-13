@@ -2,13 +2,12 @@
 import { eventTypes, events } from "@/api/dummyData";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, Fragment, useEffect } from "react";
-import { BsFillCalendarEventFill } from "react-icons/bs";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useState, useEffect } from "react";
+
 import Animation from "../../public/Lottie/AnimationHome.json";
+
+import dynamic from 'next/dynamic'
+
 import {
   FaTicketAlt,
   FaCompass,
@@ -18,38 +17,30 @@ import {
 } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
-import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import Homwrapper from "../components/Homwrapper";
 import Lottie from "lottie-react";
 import { MdPaid,MdOutlineCropFree } from "react-icons/md";
 import { userAuth } from "../../useContext";
-import EventItem from "@/components/HomeComponent/EventItem";
-import EventCreation from "@/components/EventCreation";
+// import EventItem from "@/components/HomeComponent/EventItem";
+const EventItem = dynamic(() => import('@/components/HomeComponent/EventItem'))
+
 import { useRouter } from "next/navigation";
-import { getAllEvents } from "@/api/Auth";
+import { getAllEvent } from "@/api/Auth";
 
 
-
-type Event={
+type EventList={
   id:number;
-  title:string;
-  types:string;
-  event:string;
-  eventendtime:string;
-  eventstarttime:string;
-  eventtags:string;
   image:string;
-  location:string;
-  organizer:string;
   video:string;
+  title:string;
   description:string;
 }
 
 export default function Home() {
   const { username, logout, isAuthenticated } = userAuth();
 const navigation = useRouter()
-  const [eventsList, setEventsList]=useState<Event[]>([])
+  const [eventsList, setEventsList]=useState<EventList[]>([]);
 
 
   const DateFormatToArrayExample = (day:Date) => {
@@ -70,11 +61,11 @@ const navigation = useRouter()
     return <div>{JSON.stringify(dateParts)}</div>; //
   };
   
-  const getAllEvent=async()=>{
+  const getAllEvents=async()=>{
     try {
       
-      await getAllEvents().then((events:any) => {
-        console.log(events?.data)
+      await getAllEvent().then((events:any) => {
+        console.log(events)
         setEventsList(events?.data)
       })
     } catch (error) {
@@ -84,8 +75,8 @@ const navigation = useRouter()
 
   useEffect(() => {
     console.log(isAuthenticated);
-    getAllEvent()
-  }, []);
+    getAllEvents()
+  }, [isAuthenticated]);
   return (
     <Homwrapper>
       <div
@@ -138,7 +129,7 @@ const navigation = useRouter()
       {/* event genre */}
       <div className="w-full p-4 items-center justify-center flex ">
         <div className="flex gap-6 lg:gap-10 overflow-scroll  hide-scrollbar">
-          {eventTypes.map((event) => (
+          {eventTypes && eventTypes.map((event) => (
             <Link
               key={event.id}
               href={""}
@@ -179,10 +170,14 @@ const navigation = useRouter()
         {/* <Video src={"/vidoes/video1.mp4"} /> */}
         {/* container */}
         <div className="w-11/12 lg:w-10/12   grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {eventsList.map((value, index) => (
+          {eventsList &&  eventsList.map((value, index) => (
             <Link
               style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-              href={`/Pages/${value.id}`}
+              href={{
+                pathname:`/Pages/Eventdetails`,
+              query:{
+                id:value.id
+              }}}
             
               key={index}
             >

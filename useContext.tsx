@@ -8,7 +8,7 @@ import {
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { authToken } from "@/api/Auth";
+import { authToken, fetchuser } from "@/api/Auth";
 import axios from "axios";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -57,7 +57,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const [username, setUser] = useState<users | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [superuser, setsuperuser] = useState(false)
 
+  
   //resgiter or sign up
   const signup = async (newUser: Reg) => {
     const data = {
@@ -73,42 +75,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${url}auth/register/`,
+      url: `${url}/auth/register/`,
       headers: {
         "Content-Type": "application/json",
       },
       data: data,
     };
+    console.log(config);
 
+    
     await axios.request(config).then((response) => {
-      console.log(response);
+      router.push("/Auth/Signin")
+    }).catch((error)=>{
+
     });
   };
-  //get user token from local storage and authenticate user from the db using axios
-  const getTokenAndAuthenticate = async () => {
-    try {
-      const token = await localStorage.getItem("token");
-      if (token) {
-        await axios
-          .get(`${url}/auth/user/`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          })
-          .then((value) => {
-            console.log(value.data.userProfile);
-            if (value.status === 200) {
-              setIsAuthenticated(true);
-              console.log(isAuthenticated);
-              setUser(value.data.userProfile);
-            }
-          });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
   //login provider for user authentication
   const loginAuthUser = async (newUser: user) => {
     // console.log(newUser)
@@ -118,19 +100,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         password: newUser.password,
       })
       .then((data) => {
-        console.log(data.data.is_supseruser);
-        if (data.status === 200 && !data.data.is_supseruser) {
+        const expiration = new Date();
+        expiration.setTime(expiration.getTime() + (12 * 60 * 60 * 1000)); // 12 hours from now
+        if (data.status === 200 ) {
           localStorage.setItem("token", data.data.token.access);
-          localStorage.setItem("user", "regular");
+          document.cookie=`token=${data.data.token.access}; expires=` + expiration.toUTCString() + "; path=/";
           setIsAuthenticated(true);
-          // setIsLoading(false)
+          window.location.reload();
           console.log(isAuthenticated);
-        } else if (data.status === 200 && data.data.is_supseruser) {
-          router.replace("/Admin/Dashboard");
-          localStorage.setItem("user", "superuser");
-
-          // console.log
-        }
+        } 
       })
       .catch((error) => {
         console.log(error);
@@ -140,14 +118,23 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   //logout provider for user authentication
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
     setIsAuthenticated(false);
     window.location.reload();
+    document.cookie ='token=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+
   };
 
   useEffect(() => {
-    getTokenAndAuthenticate();
-  }, [isAuthenticated]);
+    fetchuser().then((user) => {
+      console.log(user?.data.userProfile)
+      setUser(user?.data.userProfile)
+      setIsAuthenticated(true);
+     
+  }).catch((error)=>{
+    console.log(error)
+  })
+    // getUser();
+  }, [isAuthenticated,superuser]);
   return (
     <userContext.Provider
       value={{

@@ -33,6 +33,7 @@ function Header() {
           <img
              src="../../images/LOGOSTAR.png"
              className="w-40 h-40"
+             alt="image"
              />
             {/* search bar */}
             <Link

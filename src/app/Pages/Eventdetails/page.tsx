@@ -41,8 +41,11 @@ type Event={
   description:string;
 }
 
+type searchParams={searchParams:{
+  id:string;
+}}
 
-const EventDetails = () => {
+const EventDetails = ({searchParams,}:searchParams) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [qrcode, setQrcode]=useState<string>("");
   const closeModal = () => setIsModalOpen(false);
@@ -58,11 +61,11 @@ const EventDetails = () => {
   // Placeholder data - you might want to fetch this data from an API or your server
 
   const [events, setEvent]=useState<Event>()
-  const getEvents = async()=>{
+  const getEvents = async(id:string)=>{
     try {
-      await getAllEvents().then((events)=>{
+      await getAllEvents(id).then((events)=>{
         console.log(events?.data);
-        setEvent(events?.data[2]);
+        setEvent(events?.data);
       })
     } catch (error) {
       
@@ -72,11 +75,26 @@ const EventDetails = () => {
 
 
   useEffect(()=>{
-    getEvents()
+    console.log(searchParams.id)
+    getEvents(searchParams.id)
   },[])
   return (
     <Homwrapper>
-      <div className="flex-1  flex flex-col  w-full items-center pt-20  ">
+      <div className="flex-1  flex flex-col  w-full items-center  ">
+      <div
+        style={{
+          backgroundImage: `url('${events?.image}')`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        className="text-white h-[400px] w-full"
+        >
+
+        <div
+         
+        className="w-full bg-orange-700 lg:p-12 lg:pt-24 pt-24 pb-12 space-y-4 h-[400px] bg-opacity-30 flex flex-col items-center justify-center">
+          </div>
+          </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal} qrcode={qrcode} />
 
         <div className="w-11/12 space-x-2 flex-col md:flex-row border rounded-lg flex justify-center lg:p-12 lg:pt-24 pt-24 items-center space-y-4">

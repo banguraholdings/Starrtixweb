@@ -23,7 +23,9 @@ const Modal: React.FC<ChildProps> = ({ isOpen, closeModal, qrcode }) => {
             <div className="mt-2 px-7 py-3">
               <p className="text-sm text-gray-500">
                 
-                <img src={qrcode}/></p>
+                <img src={qrcode}
+                alt='qrcode'
+                /></p>
             </div>
             <div className="items-center  px-4 py-3 ">
                 <button

@@ -3,11 +3,9 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
-import Authenticated from "@/components/ProtectedRoute/Authenticated";
 import SignUpForm from "@/components/SignupForm";
 function Signup() {
   return (
-    <Authenticated>
       <div className="flex w-full justify-center flex-row-reverse">
         <div className=" h-[100vh]  hidden w-full lg:block lg:">
           <img
@@ -47,7 +45,6 @@ function Signup() {
           </div>
         </div>
       </div>
-    </Authenticated>
   );
 }
 

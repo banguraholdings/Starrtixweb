@@ -14,10 +14,14 @@ import { CiBank } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import AOS from "aos";
 import { IoClose } from "react-icons/io5";
+import { FiLogOut } from "react-icons/fi";
+import { userAuth } from "../../useContext";
+import {useRouter} from "next/navigation"
 function Dashboardwrapper({ children }: any) {
   const pathname = usePathname().split("/");
+  const router = useRouter()
   const [open, setOpened] = useState(false);
-
+  const {logout} = userAuth()
   useEffect(() => {
   }, []);
   return (
@@ -30,8 +34,8 @@ function Dashboardwrapper({ children }: any) {
           {/* logo */}
           <div>
           <img
-             src="../../images/LOGOSTAR.png"
-             className="w-20 h-20"
+             src="../../images/starrtix.png"
+             className="w-32 h-20"
              alt="logo"
              />
           </div>
@@ -113,8 +117,9 @@ function Dashboardwrapper({ children }: any) {
         {/* header */}
         <div className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
         <img
-             src="../../images/LOGOSTAR.png"
-             className="w-20 h-20"
+             src="../../images/starrtix.png"
+             className="w-32 h-20"
+             alt="image"
              />
         </div>
 
@@ -145,6 +150,23 @@ function Dashboardwrapper({ children }: any) {
             </div>
           </Link>
           ))}
+
+
+          <div className="w-full h-full  flex flex-col justify-end py-12 items-center">
+            <button
+            onClick={()=>{
+              logout()
+              router.push("/")
+            }}
+            className="p-2 bg-white rounded flex space-x-2">
+              <h1>
+
+              Sign Out
+              </h1>
+              <FiLogOut size={24} color="red" />
+
+            </button>
+          </div>
         </div>
       </div>
       <div className="flex-1 h-screen overflow-scroll w-screen">{children}</div>
