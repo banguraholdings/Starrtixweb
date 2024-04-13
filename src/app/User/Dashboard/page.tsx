@@ -305,4 +305,4 @@ function Page() {
   );
 }
 
-export default withProtected(Page) ;
+export default Page ;
