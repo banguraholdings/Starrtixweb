@@ -6,32 +6,28 @@ import * as Yup from "yup";
 import { login } from "@/api/Auth";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import {useRouter} from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { userAuth } from "../../useContext";
 
+import { Hourglass } from "react-loader-spinner";
 
-
-
-type auth ={
-  username:string;
-  password:string;
-  first_name:string;
-  last_name:string;
-  phonenumber:string;
-  email:string;
-}
+type auth = {
+  username: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  phonenumber: string;
+  email: string;
+};
 
 const SignInForm = () => {
+  const { loginAuthUser, isLoading } = userAuth();
 
-const { loginAuthUser} =userAuth()
-
-  const Router =useRouter()
+  const Router = useRouter();
   //state
-  const [isLoading, setIsLoading] = useState(false);
   // Define your validation schema using Yup
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Email is required"),
+    email: Yup.string().required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
 
@@ -43,16 +39,15 @@ const { loginAuthUser} =userAuth()
 
   // Handle form submission
   const handleSubmit = (values: any) => {
-    
     // console.log(values);
-    const Auth:auth = {
-      username:values.email,
-      password:values.password,
-      first_name:"",
-      last_name:"",
-      phonenumber:"",
-      email:""
-    }
+    const Auth: auth = {
+      username: values.email,
+      password: values.password,
+      first_name: "",
+      last_name: "",
+      phonenumber: "",
+      email: "",
+    };
     // login(values.email, values.password).then((data) => {
     //   setIsLoading(true)
     //   console.log(data.data.token);
@@ -64,13 +59,11 @@ const { loginAuthUser} =userAuth()
     //   }
     // });
     // Handle sign-in logic here
-  
-loginAuthUser(Auth)
 
+    loginAuthUser(Auth);
   };
 
-  useEffect(()=>{
-  })
+  useEffect(() => {});
 
   return (
     <Formik
@@ -85,7 +78,7 @@ loginAuthUser(Auth)
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email Address
+              Username
             </label>
             <Field
               name="email"
@@ -123,18 +116,24 @@ loginAuthUser(Auth)
           </div>
 
           <div>
-            {!isLoading ? (
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Sign In
-              </button>
-            ) : (
-              <Box sx={{ display: "flex", width:"100%", justifyContent:"center",  }}>
-                <CircularProgress />
-              </Box>
-            )}
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              {isLoading ? (
+                <Hourglass
+                  height="20"
+                  width="20"
+                  colors={["white", "#72a1ed"]}
+                  ariaLabel="circles-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                <h1> Sign In</h1>
+              )}
+            </button>
           </div>
         </Form>
       )}

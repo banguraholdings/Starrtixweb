@@ -45,6 +45,7 @@ interface authContextType {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   signup: (newUser: Reg) => void;
+  isLoading:boolean
 }
 //context initliaization
 const userContext = createContext<authContextType>({} as authContextType);
@@ -58,10 +59,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [username, setUser] = useState<users | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [superuser, setsuperuser] = useState(false)
-
+  const [isLoading, setIsLoading]=useState(false)
   
   //resgiter or sign up
   const signup = async (newUser: Reg) => {
+    setIsLoading(true)
     const data = {
       username: newUser.username,
       email: newUser.email,
@@ -81,25 +83,45 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       },
       data: data,
     };
-    console.log(config);
+    // console.log(config);
 
     
     await axios.request(config).then((response) => {
+      setIsLoading(false)
       router.push("/Auth/Signin")
     }).catch((error)=>{
-
+      setIsLoading(false)
+      console.log(error.response.data.username)
+      if(error.response.data.username){
+        alert(error.response.data.username[0])
+      }
     });
   };
  
   //login provider for user authentication
   const loginAuthUser = async (newUser: user) => {
-    // console.log(newUser)
-    await axios
-      .post(`${url}/auth/login/`, {
-        username: newUser.username,
+    setIsLoading(true)
+
+    let data = JSON.stringify({
+      username: newUser.username,
         password: newUser.password,
-      })
+    });
+    
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${url}/auth/login/`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    console.log(config)
+    await axios
+      .request(config)
       .then((data) => {
+        setIsLoading(false)
+
         const expiration = new Date();
         expiration.setTime(expiration.getTime() + (12 * 60 * 60 * 1000)); // 12 hours from now
         if (data.status === 200 ) {
@@ -111,6 +133,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         } 
       })
       .catch((error) => {
+        setIsLoading(false)
+
         console.log(error);
       });
   };
@@ -142,6 +166,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         loginAuthUser,
         logout,
         isAuthenticated,
+        isLoading,
         setIsAuthenticated,
         signup,
       }}

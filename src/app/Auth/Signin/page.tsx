@@ -34,8 +34,8 @@ function Signin() {
             <div className=" items-center ">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
              <img
-             src="../../images/LOGOSTAR.png"
-             className="w-40 h-40"
+             src="../../images/starrtix.png"
+             className="h-20"
              />
             </div>
             {/* form fields */}

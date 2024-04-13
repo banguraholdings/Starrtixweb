@@ -19,10 +19,6 @@ const api = axios.create({
   maxBodyLength: Infinity,
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-type users = {
-  username: string;
-  password: string;
-};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,7 +84,7 @@ export const login = async (email: String, password: String) => {
 //authenticate token
 export const authToken = async (token: String) => {
   try {
-    const auth = await axios.get("http://localhost:1000/User/post", {
+    const auth = await axios.get(`${url}/User/post`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -160,7 +156,7 @@ export const postEvent = async (newEvent: EventDetails) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://127.0.0.1:8000/event/events/",
+      url: `${url}/event/events/`,
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${newEvent.token}`,
@@ -191,7 +187,7 @@ export const eventMedia = async (pics: eventPics) => {
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://127.0.0.1:8000/pic/event/",
+    url: `${url}/pic/event/`,
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${pics.token}`,
@@ -214,7 +210,7 @@ export const uploadProfilePic = (data: any, token: string) => {
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://127.0.0.1:8000/pic/profilepic/",
+    url: `${url}/pic/profilepic/`,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",

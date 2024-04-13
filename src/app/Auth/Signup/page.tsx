@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import SignUpForm from "@/components/SignupForm";
+
 function Signup() {
   return (
       <div className="flex w-full justify-center flex-row-reverse">
@@ -31,11 +32,11 @@ function Signup() {
 
           <div className="w-full h-full  justify-center  p-2 flex flex-col items-center  md:space-y-2">
             {/* Welcome */}
-            <div className="flex items-center ">
+            <div className="flex items-center space-x-2">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
               <img
-             src="../../images/LOGOSTAR.png"
-             className="w-40 h-40"
+             src="../../images/starrtix.png"
+             className="h-20"
              />
             </div>
             {/* form fields */}
