@@ -2,7 +2,6 @@
 
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
 import React, { useEffect, useState } from "react";
-import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 import { WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon, FacebookShareButton, FacebookIcon } from 'react-share';
 
 import {
@@ -105,7 +104,6 @@ function Page() {
   const shareUrl= "www.facbook.com"
   const title = "this is promo time"
   return (
-    <ISuperUser>
     <Userdashboardwrapper>
       {/* drop down to select event */}
       <div className="w-full p-2 ">
@@ -288,7 +286,6 @@ function Page() {
 
 }
     </Userdashboardwrapper>
-    </ISuperUser>
   );
 }
 

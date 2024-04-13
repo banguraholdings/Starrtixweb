@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
 // Create an axios instance for authenticated users
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: url,
   headers: {
     "Content-Type": "application/json",

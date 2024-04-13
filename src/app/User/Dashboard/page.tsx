@@ -17,7 +17,7 @@ import Step4 from "@/components/EventSteps/Step4";
 import { userAuth } from "../../../../useContext";
 
 import { eventMedia, getProfilePic, postEvent } from "@/api/Auth";
-import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
+import { withProtected } from "@/components/ProtectedRoute/Authenticated";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -122,7 +122,6 @@ function Page() {
     <Step4 key={currentIndex} closeStep={nextScreen} Finalvalues={values4} />,
   ];
   return (
-    <ISuperUser >
 
       <Userdashboardwrapper>
         {/* container */}
@@ -303,8 +302,7 @@ function Page() {
           <ResponsiveEventTable />
         </div>
       </Userdashboardwrapper>
-    </ISuperUser>
   );
 }
 
-export default Page;
+export default withProtected(Page) ;

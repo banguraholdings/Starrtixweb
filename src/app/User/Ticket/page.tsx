@@ -8,7 +8,6 @@ import ModalComponent from "@/components/TicketComponents/ModalComponent";
 import { Column } from "react-table";
 import { getAllEvent, getAllTickets, getTicket } from "@/api/Auth";
 import { Scanner } from '@yudiel/react-qr-scanner';
-import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 
 type Event = {
   id: number;
@@ -98,7 +97,6 @@ function Page() {
     });
   }, []);
   return (
-    <ISuperUser>
 
     <Userdashboardwrapper>
       {/* container */}
@@ -170,8 +168,7 @@ Scan Ticket
        
       </div>
     </Userdashboardwrapper>
-    </ISuperUser>
-  );
+  )
 }
 
 export default Page;

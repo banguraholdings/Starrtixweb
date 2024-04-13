@@ -11,7 +11,6 @@ import { FaUpload } from "react-icons/fa6";
 import { uploadProfilePic, getProfilePic } from "@/api/Auth";
 import { userAuth } from "../../../../useContext";
 
-import ISuperUser from "@/components/ProtectedRoute/ISuperUser";
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -87,7 +86,6 @@ function Page() {
 console.log(token)
       },[token])
   return (
-    <ISuperUser>
 
     <Userdashboardwrapper>
       <div className="w-full flex-col flex p-6  items-center  justify-center">
@@ -247,7 +245,6 @@ console.log(token)
         </Formik>
       </div>
     </Userdashboardwrapper>
-    </ISuperUser>
   );
 }
 export default  Page

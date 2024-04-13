@@ -2,13 +2,12 @@
 import { eventTypes, events } from "@/api/dummyData";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, Fragment, useEffect } from "react";
-import { BsFillCalendarEventFill } from "react-icons/bs";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useState, useEffect } from "react";
+
 import Animation from "../../public/Lottie/AnimationHome.json";
+
+import dynamic from 'next/dynamic'
+
 import {
   FaTicketAlt,
   FaCompass,
@@ -18,17 +17,16 @@ import {
 } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
-import { IoIosAddCircle,IoIosCloseCircle } from "react-icons/io";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import Homwrapper from "../components/Homwrapper";
 import Lottie from "lottie-react";
 import { MdPaid,MdOutlineCropFree } from "react-icons/md";
 import { userAuth } from "../../useContext";
-import EventItem from "@/components/HomeComponent/EventItem";
-import EventCreation from "@/components/EventCreation";
+// import EventItem from "@/components/HomeComponent/EventItem";
+const EventItem = dynamic(() => import('@/components/HomeComponent/EventItem'))
+
 import { useRouter } from "next/navigation";
 import { getAllEvent } from "@/api/Auth";
-import HomeProtection from "@/components/ProtectedRoute/HomeProtection";
 
 
 type EventList={
@@ -80,7 +78,6 @@ const navigation = useRouter()
     getAllEvents()
   }, [isAuthenticated]);
   return (
-    <HomeProtection>
     <Homwrapper>
       <div
         style={{
@@ -351,6 +348,5 @@ const navigation = useRouter()
         </div>
       </div>
     </Homwrapper>
-</HomeProtection>
   );
 }

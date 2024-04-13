@@ -29,13 +29,15 @@ function Userdashboardwrapper({ children }: any) {
       <div className="z-50 lg:hidden  text-white w-full bg-blue-500">
         <div className="z-50 flex w-full bg-blue-950 p-6 items-center">
           {/* logo */}
-          <div>
+          <Link 
+          
+          href={"/"}>
           <img
              src="../../images/starrtix.png"
              className=" h-20"
              alt="image"
              />
-          </div>
+          </Link>
 
           {/* menu button */}
           <div className=" flex-1  justify-end flex items-center">
@@ -129,13 +131,15 @@ function Userdashboardwrapper({ children }: any) {
 
       <div className="h-screen hidden space-y-4 bg-blue-950 relative lg:w-72 w-20 lg:flex flex-col items-center">
         {/* header */}
-        <div className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
+        <Link
+        href={"/"}
+        className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
         <img
              src="../../images/starrtix.png"
              className="w-32 h-20"
              alt="image"
              />
-        </div>
+        </Link>
 
         {/* Dashboard button  */}
         <div className="w-full h-full  flex flex-col items-center space-y-2">

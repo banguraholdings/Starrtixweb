@@ -1,40 +1,23 @@
-'use client'
-import React, { useEffect } from 'react'
-import { userAuth } from '../../../useContext'
-import { redirect } from 'next/navigation'
-import { usePathname } from "next/navigation";
-
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-}
+import React, { useContext, useState, useEffect, ReactNode, FC } from 'react';
+import { redirect } from 'next/navigation';
+import { userAuth } from '../../../useContext';
 
 
-const Authenticated:React.FC<ProtectedRouteProps>=({children})=> {
-    const {isAuthenticated,  superuser} =userAuth()
-    const path = usePathname().split("/")[1]
-    
-    useEffect(()=>{
-      if(!isAuthenticated){
-        return redirect("/")
+// Extend T to include React.JSX.IntrinsicAttributes
+export function withProtected<T extends React.JSX.IntrinsicAttributes>(Component: React.ComponentType<T>) {
+  return function ProtectedComponent(props: T) {
+const {isAuthenticated, username} = userAuth()
+
+    useEffect(() => {
+      if (!username) {
+        redirect('/'); // Redirects to login if user is not authenticated
       }
-      console.log(superuser)
-      if(isAuthenticated && !superuser ){
-        return redirect("/")
-      }
-      // console.log(isAuthenticated)
-      // if (!isAuthenticated) {
-        
-      //   return redirect("/");
-      // }
-      // const userRole = user==="superuser" ? 'superuser' : 'regular';
-      // if (!allowedRoles.includes(userRole)) {
-      //   const redirectRoute = user==="superuser" ? '/Admin' : '/User';
-        
-      //   return redirect(redirectRoute);
-      // }
-    },[isAuthenticated,superuser ])
-    return <>{children}</>;
+    }, [isAuthenticated]);
 
+    if (!isAuthenticated) {
+      return null; // Or return a loading component, etc.
+    }
+
+    return <Component {...props} />;
+  };
 }
-
-export default Authenticated
