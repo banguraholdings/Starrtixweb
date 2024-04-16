@@ -80,7 +80,7 @@ function Userheader() {
     <div className="text-white">
       {/* navbar */}
       <div
-        className={`${scroll ? "bg-white" : null} ${
+        className={`${scroll ? "bg-white border-b-2" : null} ${
           open ? "bg-white" : ""
         }    z-50  w-full  fixed  items-center justify-center  p-4`}
       >
@@ -105,7 +105,7 @@ function Userheader() {
           <div
             className={`${scroll ? "text-black " : "text-white "} ${
               open ? "hidden" : "hidden md:flex"
-            } text-lg w-5/12 lg:w-4/12 xl:w-3/12  lg:items-center  `}
+            } text-lg w-5/12 lg:w-4/12 lg:items-center  `}
           >
             <ul
               className={` flex text- font-light justify-between items-center w-full `}

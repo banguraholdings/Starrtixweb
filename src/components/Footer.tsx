@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
@@ -17,8 +17,8 @@ function Footer() {
         <div className=" space-y-2 flex md:flex-col ">
           <div>
           <img
-             src={path==="Search"?"/images/LOGOSTAR.png":"images/LOGOSTAR.png"}
-             className="w-20 h-20"
+             src={path===""?"images/starrtix.png":"/images/starrtix.png"}
+             className=" w-20"
              alt="image"
              />
             {/* web description */}
@@ -32,16 +32,20 @@ function Footer() {
           {/* social media */}
           <div className="flex space-x-4">
             {/* facebook */}
-            <button>
+            <Link
+            href={"https://www.facebook.com/profile.php?id=61558472874858"}
+            >
               <FaFacebook size={32} color="white" />
-            </button>
+            </Link>
+            {/* twitter */}
+            <Link
+            href={"https://www.instagram.com/starrtix_01?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="}
+            >
+              <FaInstagramSquare size={32} color="white"/>
+            </Link>
             {/* twitter */}
             <button>
-              <FaXTwitter size={32} />
-            </button>
-            {/* twitter */}
-            <button>
-              <FaLinkedin size={32} color="blue" />
+              <FaLinkedin size={32} color="white" />
             </button>
           </div>
         </div>

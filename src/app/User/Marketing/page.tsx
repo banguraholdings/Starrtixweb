@@ -97,7 +97,7 @@ function Page() {
   useEffect(()=>{
     getAllEvent().then((value)=>{
       setEvents(value?.data)
-    })
+    }).catch((error)=>{})
 
   },[event])
 
@@ -229,7 +229,7 @@ function Page() {
       <div className="flex flex-col items-center">
             <QRCode
         id="qrCodeEl"
-        value={`${baseUrl}/Pages/Eventdetails/?id=${event.id}`}
+        value={`http://starrtix.com/Pages/Eventdetails/?id=${event.id}`}
         size={290}
         level={"H"}
         includeMargin={true}

@@ -21,7 +21,7 @@ type auth = {
 };
 
 const SignInForm = () => {
-  const { loginAuthUser, isLoading } = userAuth();
+  const { loginAuthUser, isLoading, success } = userAuth();
 
   const Router = useRouter();
   //state
@@ -73,6 +73,15 @@ const SignInForm = () => {
     >
       {({ errors, touched }) => (
         <Form className="space-y-6">
+            {
+                success&&
+
+              <div className="w-full text-green-600 flex items-center justify-center h-12 bg-green-300 rounded-lg">
+                {success.message}
+              </div>
+              
+          
+              }
           <div>
             <label
               htmlFor="email"

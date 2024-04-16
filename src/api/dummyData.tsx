@@ -118,6 +118,7 @@ export const userDashboardsPath = [
     name: "Profile",
     value: "Profile",
   },
+  
 ];
 
 //user header navigation
@@ -137,6 +138,10 @@ export const userNavigation = [
   {
     name: "Contact Us",
     value: "Contact",
+  },
+  {
+    name: "Blog",
+    value: "Blog",
   },
 
   // {

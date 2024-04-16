@@ -7,7 +7,7 @@ function Step1({ closeStep, Finalvalues }: any) {
     eventTitle: Yup.string().required("Event title is required"),
     eventCategory: Yup.string().required("Please select an event category"),
     fullAddress: Yup.string().required("Full address is required"),
-    startDate: Yup.date().required("Start date is required"),
+    startDate: Yup.date() .min(new Date(), 'Date must be in the present or future').required("Start date is required"),
     startTime: Yup.string().required("Start time is required"),
     endTime: Yup.string().required("End time is required"),
   });
@@ -115,6 +115,7 @@ function Step1({ closeStep, Finalvalues }: any) {
               <Field
                 name="startDate"
                 type="date"
+              
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               />
               <ErrorMessage

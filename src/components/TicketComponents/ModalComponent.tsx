@@ -100,6 +100,8 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
       <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
         <div className="mt-3 text-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">Ticket Details</h3>
+          {
+            events.length>=1 ?
           <form className="mt-2 px-7 py-3 space-y-4" onSubmit={handleSubmit}>
             {/* Event Select */}
             <div>
@@ -109,7 +111,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
                 value={selectedEvent}
                 onChange={(e) => setSelectedEvent(parseInt(e.target.value))}
               >
-                {events.map((event) => (
+                { events.map((event) => (
                   <option key={event.id} value={event.id}>{event.title}</option>
                 ))}
               </select>
@@ -157,6 +159,21 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
               </button>
             </div>
           </form>
+          :
+          <div className='w-full h-full flex flex-col items-center justify-center'>
+            <h1>
+
+              No Paid Event
+            </h1>
+              <button
+                type="button"
+                className="text-red-500 background-transparent uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                onClick={onRequestClose}
+              >
+                Close
+              </button>
+          </div>
+          }
         </div>
       </div>
     </div>

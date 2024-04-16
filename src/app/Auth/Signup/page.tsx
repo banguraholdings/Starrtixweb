@@ -1,18 +1,24 @@
-import SignInForm from "@/components/SignInForm";
+"use client"
+
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import SignUpForm from "@/components/SignupForm";
+import { userAuth } from "../../../../useContext";
+import Image from "next/image";
 
 function Signup() {
+  const {success}=userAuth()
   return (
       <div className="flex w-full justify-center flex-row-reverse">
         <div className=" h-[100vh]  hidden w-full lg:block lg:">
-          <img
+          <Image
             src={"../../images/signupback.png"}
             alt=""
             className="w-full h-full"
+            width={500}
+            height={1000}
           />
         </div>
 
@@ -34,13 +40,25 @@ function Signup() {
             {/* Welcome */}
             <div className="flex items-center space-x-2">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
-              <img
+              <Image
              src="../../images/starrtix.png"
              className="h-20"
+             width={150}
+             height={100}
+             alt="logo"
              />
             </div>
             {/* form fields */}
             <div className="flex flex-col space-y-4 md:space-y-4 w-8/12">
+              {
+                success&&
+
+              <div className={`w-full ${success.status==="error"?"text-red-600 bg-red-300":"text-green-600 bg-green-300"}  flex items-center justify-center h-12  rounded-lg`}>
+                {success.message}
+              </div>
+              
+          
+              }
               <SignUpForm/>
             </div>
           </div>

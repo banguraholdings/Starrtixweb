@@ -1,18 +1,18 @@
 export const  eventSteps = [
    {
-    step:"Step 1",
+    step:"Event Details",
     id:0
    },
    {
-    step:"Step 2",
+    step:"Ticketing Options",
     id:1
    },
    {
-    step:"Step 3",
+    step:"Ads",
     id:2
    },
    {
-    step:"Step 4",
+    step:"Policy and Terms",
     id:3
    },
 ]

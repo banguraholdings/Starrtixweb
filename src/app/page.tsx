@@ -3,10 +3,12 @@ import { eventTypes, events } from "@/api/dummyData";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { IoCalendar } from "react-icons/io5";
 
 import Animation from "../../public/Lottie/AnimationHome.json";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 import {
   FaTicketAlt,
@@ -20,62 +22,169 @@ import { IoShareSocialSharp, IoTicket } from "react-icons/io5";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import Homwrapper from "../components/Homwrapper";
 import Lottie from "lottie-react";
-import { MdPaid,MdOutlineCropFree } from "react-icons/md";
+import { MdPaid, MdOutlineCropFree } from "react-icons/md";
 import { userAuth } from "../../useContext";
 // import EventItem from "@/components/HomeComponent/EventItem";
-const EventItem = dynamic(() => import('@/components/HomeComponent/EventItem'))
+const EventItem = dynamic(() => import("@/components/HomeComponent/EventItem"));
 
 import { useRouter } from "next/navigation";
 import { getAllEvent } from "@/api/Auth";
 
-
-type EventList={
-  id:number;
-  image:string;
-  video:string;
-  title:string;
-  description:string;
-}
+type EventList = {
+  id: number;
+  image: string;
+  video: string;
+  title: string;
+  description: string;
+};
 
 export default function Home() {
+  const blog = [
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/event1.jpg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/Event2.jpeg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/event2.jpg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/Event3.jpeg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/event3.jpg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+
+    {
+      id: 3,
+      title: "Food Truck Festival",
+      date: "2024-09-25",
+      location: "Downtown, San Francisco",
+      description:
+        "Savor the flavors of various cuisines from gourmet food trucks.",
+      pictures: [
+        {
+          url: "images/Event1.jpeg",
+          caption: "Food trucks lined up along the street",
+        },
+        {
+          url: "https://example.com/food-truck-festival-pic2.jpg",
+          caption: "A delicious assortment of dishes",
+        },
+      ],
+    },
+  ];
+
   const { username, logout, isAuthenticated } = userAuth();
-const navigation = useRouter()
-  const [eventsList, setEventsList]=useState<EventList[]>([]);
+  const navigation = useRouter();
+  const [eventsList, setEventsList] = useState<EventList[]>([]);
 
-
-  const DateFormatToArrayExample = (day:Date) => {
+  const DateFormatToArrayExample = (day: Date) => {
     const date = new Date(day);
     // Formatting the date using toLocaleDateString
-    const formattedDate = date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
     // Splitting the formatted date into an array
     // The formatted date might look like "April 19, 2024"
     // Note: The exact format can vary depending on the browser and OS locale settings
-    const dateParts = formattedDate.split(' '); // Attempting to split by space
+    const dateParts = formattedDate.split(" "); // Attempting to split by space
     // Adjusting for potential differences in format (e.g., removing commas)
-    dateParts[1] = dateParts[1].replace(',', ''); // Making sure the day part is clean
-    
+    dateParts[1] = dateParts[1].replace(",", ""); // Making sure the day part is clean
+
     return <div>{JSON.stringify(dateParts)}</div>; //
   };
-  
-  const getAllEvents=async()=>{
+
+  const getAllEvents = async () => {
     try {
-      
-      await getAllEvent().then((events:any) => {
-        console.log(events)
-        setEventsList(events?.data)
-      })
-    } catch (error) {
-      
-    }
-  }
+      await getAllEvent().then((events: any) => {
+        console.log(events);
+        setEventsList(events?.data);
+      });
+    } catch (error) {}
+  };
 
   useEffect(() => {
     console.log(isAuthenticated);
-    getAllEvents()
+    getAllEvents();
   }, [isAuthenticated]);
   return (
     <Homwrapper>
@@ -88,7 +197,8 @@ const navigation = useRouter()
         className=" text-white h-[700px] xl:h-[900px]"
       >
         <div
-          className={`w-full bg-blue-700 h-full  bg-opacity-50 flex md:flex-row    flex-col-reverse items-center justify-center gap-8 `}>
+          className={`w-full bg-blue-700 h-full  bg-opacity-50 flex md:flex-row    flex-col-reverse items-center justify-center gap-8 `}
+        >
           <div className="w-8/12 lg:w-6/12 lg:gap-4 gap-2 items-center lg:items-start flex flex-col ">
             {/* header */}
             <h1 className="text-xl md:text-2xl font-serif text-center md:text-start ">
@@ -102,7 +212,7 @@ const navigation = useRouter()
               {/* button */}
 
               <Link
-                href={username?"/User/Dashboard": "/Auth/Signin"}
+                href={username ? "/User/Dashboard" : "/Auth/Signin"}
                 className="items-center justify-center flex bg-blue-500 w-40 h-12 border rounded "
               >
                 <h1 className="">Create Event</h1>
@@ -129,29 +239,27 @@ const navigation = useRouter()
       {/* event genre */}
       <div className="w-full p-4 items-center justify-center flex ">
         <div className="flex gap-6 lg:gap-10 overflow-scroll  hide-scrollbar">
-          {eventTypes && eventTypes.map((event) => (
-            <Link
-              key={event.id}
-              href={""}
-              className="flex flex-col items-center"
-            >
-              {/* event icon */}
-              <div className="w-20 h-20 lg:w-32 lg:h-32 border flex rounded-full items-center justify-center hover:border-blue-400">
-                {
-                  event.type==="paid"?
-
-                  <MdPaid color={"blue"} size={32} />
-                  :
-                  <MdOutlineCropFree color={"blue"} size={32} />
-
-                }
-              </div>
-              {/* event name */}
-              <h1 className="text-xs text-gray-600 text-center">
-                {event.name}
-              </h1>
-            </Link>
-          ))}
+          {eventTypes &&
+            eventTypes.map((event) => (
+              <Link
+                key={event.id}
+                href={""}
+                className="flex flex-col items-center"
+              >
+                {/* event icon */}
+                <div className="w-20 h-20 lg:w-32 lg:h-32 border flex rounded-full items-center justify-center hover:border-blue-400">
+                  {event.type === "paid" ? (
+                    <MdPaid color={"blue"} size={32} />
+                  ) : (
+                    <MdOutlineCropFree color={"blue"} size={32} />
+                  )}
+                </div>
+                {/* event name */}
+                <h1 className="text-xs text-gray-600 text-center">
+                  {event.name}
+                </h1>
+              </Link>
+            ))}
         </div>
       </div>
 
@@ -162,51 +270,53 @@ const navigation = useRouter()
           <div className="text-xl font-bold">Upcoming Events</div>
 
           {/* dropdown filters */}
-         
         </div>
       </div>
       {/* events */}
       <div className="w-full flex justify-center p-4 ">
         {/* <Video src={"/vidoes/video1.mp4"} /> */}
         {/* container */}
-        <div className="w-11/12 lg:w-10/12   grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {eventsList &&  eventsList.map((value, index) => (
-            <Link
-              style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
-              href={{
-                pathname:`/Pages/Eventdetails`,
-              query:{
-                id:value.id
-              }}}
-            
-              key={index}
-            >
-              {/* img */}
-              <EventItem image={value.image} videoSrc={value.video} /> {/* Make sure the path is correct */}
-
-              {/* decription */}
-              <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
-                {/* date */}
-                <div className="text-center">
-                  {/* <p className="font-bold text-blue-500">{value.month}</p>
-                  <h1>{value.day}</h1> */}
-                </div>
-
+        <div className="w-11/12 lg:w-10/12  grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {eventsList &&
+            eventsList.slice(0,6).map((value, index) => (
+              <Link
+                style={{ borderRadius: 18.95, border: 2, borderWidth: 2 }}
+                href={{
+                  pathname: `/Pages/Eventdetails`,
+                  query: {
+                    id: value.id,
+                  },
+                }}
+                key={index}
+                className="w-full"
+              >
+                {/* img */}
+                <EventItem image={value.image} videoSrc={value.video} />{" "}
+                {/* Make sure the path is correct */}
                 {/* decription */}
-                <div className="space-y-2">
-                  <p className="text-xs font-bold">{value.title}</p>
-                  <p className="text-xs font-thin">{value.description}</p>
-                </div>
-              </div>
-            </Link>
-          ))}
+                <div className="w-full p-4 flex space-x-2 border rounded-b-[18.95px]">
+                  {/* date */}
+                  <div className="text-center">
+                    {/* <p className="font-bold text-blue-500">{value.month}</p>
+                  <h1>{value.day}</h1> */}
+                  </div>
 
-    
+                  {/* decription */}
+                  <div className="space-y-2 w-full">
+                    <p className="text-xs font-bold">{value.title}</p>
+                    <p className="text-xs font-thin ">{value.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
         </div>
       </div>
       {/* more events view */}
       <div className="w-full justify-center flex p-4">
-        <Link href={"/Pages/Search"} className="w-40 h-14 items-center justify-center flex rounded-xl border-blue-500 border text-blue-500">
+        <Link
+          href={"/Pages/Search"}
+          className="w-40 h-14 items-center justify-center flex rounded-xl border-blue-500 border text-blue-500"
+        >
           See More
         </Link>
       </div>
@@ -218,12 +328,14 @@ const navigation = useRouter()
       </div>
       {/* adverts */}
       <div className="w-full  grid grid-cols-1 lg:grid-cols-2">
-        <div className="w-full  bg-red-500">
+        <div className="w-full  ">
           {/* image */}
-          <img
-            src={"images/weddings.jpg"}
+          <Image
+            src={"images/Event2.jpeg"}
             alt="wedding pics"
             className="w-full"
+            width={500}
+            height={500}
           />
         </div>
         {/* services */}
@@ -275,8 +387,51 @@ const navigation = useRouter()
         </div>
       </div>
 
+      {/* blog */}
+      <div className="w-full p-4 space-y-4 flex flex-col justify-center  items-center">
+        <h1 className="text-xl">Blogs</h1>
+
+        {/* values */}
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-12">
+          {blog &&
+            blog.map((values, index) => (
+              <Link href={""} key={index}>
+                <Image
+                  src={values.pictures[0].url}
+                  alt="blog image"
+                  width={100}
+                  height={100}
+                  className="w-full h-68"
+                />
+
+                <div className="w-full font-bold">{values.title}</div>
+                <div className="w-full space-x-2 text-gray-500 flex items-center">
+                  <FaLocationDot />
+                  <h1>{values.location}</h1>
+                </div>
+                <div className="w-full space-x-2 text-gray-500 flex items-center">
+                  <IoCalendar />
+                  <h1>{values.date}</h1>
+                </div>
+                <div className="w-full  text-gray-500 flex items-center">
+                  <h1>{values.description}</h1>
+                </div>
+              </Link>
+            ))}
+        </div>
+        {/* See More */}
+        <div className="w-full justify-center flex p-4">
+        <Link
+          href={"/Pages/Search"}
+          className="w-40 h-14 items-center justify-center flex rounded-xl border-blue-500 border text-blue-500"
+        >
+          See More
+        </Link>
+      </div>
+      </div>
+
       <div className="w-full  flex justify-center text-center p-4">
-        <div className=" w-11/12 text-xl">he Stage is Set. Are You </div>
+        <div className=" w-11/12 text-xl">The Stage is Set. Are You </div>
       </div>
       {/* adverts */}
       <div className="w-full  grid grid-cols-1 lg:grid-cols-2  pb-12">
@@ -326,25 +481,25 @@ const navigation = useRouter()
             </div>
           </div>
         </div>
-        <div className="w-full  bg-red-500">
+        <div className="w-full  ">
           {/* image */}
-          <img
-            src={"images/culture.jpg"}
+          <Image
+            src={"images/Event1.jpeg"}
             alt="wedding pics"
             className="w-full"
+            width={500}
+            height={500}
           />
         </div>
       </div>
 
       <div className="w-full p-2  flex flex-col items-center">
-        <h1>
-          how It Works
-        </h1>
+        <h1>how It Works</h1>
 
         <div className=" w-10/12 flex justify-center  ">
-         <video autoPlay controls>
-         <source src="/vidoes/video2.mp4"/>
-         </video>
+          <video controls>
+            <source src="/vidoes/video2.mp4" />
+          </video>
         </div>
       </div>
     </Homwrapper>

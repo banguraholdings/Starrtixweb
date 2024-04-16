@@ -1,8 +1,49 @@
+import Image from "next/image";
 import Homwrapper from "../../../components/Homwrapper";
 
 import React from "react";
 
 function page() {
+  const images = [
+    {
+      src: "../../pictures/Abdulai.jpg",
+      alt: "Abdulai Conteh",
+      role:"Founder & Creative Director",
+      about:
+        "  Abdulai Conteh is a recognized Limkokwing University of Creative Technology alumni who earned honors in international business. In  addition to his vast academic experience, Abdulai contributes a specific skill set in International finance, international marketing, and product development to his position as the founder and creative director of StarrTix. Abdulai has devoted himself to using his experience to promote innovation, quality, and strategic growth in the fields of product development and more.",
+    },
+    {
+      src: "../../pictures/Salamatu.jpg",
+      alt: "Salamatu Conteh",
+      role:"Operations and Growth",
+
+      about:
+        "  Salamatu Conteh is a highly skilled professional specializing in accounting, bringing extensive expertise in the effective management and budgeting of company cash flows. With a strong foundation in accounting principles, she possesses additional  knowledge and hands-on experience in event management, accumulating over four years in the dynamic field of the entertainment industry. In her role at StarrTix, Salamatu is  entrusted with the pivotal responsibilities of overseeing  operations and fostering the companys growth....",
+    },
+    {
+      src: "../../images/jad.jpeg",
+      alt: "Judah Alvin Dore",
+      role: "Software Engineer",
+      about:
+        "  As a seasoned Mobile App Developer with a passion for building cutting-edge mobile solutions, I specialize in creating intuitive,  user-friendly applications for both iOS and Android platforms. My  expertise lies in full-stack development, including UI/UX design,  backend integration, and native app development. I stay abreast of  the latest trends and technologies to ensure my apps are not only functional but also innovative and engaging. My goal is to deliver  seamless, efficient, and effective mobile experiences that meet and exceed the expectations of users and stakeholders alike.",
+    },
+    {
+      src: "../../images/RimaTahini.JPG",
+      alt: "Rima Tahini Ighodaro",
+      role: "Investment Strategies & Economic Sustainbility",
+      about:
+        "Rima Tahini Ighodaro, a Co-Founder of StarrTix, brings over five years of expertise in the entertainment sector. With her extensive background in investment, knowledge of entertainment market trends, and proficiency in branding, she plays a pivotal role in driving the success of the company. Her contributions have been instrumental not only in establishing StarrTix's prominence in Sierra Leone but also in expanding its influence across Africa.",
+    },
+    {
+      src: "../../pictures/Solomon.jpeg",
+      alt: "Solomon Kanu",
+      role: "Mobile Application Developer",
+      about:
+        " As a seasoned Mobile App Developer with a passion for building cutting-edge mobile solutions, I specialize in creating intuitive, user-friendly applications for both iOS and Android platforms. My  expertise lies in full-stack development, including UI/UX design, backend integration, and native app development. I stay abreast of  the latest trends and technologies to ensure my apps are not only  functional but also innovative and engaging. My goal is to deliver  seamless, efficient, and effective mobile experiences that meet  and exceed the expectations of users and stakeholders alike.",
+    },
+    // Add more images as needed
+  ];
+
   return (
     <Homwrapper>
       {/* landing screen */}
@@ -39,9 +80,9 @@ function page() {
             <h1 className="text-2xl xl:text-4xl">Our Mission</h1>
 
             <h1 className="text-center w-9/12 xl:text-lg ">
-              At StarrTix our mission is to empower event organizers by providing
-              a user-friendly, & innovative platform ensuring that event
-              creators deliver the best event experiences.
+              At StarrTix our mission is to empower event organizers by
+              providing a user-friendly, & innovative platform ensuring that
+              event creators deliver the best event experiences.
             </h1>
           </div>
           {/* our vision */}
@@ -64,17 +105,20 @@ function page() {
               now.
             </h1>
             <h1 className="text-center w-9/12 xl:text-lg">
-              At StarrTix, we power amazing live events and online experiences all
-              around Africa. With the help of our platform, event planners can
-              enhance the guest experience by using mobile tools. Our platform
-              seamlessly combines mobile ticketing, QR code technology, and
-              user-friendly audience engagement tools, streamlining event
+              At StarrTix, we power amazing live events and online experiences
+              all around Africa. With the help of our platform, event planners
+              can enhance the guest experience by using mobile tools. Our
+              platform seamlessly combines mobile ticketing, QR code technology,
+              and user-friendly audience engagement tools, streamlining event
               operations.
             </h1>
           </div>
         </div>
         <div>
-          <img
+          <Image
+            width={150}
+            height={100}
+            layout="responsive"
             src={"../../pictures/AboutUs1.jpeg"}
             alt="wedding pics"
             className="w-full"
@@ -83,121 +127,29 @@ function page() {
       </div>
 
       {/* the team */}
-      <div className="flex flex-col items-center pb-12">
+      <div className="flex flex-col w-full md:justify-center md:flex-row items-center pb-12 ">
         {/* abdulai */}
-        <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 ">
+        <div className="flex flex-col w-11/12 lg:justify-between md:grid md:grid-cols-2 lg:grid-cols-4 space-y-6 lg:space-y-0 ">
           {/* img name and title */}
-          <div className="flex flex-col items-center">
-            <img src="../../pictures/Abdulai.jpg" alt="CEO" className="p-8 " />
-            <h1 className="text-lg font-semibold">Abdulai Conteh</h1>
-            <h1 className="text-lg font-semibold text-blue-500">
-              Founder & Creative Director{" "}
-            </h1>
-          </div>
+          {images.map((image, index) => (
+            <button className="flex flex-col items-center">
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="p-8 w-60 h-60 rounded-full"
+              />
+              <h1 className=" font-semibold">{image.alt}</h1>
+              <h1 className="  text-blue-500">
+                {image.role}
+              </h1>
+            </button>
+          ))}
 
-          {/* About */}
-          <div className="flex flex-col items-center  lg:w-8/12 lg:bg-blue-500 lg:justify-center">
-            <h1 className="text-center w-10/12  font-light lg:text-white">
-              Abdulai Conteh is a recognized Limkokwing University of Creative
-              Technology alumni who earned honors in international business. In
-              addition to his vast academic experience, Abdulai contributes a
-              specific skill set in International finance, international
-              marketing, and product development to his position as the founder
-              and creative director of StarrTix. Abdulai has devoted himself to
-              using his experience to promote innovation, quality, and strategic
-              growth in the fields of product development and more.
-            </h1>
-          </div>
+  
         </div>
-        {/* salamatu */}
-        <div className="flex flex-col lg:flex-row-reverse space-y-6 lg:space-y-0 ">
-          {/* img name and title */}
-          <div className="flex flex-col items-center">
-            <img
-              src="../../pictures/Salamatu.jpg"
-              alt="Software Engineer"
-              className="p-8"
-            />
-            <h1 className="text-lg font-semibold">Salamatu Conteh</h1>
-            <h1 className="text-lg font-semibold text-blue-500">
-              Operations and Growth{" "}
-            </h1>
-          </div>
-
-          {/* About */}
-          <div className="flex flex-col items-center lg:w-8/12 lg:bg-blue-500 lg:justify-center">
-            <h1 className="text-center w-10/12 font-light lg:text-white">
-              Salamatu Conteh is a highly skilled professional specializing in
-              accounting, bringing extensive expertise in the effective
-              management and budgeting of company cash flows. With a strong
-              foundation in accounting principles, she possesses additional
-              knowledge and hands-on experience in event management,
-              accumulating over four years in the dynamic field of the
-              entertainment industry. In her role at StarrTix, Salamatu is
-              entrusted with the pivotal responsibilities of overseeing
-              operations and fostering the companys growth....
-            </h1>
-          </div>
-        </div>{" "}
-        {/* Judah */}
-        <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0">
-          {/* img name and title */}
-          <div className="flex flex-col items-center">
-            <img
-              src="../../pictures/Judah.png"
-              alt="Software Engineer"
-              className="p-8"
-            />
-            <h1 className="text-lg font-semibold">Judah Alvin Dore</h1>
-            <h1 className="text-lg font-semibold text-blue-500">
-             Software Engineer{" "}
-            </h1>
-          </div>
-
-          {/* About */}
-          <div className="flex flex-col items-center lg:w-10/12 lg:bg-blue-500 lg:justify-center">
-            <h1 className="text-center w-10/12 font-light lg:text-white">
-              As a seasoned Mobile App Developer with a passion for building
-              cutting-edge mobile solutions, I specialize in creating intuitive,
-              user-friendly applications for both iOS and Android platforms. My
-              expertise lies in full-stack development, including UI/UX design,
-              backend integration, and native app development. I stay abreast of
-              the latest trends and technologies to ensure my apps are not only
-              functional but also innovative and engaging. My goal is to deliver
-              seamless, efficient, and effective mobile experiences that meet
-              and exceed the expectations of users and stakeholders alike.
-            </h1>
-          </div>
-        </div>{" "}        {/* Solomon  */}
-        <div className="flex flex-col lg:flex-row-reverse space-y-6 lg:space-y-0">
-          {/* img name and title */}
-          <div className="flex flex-col items-center">
-            <img
-              src="../../pictures/Solomon.jpeg"
-              alt="Software Engineer"
-              className="p-8"
-            />
-            <h1 className="text-lg font-semibold">Solomon Kanu</h1>
-            <h1 className="text-lg font-semibold text-blue-500">
-              Mobile App Developer{" "}
-            </h1>
-          </div>
-
-          {/* About */}
-          <div className="flex flex-col items-center lg:w-8/12 lg:bg-blue-500 lg:justify-center">
-            <h1 className="text-center w-10/12 font-light lg:text-white">
-              As a seasoned Mobile App Developer with a passion for building
-              cutting-edge mobile solutions, I specialize in creating intuitive,
-              user-friendly applications for both iOS and Android platforms. My
-              expertise lies in full-stack development, including UI/UX design,
-              backend integration, and native app development. I stay abreast of
-              the latest trends and technologies to ensure my apps are not only
-              functional but also innovative and engaging. My goal is to deliver
-              seamless, efficient, and effective mobile experiences that meet
-              and exceed the expectations of users and stakeholders alike.
-            </h1>
-          </div>
-        </div>{" "}
+       
+       
+      
       </div>
     </Homwrapper>
   );

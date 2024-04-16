@@ -136,7 +136,7 @@ function Userdashboardwrapper({ children }: any) {
         className="w-full p-4 border-b border-gray-400 flex justify-center items-center">
         <img
              src="../../images/starrtix.png"
-             className="w-32 h-20"
+             className=" h-20"
              alt="image"
              />
         </Link>

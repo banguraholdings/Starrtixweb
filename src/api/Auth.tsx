@@ -321,3 +321,47 @@ export const getTicket=async(id:string)=>{
     
   }
 }
+
+
+////////////////////////////////////////////////////////////////////////
+// get INVITATION by event id 
+export const getInvitation=async(id:string)=>{
+  try {
+    const response = await apiClient.get(`/event/events/${id}/invitations/`)
+    return response.data
+  } catch (error) {
+    
+  }
+}
+
+////////////////////////////////////////////////////////////////////////
+// create invitation
+type invitation = {
+  nameofattendee: string;
+  expirationdate: string;
+  numberofinvitaion: number;
+  uniqueIdentidier: string;
+  email: string;
+  event: number;
+};
+export const createInvitation=async(invitation:invitation)=>{
+  const data={
+    nameofattendee:invitation.nameofattendee,
+    expirationdate:invitation.expirationdate,
+    numberofinvitaion:invitation.numberofinvitaion,
+    uniqueIdentidier:invitation.uniqueIdentidier,
+    email:invitation.email,
+    event:invitation.event
+  }
+
+  const response= apiClient.post("/event/invitations/", data)
+  return response
+}
+
+
+////////////////////////////////////////////////////////////////////////
+// get INVITATION by uuid
+export const getInvitationByUuid=async(id:string)=>{
+  const response = apiClient.get(`/event/invitation/${id}`)
+  return response
+}

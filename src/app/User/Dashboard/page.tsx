@@ -15,6 +15,7 @@ import Step2 from "@/components/EventSteps/Step2";
 import Step3 from "@/components/EventSteps/Step3";
 import Step4 from "@/components/EventSteps/Step4";
 import { userAuth } from "../../../../useContext";
+import { FaCheckCircle } from "react-icons/fa";
 
 import { eventMedia, getProfilePic, postEvent } from "@/api/Auth";
 import { withProtected } from "@/components/ProtectedRoute/Authenticated";
@@ -32,6 +33,7 @@ function Page() {
   const [value4, setValue4]=useState<any>({})
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState<any>("")
+  const [eventStatus, setEventStatus]=useState(false)
   const [profilepic, setProfilepic] = useState<string>("")
 
   const openModal = () => setIsOpen(true);
@@ -49,6 +51,8 @@ function Page() {
       getProfilePic().then((value) => {
         console.log(value?.data[0].image)
         setProfilepic(value?.data[0].image)
+      }).catch(error=>{
+
       })
   },[])
   //function that get values
@@ -91,7 +95,14 @@ function Page() {
     // //postevent
     postEvent(eventDetails).then((res)=>{
       console.log(res)
-    })
+      setCurrentIndex(0)
+      setValue1({})
+      setValue2({})
+      setValue3({})
+      setValue4({})
+      nextScreen(1)
+      setEventStatus(true)
+    }).catch((err)=>{})
     // console.log(eventDetails)
     // console.log(value1, value2, value3, value4)
 
@@ -129,47 +140,36 @@ function Page() {
           {/* header */}
           <div className="flex w-full  items-center pl-4 pr-4">
             <h1>Dashboard</h1>
-
             {/* user credentials */}
             <div className=" flex-1 w-full h-12 flex items-center justify-end space-x-2">
               {/* profile picture */}
               <div className="w-8 h-8 rounded-full bg-gray-400">
                 <img src={profilepic} className="rounded-full"/>
               </div>
-
               {/* username */}
               <h1 className="text-sm">{username?.first_name} {username?.last_name}</h1>
             </div>
           </div>
         </div>
-
-       
-
         {/* event numbers */}
         <div className="p-4 bg-gray-100 w-full xl:justify-center xl:flex">
           <ul className="flex justify-between w-full">
             {/* grid 1 */}
             <li className=" space-y-4  w-20 text-[8px] items-center justify-center flex flex-col h-20 md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
               <h1 className="text-gray-400">TOTAL SALES</h1>
-
               <h1 className="text-base md:text-2xl">Le120k</h1>
             </li>
             {/* grid 2 */}
-
             <li className="space-y-4 w-20 h-20 text-[8px] items-center justify-center flex flex-col md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
               <h1 className="text-gray-400">REGISTRRATION</h1>
-
               <h1 className="text-base md:text-2xl">3725</h1>
             </li>
             {/* grid 3 */}
-
             <li className="space-y-4 w-20 h-20 text-[8px] items-center justify-center flex flex-col md:w-40 md:h-40 xl:w-60 md:text-xs bg-white border rounded-lg shadow">
               <h1 className="text-center text-gray-400">TOTAL ATTENDANCES</h1>
-
               <h1 className="text-base md:text-2xl">4578</h1>
             </li>
             {/* grid 4 */}
-
             <li
               style={{
                 backgroundImage: `url('../../background/ev.jpg')`,
@@ -195,38 +195,52 @@ function Page() {
         {/* event creation modal */}
         {isOpen ? (
           <EventCreation>
-            <div className="w-full flex justify-end p-2">
-              <button
-              
-              onClick={()=>{
-                closeModal();
-                setCurrentIndex(0)
-                setValue1({})
-                setValue2({})
-                setValue3({})
-                setValue4({})
-              }}>
-                <IoIosCloseCircle size={24} color={"red"}/>
-              </button>
-            </div>
-            <div className="flex flex-row  space-x-8 justify-center">
-              {/* step preview */}
-              {eventSteps.map((value) => (
-                <div
-                
-                className={`${currentIndex>value.id?"text-green-500":""}`}
-                key={value.id}>{value.step}</div>
-              ))}
-            </div>
+            {
+              eventStatus?
+              <div className="w-full h-[400px] flex flex-col items-center justify-center">
+                <FaCheckCircle color="green" size={40}/>
+                Successfully Created an Event
+                <button
+                onClick={()=>{
+                  closeModal();
+                    setEventStatus(false)
+                }}
+                className="p-2 bg-blue-500"
+                >
+                  Close
+                </button>
+              </div>
+              :
+            <div>
 
-            {/* Render the current screen */}
-            {screens[currentIndex]}
-            {/* button */}
-
-           
+              <div className="w-full flex justify-end p-2">
+                <button        
+                onClick={()=>{
+                  closeModal();
+                  setCurrentIndex(0)
+                  setValue1({})
+                  setValue2({})
+                  setValue3({})
+                  setValue4({})
+                }}>
+                  <IoIosCloseCircle size={24} color={"red"}/>
+                </button>
+              </div>
+              <div className="flex flex-row  space-x-8 justify-center">
+                {/* step preview */}
+                {eventSteps.map((value) => (
+                  <div   
+                  className={`${currentIndex+1>value.id?"text-green-500":""}`}
+                  key={value.id}>{value.step}</div>
+                ))}
+              </div>
+              {/* Render the current screen */}
+              {screens[currentIndex]}
+              {/* button */}       
+            </div>
+            }
           </EventCreation>
         ) : null}
-
         {/* calendar and other event */}
         <div className="grid grid-cols-1 p-4 lg:grid-cols-2">
           {/* Recent Activity History */}
@@ -238,7 +252,6 @@ function Page() {
                 <button>See More`{">>"}`</button>
               </div>
             </div>
-
             {/* activities */}
             <div className="flex flex-col space-y-10 p-4">
               {activities.map((value, index) => (
@@ -256,7 +269,6 @@ function Page() {
                     </div>
                     <h1>{value.activity}</h1>
                   </div>
-
                   <div className=" flex justify-center w-full">
                     <div className="w-10/12">
                       <h1 className="text-start text-blue-600">
@@ -264,7 +276,6 @@ function Page() {
                       </h1>
                     </div>
                   </div>
-
                   <div className=" flex justify-center w-full">
                     <div className="w-10/12">
                       <h1 className="text-start text-gray-600">{value.time}</h1>
@@ -279,7 +290,6 @@ function Page() {
               ))}
             </div>
           </div>
-
           {/* Calendar and other utilities */}
           <div className="p-6 border-2 rounded-lg shadow bg-gray-100 space-y-12">
             {/* calendar */}
@@ -296,7 +306,6 @@ function Page() {
             </div>
           </div>
         </div>
-
         {/* event table */}
         <div className="w-full p-4">
           <ResponsiveEventTable />

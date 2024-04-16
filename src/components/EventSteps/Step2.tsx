@@ -13,8 +13,6 @@ interface FormValues {
   // Define the types for the form errors
   interface FormErrors {
     eventType?: string;
-    nameOnTicket?: string;
-    quantity?: string;
     price?: string;
   }
   
@@ -32,12 +30,7 @@ function Step2({ closeStep,Finalvalues }: any) {
     if (!values.eventType) {
       errors.eventType = 'Please select the event type';
     }
-    if (!values.nameOnTicket) {
-      errors.nameOnTicket = 'Name on ticket is required';
-    }
-    if (values.quantity < 1) {
-      errors.quantity = 'At least one ticket is required';
-    }
+
     if (values.eventType === 'paid' && (values.price === null || values.price <= 0)) {
       errors.price = 'Price is required for paid events and must be greater than 0';
     }
@@ -70,21 +63,9 @@ function Step2({ closeStep,Finalvalues }: any) {
               <ErrorMessage name="eventType" component="div" className="text-red-500 text-sm" />
             </div>
 
-            <div>
-              <label htmlFor="nameOnTicket" className="block">Name on your ticket</label>
-              <Field name="nameOnTicket" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
-              <ErrorMessage name="nameOnTicket" component="div" className="text-red-500 text-sm" />
-            </div>
-
-            <div>
-              <label htmlFor="quantity" className="block">Quantity</label>
-              <Field name="quantity" type="number" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
-              <ErrorMessage name="quantity" component="div" className="text-red-500 text-sm" />
-            </div>
-
             {values.eventType === 'paid' && (
               <div>
-                <label htmlFor="price" className="block">Price ($)</label>
+                <label htmlFor="price" className="block">Price (Le)</label>
                 <Field name="price" type="number" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
                 <ErrorMessage name="price" component="div" className="text-red-500 text-sm" />
               </div>

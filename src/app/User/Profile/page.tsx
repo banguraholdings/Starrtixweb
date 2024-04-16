@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Userdashboardwrapper from "@/components/Userdashboardwrapper";
@@ -11,6 +9,7 @@ import { FaUpload } from "react-icons/fa6";
 import { uploadProfilePic, getProfilePic } from "@/api/Auth";
 import { userAuth } from "../../../../useContext";
 
+import { FaRegUserCircle } from "react-icons/fa";
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -42,81 +41,77 @@ const initialValues: FormValues = {
   dateofbirth: "",
 };
 
-
-
 function Page() {
+
+  
   const { username } = userAuth();
 
- 
-    const [selectedImage, setSelectedImage] = useState<any>(null);
-    const [token, setToken]=useState<string>("")
-  const [profilepic, setProfilepic] = useState<string>("")
-    const getToken=async()=>{
-        const token = await localStorage.getItem("token");
-        setToken(token||"");
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [token, setToken] = useState<string>("");
+  const [profilepic, setProfilepic] = useState<string>("");
+  const getToken = async () => {
+    const token = await localStorage.getItem("token");
+    setToken(token || "");
+  };
+  const handleImageChange = (e: any) => {
+    setSelectedImage(e.target.files[0]);
+  };
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (!selectedImage) {
+      alert("Please select an image first.");
+      return;
     }
-    const handleImageChange = (e:any) => {
-        setSelectedImage(e.target.files[0]);
-      };
-    const handleSubmit = async (e:any) => {
-        e.preventDefault();
-        if (!selectedImage) {
-          alert('Please select an image first.');
-          return;
-        }
-    
-        const formData = new FormData();
-        formData.append('image', selectedImage);
-    
-       try {
-        uploadProfilePic(formData,token);
-       } catch (error) {
-        
-       }
-      };
 
+    const formData = new FormData();
+    formData.append("image", selectedImage);
 
-      useEffect(()=>{
-        //get profile picture
-        getProfilePic().then((value) => {
-          console.log(value?.data[0].image)
-          setProfilepic(value?.data[0].image)
-        })
-        getToken()
-console.log(token)
-      },[token])
+    try {
+      uploadProfilePic(formData, token);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    //get profile picture
+    getProfilePic().then((value) => {
+      console.log(value?.data[0].image);
+      setProfilepic(value?.data[0].image);
+    });
+    getToken();
+    console.log(token);
+  }, [token]);
   return (
-
     <Userdashboardwrapper>
       <div className="w-full flex-col flex p-6  items-center  justify-center">
         <div className="text-lg font-bold">Profile</div>
         {/* profile pic */}
         <div className="w-full flex p-1 lg:w-8/12  flex-col md:flex-row items-center gap-2">
-          <div className="lg:w-40 lg:h-40 w-24 h-24 bg-gray-200 rounded-full border">
-            <img src={profilepic && profilepic}
-            alt="image"
-            />
+          <div className="lg:w-40 lg:h-40 flex items-center justify-center w-24 h-24 bg-gray-200 rounded-full border">
+            {profilepic ? (
+              <img src={profilepic && profilepic} alt="image" />
+            ) : (
+              <FaRegUserCircle size={80} color={"black"} />
+            )}
           </div>
 
           {/* action buttons */}
           <div className="flex lg:h-full flex-col justify-center gap-2">
             <div className="flex space-x-4">
-
-            <input
-            type="file"
-            onChange={handleImageChange}
-            className="border rounded"
-            // placeholder="Upload Image"
-            //   className="w-40 p-3 items-center justify-center flex bg-black text-white rounded-lg"
-            />
-            <button onClick={handleSubmit} className="p-4 border rounded hover:border-blue-500">
-
-            <FaUpload />
-            </button>
-
+              <input
+                type="file"
+                onChange={handleImageChange}
+                className="border rounded"
+                // placeholder="Upload Image"
+                //   className="w-40 p-3 items-center justify-center flex bg-black text-white rounded-lg"
+              />
+              <button
+                onClick={handleSubmit}
+                className="p-4 border rounded hover:border-blue-500"
+              >
+                <FaUpload />
+              </button>
             </div>
-           
-    
+
             <Link
               href={""}
               className="w-40 p-3 items-center justify-center flex  border rounded-lg"
@@ -141,38 +136,37 @@ console.log(token)
         >
           <Form className="grid grid-cols-1 w-11/12 lg:w-8/12 gap-6 ">
             <div className="md:flex justify-between ">
-          {/* first name */}
-            <label htmlFor="firstname" className="block md:w-[45%]">
-              <span className="text-gray-700">First Name</span>
-              <Field
-                name="firstname"
-                type="text"
-                placeholder={username?.first_name}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              />
-              <ErrorMessage
-                name="firstname"
-                component="div"
-                className="text-red-500 text-sm"
-              />
-            </label>
-            {/* lastname */}
-            <label htmlFor="lastname" className="block md:w-[45%]">
-              <span className="text-gray-700">Last Name</span>
-              <Field
-                name="lastname"
-                type="text"
-                placeholder={username?.last_name}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              />
-              <ErrorMessage
-                name="lastname"
-                component="div"
-                className="text-red-500 text-sm"
-              />
-            </label>
+              {/* first name */}
+              <label htmlFor="firstname" className="block md:w-[45%]">
+                <span className="text-gray-700">First Name</span>
+                <Field
+                  name="firstname"
+                  type="text"
+                  placeholder={username?.first_name}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                />
+                <ErrorMessage
+                  name="firstname"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </label>
+              {/* lastname */}
+              <label htmlFor="lastname" className="block md:w-[45%]">
+                <span className="text-gray-700">Last Name</span>
+                <Field
+                  name="lastname"
+                  type="text"
+                  placeholder={username?.last_name}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                />
+                <ErrorMessage
+                  name="lastname"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </label>
             </div>
-
 
             <label htmlFor="email" className="block">
               <span className="text-gray-700">Email Address</span>
@@ -180,7 +174,6 @@ console.log(token)
                 name="email"
                 type="email"
                 placeholder={username?.email}
-
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -211,7 +204,6 @@ console.log(token)
                 name="phonenumber"
                 type="text"
                 placeholder={username?.phonenumber}
-
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
               <ErrorMessage
@@ -247,4 +239,4 @@ console.log(token)
     </Userdashboardwrapper>
   );
 }
-export default  Page
+export default Page;

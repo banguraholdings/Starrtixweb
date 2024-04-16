@@ -3,15 +3,20 @@ import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { userAuth } from "../../../../useContext";
+import Image from "next/image";
 
 function Signin() {
+
   return (
       <div className="flex w-full justify-center">
         <div className=" h-[100vh]  hidden w-full lg:block lg:">
-          <img
+          <Image
             src={"../../images/loginback.png"}
             alt=""
             className="w-full h-full"
+            width={500}
+            height={1000}
           />
         </div>
 
@@ -33,13 +38,17 @@ function Signin() {
             {/* Welcome */}
             <div className=" items-center ">
               <h1 className="text-xl font-bold md:text-2xl ">Welcome to</h1>
-             <img
+             <Image
              src="../../images/starrtix.png"
              className="h-20"
+             width={150}
+             alt="logo"
+             height={100}
              />
             </div>
             {/* form fields */}
             <div className="flex flex-col space-y-4 md:space-y-4 w-8/12">
+          
               <SignInForm />
               {/* <div className="flex justify-center items-center">
                 <div className="w-full h-[0.5px] bg-black"></div>

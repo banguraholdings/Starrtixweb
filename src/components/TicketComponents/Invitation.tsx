@@ -1,10 +1,11 @@
 // In src/TableComponent.tsx
+import Image from 'next/image';
 import React from 'react';
 import { useTable, Column, TableOptions } from 'react-table';
 
 interface TableProps<T extends object> extends TableOptions<T> {}
 
-const TableComponent = <T extends object>({ columns, data }: TableProps<T>) => {
+const Table = <T extends object>({ columns, data }: TableProps<T>) => {
  
 
   return (
@@ -12,12 +13,14 @@ const TableComponent = <T extends object>({ columns, data }: TableProps<T>) => {
     <thead className="bg-gray-100">
         <tr>
             <th className="px-4 py-2 text-left">Id</th>
-            <th className="px-4 py-2 text-left">Ticket Number</th>
+            <th className="px-4 py-2 text-left">Name of Attendee</th>
             <th className="px-4 py-2 text-left">Expiration Date</th>
-            <th className="px-4 py-2 text-left">Ticket Sold</th>
-            <th className="px-4 py-2 text-left">Tickets Left</th>
-            <th className="px-4 py-2 text-left">Tickets Scanned</th>
-            <th className="px-4 py-2 text-left">Event </th>
+            <th className="px-4 py-2 text-left">Number of Invitations</th>
+            <th className="px-4 py-2 text-left">Identifier</th>
+            <th className="px-4 py-2 text-left">Email</th>
+            <th className="px-4 py-2 text-left">unique_id</th>
+            <th className="px-4 py-2 text-left">qrcode</th>
+            <th className="px-4 py-2 text-left">Event</th>
          
         </tr>
     </thead>
@@ -27,15 +30,17 @@ const TableComponent = <T extends object>({ columns, data }: TableProps<T>) => {
                     data && data.map((value:any, index:number)=>(
         <tr className="border-b" key={index}>
             <td className="px-4 py-2">{value.id}</td>
-            <td className="px-4 py-2">{value.ticketnumber}</td>
+            <td className="px-4 py-2">{value.nameofattendee}</td>
             <td className="px-4 py-2">{value.expirationdate}</td>
-            <td className="px-4 py-2">{value.ticketsold}</td>
-            <td className="px-4 py-2">{value.ticketleft}</td>
+            <td className="px-4 py-2">{value.numberofinvitaion}</td>
+            <td className="px-4 py-2">{value.uniqueIdentidier}</td>
             <td className="px-4 py-2">
-{value.ticketscanned}
+{value.email}
             </td>
+            <td className="px-4 py-2">{value.unique_id}</td>
+            <td className="px-4 py-2"><Image alt='qrcode' width={60} height={60} src={value.qrcode}/></td>
             <td className="px-4 py-2">{value.event}</td>
-         
+
         </tr>
 
                     ))
@@ -46,4 +51,4 @@ const TableComponent = <T extends object>({ columns, data }: TableProps<T>) => {
   );
 };
 
-export default TableComponent;
+export default Table;
